@@ -1,0 +1,651 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Print",
+				"Printf	n int, err error ƒ"
+			],
+			[
+				"Prin",
+				"Printf	n int, err error ƒ"
+			],
+			[
+				"Pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"obj",
+				"objShell"
+			],
+			[
+				"Sim",
+				"SimDesperate"
+			],
+			[
+				"快速施法",
+				"快速施法设置识别区域"
+			],
+			[
+				"func",
+				"Function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "tests/testgoserver/client.go",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/testgoserver/server.go",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/server.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/server.go",
+			"settings":
+			{
+				"buffer_size": 1463,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/rpc.go",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "rpc"
+			}
+		},
+		{
+			"file": "tests/understanding_slice.go",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "LNGS.sublime-project",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/GoSublime/GoSublime.sublime-build",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"GoSublime:",
+				"GoSublime: Activate 9o"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: int",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 336.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/LNGS/LNGS.sublime-project",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/User/GoSublime.sublime-settings",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/9o.md",
+		"/D/LNGS/tests/testgoserver/server.go",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/USAGE.md",
+		"/D/迅雷下载/侠盗飞车5PC版_游迅网/GrandTheftAutoV/游戏说明.txt",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/Default (Windows).sublime-keymap",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/CHANGELOG.md",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/GoSublime.sublime-settings",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
+		"/C/唐唐风暴.ini",
+		"/C/Users/Administrator/AppData/Local/Temp/beautify.vbs",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/test.vbs.dump",
+		"/C/Users/Administrator/AppData/Local/Temp/beautify.vbs.dump",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/test.vbs",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄一键挂机 - 副本.vbs",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄一键挂机 - 720h-old.vbs",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄图片/制作图片.py",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄一键挂机.vbs",
+		"/C/Program Files/FBYXYJGJ/test.bmp.dump",
+		"/C/Program Files/FBYXYJGJ/test.bmp",
+		"/C/pzx001.ini.dump",
+		"/C/pzx001.ini",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/test.bmp.dump",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/test.bmp",
+		"/C/Program Files (x86)/Jdyou/bin/ShieldModule.dat",
+		"/D/用户目录/我的文档/Tencent Files/102572055/FileRecv/风暴英雄一键挂机.TXT.dump",
+		"/D/用户目录/我的文档/Tencent Files/102572055/FileRecv/风暴英雄一键挂机.TXT",
+		"/C/风暴英雄一键挂机.INI.dump",
+		"/C/风暴英雄一键挂机.INI",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄一键挂机 - 720h - old/no.py",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/PyTools/setup.py",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/PyTools/beautify.py",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/PyTools/makedirty.py",
+		"/C/Python27/Scripts/cxfreeze-quickstart",
+		"/C/Games/Heroes of the Storm/.build.info",
+		"/C/Games/Heroes of the Storm/.agent.db",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/PyTools/test.py",
+		"/C/Users/Administrator/Desktop/vb2pygui-0.2/vb2pyGUI.pyw",
+		"/D/Projects/weidota-jnf/page.php",
+		"/D/Projects/weidota-jnf/__html__.php",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄图片/config.ini.dump",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄一键挂机/制作图片.py",
+		"/C/风暴英雄一键挂机.TXT.dump",
+		"/C/Program Files/风暴英雄PZ1/dm.dll",
+		"/C/Android/workspace/jfq/ScoreWallEarn/jni/Android.mk",
+		"/C/Android/workspace/jfq/ScoreWallEarn/jni/Application.mk",
+		"/C/风暴英雄一键挂机.TXT",
+		"/D/Projects/weidota-jnf/Damage.php",
+		"/C/Program Files (x86)/按键精灵9/QMScript/风暴英雄/风暴英雄图片/config.ini"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"",
+			"0, 0, SW, SH",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"GameRightClick",
+			"GameLeftClick",
+			"GameMoveTo",
+			"GameLeftClick",
+			"Click.*\\d",
+			"moveto.*\\d",
+			"moveto",
+			"dm.*Click",
+			"\\d\\d.*\\d\\d",
+			"点击随机英雄",
+			"GameLeftClick 192, 183",
+			"192, 183",
+			"随机英雄",
+			"click.*\\d\\d",
+			"move.*\\d\\d",
+			"Click.*\\d\\d",
+			"\\d\\d.*,.*\\d\\d",
+			"fp.*\\d\\d\\d",
+			"邀请加入",
+			"fp.*\\d\\d\\d",
+			"鬼灵矿小地图寻找",
+			"鬼灵矿小地图寻找友方英雄",
+			"鬼灵矿小地图寻找",
+			"fp.*\\d\\d\\d",
+			"FPExt(\"蓝条\", 147, 714, 300, 728",
+			"fp.*\\d\\d\\d",
+			"黑心湾小地图识别标识区域",
+			"fp.*\\d\\d\\d",
+			"977, 729, SW, SH",
+			"fp.*\\d\\d\\d",
+			"检查神殿占领情况",
+			"fp.*\\d\\d\\d",
+			"镜头跟随切换状态显示区域",
+			"fp.*\\d\\d\\d",
+			"const.*sh",
+			"const.*SW",
+			"离开按钮区域",
+			"FPDesperate",
+			"-组队",
+			"XPUP",
+			"fp.*\\d\\d",
+			"FPMultiRawR",
+			"fp.*\\d\\d",
+			"SKILL_Q_START_X",
+			"fp.*\\d\\d",
+			"\"020202\"",
+			"DELTA_COLOR_DEFAULT",
+			"020202",
+			"\"000000\"",
+			"000000",
+			"020202",
+			"\"000000\", ",
+			"\"000000\"",
+			"FPMultiRaw.*",
+			"FPMultiToCache",
+			"delta_color",
+			"Function fpmultiraw",
+			"function ",
+			"FPMultiRaw",
+			"fp.*\\d\\d",
+			"768",
+			"\\s768",
+			"768",
+			"1024",
+			"0, 0, 1024, 768",
+			"fp.*\\d\\d",
+			"fprect.*\\d\\d",
+			"fprect",
+			"蛛后墓提交状态区域",
+			"蛛后墓提交状态区域\n蛛后墓提交状态区域",
+			"蛛后墓提交状态区域",
+			"蛛后墓",
+			"750, 730, 962, 760",
+			"fpRECT.*\\d\\d",
+			"425, 215, 470, 260",
+			"fpRECT.*\\d\\d",
+			"fpRECT.*\\d\\d\\d",
+			"fpRECT",
+			"FPMultiRaw",
+			"天赋技能区域Y1",
+			"技能区域",
+			"600, 702, 655, 762",
+			"FPRect",
+			"367, 701, 655, 762",
+			"FPRect\\(",
+			"FPRect",
+			"617, 251, 758, 284",
+			"FPRect\\(",
+			"617, 251, 758, 284",
+			"FPRect\\(",
+			"FPRect",
+			"FPRect\\\\(",
+			"FPRect\\(",
+			"FPRect(",
+			"FPRect\\(",
+			"FPRect",
+			"游戏判定X1",
+			"\\d\\d\\d",
+			"X\\s*=\\s*\\d+",
+			"FP.*\\d\\d\\d",
+			"\\d\\d\\d",
+			"print ",
+			"degree",
+			"PIL",
+			"zhCN",
+			"china",
+			"converter",
+			"vb2py",
+			"矿井大小地图分割Y",
+			"<= 640",
+			"< 640",
+			"640",
+			"60",
+			"> 640",
+			"进入矿井Y",
+			"610",
+			"858",
+			"858, 610",
+			"鬼灵矿尝试进入矿井_old",
+			"fpext.*\\d\\d\\d",
+			"矿井精华Y2",
+			"1007",
+			"角色状态Y2",
+			"角色状态Y1",
+			"0, 550, 33, 656",
+			"656",
+			"游戏判定Y2",
+			"752"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"DELTA_COLOR_2",
+			"DELTA_COLOR_DEFAULT",
+			"",
+			" SH",
+			"SW",
+			"0, 0, SW, SH",
+			"蛛后墓我要上交区域",
+			"<= 矿井大小地图分割Y",
+			"> 进入矿井Y",
+			"进入矿井Y",
+			"进入矿井X",
+			"角色状态X1, 角色状态Y1, 角色状态X2, 角色状态Y2"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "tests/testgoserver/client.go",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tests/testgoserver/server.go",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lngs/server.py",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lngs/server.go",
+					"settings":
+					{
+						"buffer_size": 1463,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								122,
+								122
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lngs/rpc.go",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "rpc",
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "tests/understanding_slice.go",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "LNGS.sublime-project",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 234.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o://D:\\LNGS":
+	{
+		"height": 124.0
+	},
+	"output.9o://D:\\LNGS\\lngs":
+	{
+		"height": 307.0
+	},
+	"output.9o://D:\\LNGS\\tests":
+	{
+		"height": 257.0
+	},
+	"output.9o://D:\\LNGS\\tests\\testgoserver":
+	{
+		"height": 390.0
+	},
+	"output.GoSublime-output":
+	{
+		"height": 124.0
+	},
+	"output.MarGo-output":
+	{
+		"height": 124.0
+	},
+	"output.exec":
+	{
+		"height": 374.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 259.0,
+	"status_bar_visible": true
+}
