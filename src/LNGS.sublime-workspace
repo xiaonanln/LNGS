@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"panic",
+				"Panicln	 ƒ"
+			],
+			[
+				"Mess",
+				"MessageEncoder	interface ¡"
+			],
+			[
 				"Print",
 				"Printf	n int, err error ƒ"
 			],
@@ -36,26 +44,10 @@
 	"buffers":
 	[
 		{
-			"file": "tests/testgoserver/client.go",
+			"file": "lngs/rpc/RpcMessenger.go",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tests/testgoserver/server.go",
-			"settings":
-			{
-				"buffer_size": 551,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lngs/server.py",
-			"settings":
-			{
-				"buffer_size": 0,
+				"buffer_size": 3080,
 				"line_ending": "Windows"
 			}
 		},
@@ -63,47 +55,15 @@
 			"file": "lngs/server.go",
 			"settings":
 			{
-				"buffer_size": 1463,
+				"buffer_size": 830,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "tests/understanding_slice.go",
+			"file": "tests/testclient/testclient.go",
 			"settings":
 			{
-				"buffer_size": 478,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "LNGS.sublime-project",
-			"settings":
-			{
-				"buffer_size": 183,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lngs/rpc/RpcMessenger.go",
-			"settings":
-			{
-				"buffer_size": 355,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/D/LNGS/lngs/server.go",
-			"settings":
-			{
-				"buffer_size": 1463,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tests/compare_json_bson.go",
-			"settings":
-			{
-				"buffer_size": 949,
+				"buffer_size": 466,
 				"line_ending": "Windows"
 			}
 		}
@@ -156,8 +116,18 @@
 	},
 	"file_history":
 	[
-		"/D/LNGS/src/lngs/rpc.go",
+		"/D/LNGS/src/tests/dummy.go",
+		"/C/Users/Administrator/Desktop/lru.py",
+		"/D/LNGS/src/tests/testgoserver/client.go",
+		"/D/LNGS/src/tests/testgoserver/server.go",
+		"/D/LNGS/src/lngs/server.py",
+		"/D/LNGS/src/lngs/server.go",
+		"/D/LNGS/src/tests/understanding_slice.go",
+		"/D/LNGS/src/LNGS.sublime-project",
 		"/D/LNGS/src/lngs/rpc/RpcMessenger.go",
+		"/D/LNGS/lngs/server.go",
+		"/D/LNGS/src/tests/compare_json_bson.go",
+		"/D/LNGS/src/lngs/rpc.go",
 		"/D/LNGS/LNGS.sublime-project",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/User/GoSublime.sublime-settings",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/9o.md",
@@ -228,6 +198,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"DecodeMessage",
+			"ResolveMessageTCPAddr",
+			"	rpc := rpc.RPCMessenger{conn, rpc.JsonMessageEncoder{}}\n	rpc := rpc.RPCMessenger{conn, rpc.JsonMessageEncoder{}}\npayloadLen",
+			"	rpc := rpc.RPCMessenger{conn, rpc.JsonMessageEncoder{}}\npayloadLen",
+			"payloadLen",
+			"recvAll",
+			"int\\(",
+			"int(",
+			"int\\(",
+			"int",
+			"int(",
+			"rm.",
+			"rm ",
+			"rm.",
+			"RpcMessenger",
 			"GameRightClick",
 			"GameLeftClick",
 			"GameMoveTo",
@@ -340,22 +325,7 @@
 			"<= 640",
 			"< 640",
 			"640",
-			"60",
-			"> 640",
-			"进入矿井Y",
-			"610",
-			"858",
-			"858, 610",
-			"鬼灵矿尝试进入矿井_old",
-			"fpext.*\\d\\d\\d",
-			"矿井精华Y2",
-			"1007",
-			"角色状态Y2",
-			"角色状态Y1",
-			"0, 550, 33, 656",
-			"656",
-			"游戏判定Y2",
-			"752"
+			"60"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -363,6 +333,10 @@
 		"regex": true,
 		"replace_history":
 		[
+			"uint(",
+			"rpc.",
+			"rpc",
+			"RPCMessenger",
 			"DELTA_COLOR_2",
 			"DELTA_COLOR_DEFAULT",
 			"",
@@ -385,238 +359,23 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "tests/testgoserver/client.go",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "tests/testgoserver/server.go",
-					"settings":
-					{
-						"buffer_size": 551,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								39,
-								39
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "lngs/server.py",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "lngs/server.go",
-					"settings":
-					{
-						"buffer_size": 1463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								306,
-								306
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "tests/understanding_slice.go",
-					"settings":
-					{
-						"buffer_size": 478,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								261,
-								261
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "LNGS.sublime-project",
-					"settings":
-					{
-						"buffer_size": 183,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								175,
-								175
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
 					"file": "lngs/rpc/RpcMessenger.go",
 					"settings":
 					{
-						"buffer_size": 355,
+						"buffer_size": 3080,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								33,
-								33
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/D/LNGS/lngs/server.go",
-					"settings":
-					{
-						"buffer_size": 1463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								49,
-								49
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "tests/compare_json_bson.go",
-					"settings":
-					{
-						"buffer_size": 949,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								388,
-								388
+								886,
+								886
 							]
 						],
 						"settings":
@@ -626,6 +385,60 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 228.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lngs/server.go",
+					"settings":
+					{
+						"buffer_size": 830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								824,
+								824
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 228.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tests/testclient/testclient.go",
+					"settings":
+					{
+						"buffer_size": 466,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -664,6 +477,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.9o://C:\\Users\\Administrator\\Desktop":
+	{
+		"height": 124.0
+	},
 	"output.9o://D:\\LNGS":
 	{
 		"height": 124.0
@@ -674,7 +491,7 @@
 	},
 	"output.9o://D:\\LNGS\\src\\lngs":
 	{
-		"height": 292.0
+		"height": 194.0
 	},
 	"output.9o://D:\\LNGS\\src\\lngs\\rpc":
 	{
@@ -682,7 +499,11 @@
 	},
 	"output.9o://D:\\LNGS\\src\\tests":
 	{
-		"height": 336.0
+		"height": 165.0
+	},
+	"output.9o://D:\\LNGS\\src\\tests\\testclient":
+	{
+		"height": 278.0
 	},
 	"output.9o://D:\\LNGS\\tests":
 	{
