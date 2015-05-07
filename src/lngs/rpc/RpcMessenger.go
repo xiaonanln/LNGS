@@ -1,4 +1,4 @@
-package rpc
+package lngsrpc
 
 import (
 	"encoding/json"
@@ -45,8 +45,8 @@ type RPCMessenger struct {
 	lastError    error
 }
 
-func NewRPC(conn net.Conn, msgEncoder MessageEncoder) *RPCMessenger {
-	rpc := RPCMessenger{conn, msgEncoder, false, nil}
+func NewRPC(conn net.Conn) *RPCMessenger {
+	rpc := RPCMessenger{conn, BsonMessageEncoder{}, false, nil}
 	return &rpc
 }
 
@@ -57,18 +57,18 @@ func (rpc *RPCMessenger) GetLastError() error {
 func (rpc *RPCMessenger) RecvMessage() Message {
 	lenBytes := make([]byte, 4)
 	if !rpc.recvAll(lenBytes) {
-		return make(Message)
+		return nil
 	}
 	payloadLen := uint(lenBytes[0]) + uint(lenBytes[1])<<8 + uint(lenBytes[2])<<16 + uint(lenBytes[3])<<24
 	payload := make([]byte, payloadLen) // allocate enough space for payload
 	if !rpc.recvAll(payload) {
-		return make(Message)
+		return nil
 	}
 
 	msg, err := rpc.msgEncoder.DecodeMessage(payload)
 	if err != nil {
 		log.Printf("RPCMessenger.RecvMessage: decode error: %v", err)
-		return make(Message)
+		return nil
 	}
 	return msg
 }
@@ -86,6 +86,7 @@ func (rpc *RPCMessenger) SendMessage(msg Message) {
 	}
 	rpc.sendAll(lenBytes)
 	rpc.sendAll(bytes)
+	log.Printf("rpc send msg %v, payload length %d", msg, payloadLen)
 }
 
 func (rpc *RPCMessenger) IsDisconnected() bool {
@@ -110,7 +111,6 @@ func (rpc *RPCMessenger) recvAll(buff []byte) bool {
 
 	for len(buff) > 0 {
 		nr, err := rpc.conn.Read(buff)
-		log.Printf("conn.Read %v %v left %s", nr, err, len(buff))
 		if err != nil {
 			rpc.onNetworkError(err)
 			return false

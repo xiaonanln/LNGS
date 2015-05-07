@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"behav",
+				"behaviorValue	reflect.Value ν"
+			],
+			[
+				"NewObjec",
+				"NewObjectIdWithTime	bson.ObjectId ƒ"
+			],
+			[
+				"Va",
+				"ValueOf	reflect.Value ƒ"
+			],
+			[
+				"Tye",
+				"TypeOf	reflect.Type ƒ"
+			],
+			[
 				"panic",
 				"Panicln	 ƒ"
 			],
@@ -44,18 +60,26 @@
 	"buffers":
 	[
 		{
-			"file": "lngs/rpc/RpcMessenger.go",
+			"file": "tests/testserver/testserver.go",
 			"settings":
 			{
-				"buffer_size": 3080,
+				"buffer_size": 185,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "lngs/server.go",
+			"file": "tests/entities/boot.go",
 			"settings":
 			{
-				"buffer_size": 830,
+				"buffer_size": 131,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/utils.go",
+			"settings":
+			{
+				"buffer_size": 300,
 				"line_ending": "Windows"
 			}
 		},
@@ -63,7 +87,39 @@
 			"file": "tests/testclient/testclient.go",
 			"settings":
 			{
-				"buffer_size": 466,
+				"buffer_size": 412,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/common/GameClient.go",
+			"settings":
+			{
+				"buffer_size": 667,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/common/Entity.go",
+			"settings":
+			{
+				"buffer_size": 1833,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/server.go",
+			"settings":
+			{
+				"buffer_size": 1324,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/common/EntityManager.go",
+			"settings":
+			{
+				"buffer_size": 2213,
 				"line_ending": "Windows"
 			}
 		}
@@ -116,21 +172,41 @@
 	},
 	"file_history":
 	[
+		"/D/LNGS/src/lngs/common/EntityManager.go",
+		"/D/LNGS/src/lngs/server.go",
+		"/D/LNGS/src/lngs/common/Entity.go",
+		"/D/LNGS/src/lngs/common/GameClient.go",
+		"/D/LNGS/src/gopkg.in/mgo.v2/bson/bson.go",
+		"/D/LNGS/src/tests/entities/boot.go",
+		"/D/LNGS/src/LNGS.sublime-workspace",
+		"/D/LNGS/src/lngs/utils.go",
+		"/D/LNGS/src/tests/testserver/testserver.go",
+		"/D/LNGS/src/tests/testclient/entities/boot.go",
+		"/D/LNGS/src/lngs/server_utils.go",
+		"/D/LNGS/src/tests/testclient/testclient.go",
+		"/D/LNGS/src/tests/testserver/testserver.json",
+		"/D/LNGS/src/lngs/rpc/RpcMessenger.go",
+		"/D/LNGS/src/lngs/lngsutil.go",
+		"/D/LNGS/testserver.bat",
+		"/D/LNGS/testclient.bat",
+		"/D/LNGS/src/tests/testclient/entities/avatar.go",
+		"/D/LNGS/src/tests/testserver/entities/boot.go",
+		"/D/LNGS/src/lngs/common/common.go",
+		"/D/LNGS/src/lngs/core/EntityManager.go",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/9o.md",
+		"/D/LNGS/server.bat",
 		"/D/LNGS/src/tests/dummy.go",
 		"/C/Users/Administrator/Desktop/lru.py",
 		"/D/LNGS/src/tests/testgoserver/client.go",
 		"/D/LNGS/src/tests/testgoserver/server.go",
 		"/D/LNGS/src/lngs/server.py",
-		"/D/LNGS/src/lngs/server.go",
 		"/D/LNGS/src/tests/understanding_slice.go",
 		"/D/LNGS/src/LNGS.sublime-project",
-		"/D/LNGS/src/lngs/rpc/RpcMessenger.go",
 		"/D/LNGS/lngs/server.go",
 		"/D/LNGS/src/tests/compare_json_bson.go",
 		"/D/LNGS/src/lngs/rpc.go",
 		"/D/LNGS/LNGS.sublime-project",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/User/GoSublime.sublime-settings",
-		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/9o.md",
 		"/D/LNGS/tests/testgoserver/server.go",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GoSublime/USAGE.md",
 		"/D/迅雷下载/侠盗飞车5PC版_游迅网/GrandTheftAutoV/游戏说明.txt",
@@ -185,9 +261,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 96.0,
 		"where_history":
 		[
+			".",
 			"",
 			"0, 0, SW, SH",
 			""
@@ -198,6 +275,38 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"NewEntityBehavior",
+			"func.*NewEntity",
+			"RecvMessage",
+			"OnReceiveMessage",
+			"reflect.New",
+			"Indirect",
+			".Name()",
+			"SetClient",
+			"bootEntity",
+			"SetBootEntityBehavior",
+			"SetBoot",
+			"setBoot",
+			"log.Printf",
+			"NewEntityBehavior",
+			"typeName",
+			"NewObjectId",
+			"EntityId",
+			"NewEntityId",
+			"NewObjectId",
+			"NewBootEntity",
+			"Indirect",
+			"entityType",
+			"SetBootEntityBehavior",
+			"entityType",
+			"SetBootEntityType",
+			"entityTypes",
+			"getEntityBehaviorName",
+			"RegisterEntityBehavior",
+			"RegisterEntityType",
+			"SetBootEntityType",
+			"NewBootEntity",
+			"SetBootEntityType",
 			"DecodeMessage",
 			"ResolveMessageTCPAddr",
 			"	rpc := rpc.RPCMessenger{conn, rpc.JsonMessageEncoder{}}\n	rpc := rpc.RPCMessenger{conn, rpc.JsonMessageEncoder{}}\npayloadLen",
@@ -293,39 +402,7 @@
 			"fpRECT",
 			"FPMultiRaw",
 			"天赋技能区域Y1",
-			"技能区域",
-			"600, 702, 655, 762",
-			"FPRect",
-			"367, 701, 655, 762",
-			"FPRect\\(",
-			"FPRect",
-			"617, 251, 758, 284",
-			"FPRect\\(",
-			"617, 251, 758, 284",
-			"FPRect\\(",
-			"FPRect",
-			"FPRect\\\\(",
-			"FPRect\\(",
-			"FPRect(",
-			"FPRect\\(",
-			"FPRect",
-			"游戏判定X1",
-			"\\d\\d\\d",
-			"X\\s*=\\s*\\d+",
-			"FP.*\\d\\d\\d",
-			"\\d\\d\\d",
-			"print ",
-			"degree",
-			"PIL",
-			"zhCN",
-			"china",
-			"converter",
-			"vb2py",
-			"矿井大小地图分割Y",
-			"<= 640",
-			"< 640",
-			"640",
-			"60"
+			"技能区域"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -333,6 +410,11 @@
 		"regex": true,
 		"replace_history":
 		[
+			"setClient",
+			"behaviorName",
+			"entityBehaviorType",
+			"SetBootEntityBehavior",
+			"RegisterEntityBehavior",
 			"uint(",
 			"rpc.",
 			"rpc",
@@ -364,72 +446,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "lngs/rpc/RpcMessenger.go",
+					"file": "tests/testserver/testserver.go",
 					"settings":
 					{
-						"buffer_size": 3080,
+						"buffer_size": 185,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								886,
-								886
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 228.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "lngs/server.go",
-					"settings":
-					{
-						"buffer_size": 830,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								824,
-								824
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 228.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "tests/testclient/testclient.go",
-					"settings":
-					{
-						"buffer_size": 466,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								65,
-								65
+								162,
+								162
 							]
 						],
 						"settings":
@@ -439,6 +467,195 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tests/entities/boot.go",
+					"settings":
+					{
+						"buffer_size": 131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lngs/utils.go",
+					"settings":
+					{
+						"buffer_size": 300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								177,
+								198
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "tests/testclient/testclient.go",
+					"settings":
+					{
+						"buffer_size": 412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								287,
+								287
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lngs/common/GameClient.go",
+					"settings":
+					{
+						"buffer_size": 667,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								310,
+								310
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lngs/common/Entity.go",
+					"settings":
+					{
+						"buffer_size": 1833,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1352,
+								1352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 955.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lngs/server.go",
+					"settings":
+					{
+						"buffer_size": 1324,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1293,
+								1309
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 678.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "lngs/common/EntityManager.go",
+					"settings":
+					{
+						"buffer_size": 2213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2019,
+								2020
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 960.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -491,7 +708,15 @@
 	},
 	"output.9o://D:\\LNGS\\src\\lngs":
 	{
-		"height": 194.0
+		"height": 196.0
+	},
+	"output.9o://D:\\LNGS\\src\\lngs\\common":
+	{
+		"height": 124.0
+	},
+	"output.9o://D:\\LNGS\\src\\lngs\\core":
+	{
+		"height": 124.0
 	},
 	"output.9o://D:\\LNGS\\src\\lngs\\rpc":
 	{
@@ -504,6 +729,14 @@
 	"output.9o://D:\\LNGS\\src\\tests\\testclient":
 	{
 		"height": 278.0
+	},
+	"output.9o://D:\\LNGS\\src\\tests\\testclient\\entities":
+	{
+		"height": 124.0
+	},
+	"output.9o://D:\\LNGS\\src\\tests\\testserver":
+	{
+		"height": 240.0
 	},
 	"output.9o://D:\\LNGS\\tests":
 	{
@@ -535,6 +768,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"utils",
+				"src/lngs/utils.go"
+			],
+			[
+				"entity.go",
+				"src/lngs/common/Entity.go"
+			]
 		],
 		"width": 0.0
 	},

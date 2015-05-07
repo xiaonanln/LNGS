@@ -1,39 +1,64 @@
-package main
+package lngs
 
 import (
-	"fmt"
+	. "lngs/common"
+	"log"
 	"net"
-
-	"lngs/rpc"
 )
 
-func main() {
-	serverAddrStr := "0.0.0.0:5000"
-	fmt.Println("Resolving TCP address: ", serverAddrStr)
+var (
+	entityManager = GetEntityManager()
+)
+
+func Run(serverAddrStr string) {
+	log.Println("Resolving TCP address: ", serverAddrStr)
 	serverAddr, err := net.ResolveTCPAddr("tcp", serverAddrStr)
 	if err != nil {
 		panic("failed to resolve server addr")
 		return
 	}
-	fmt.Println(serverAddr)
 	listener, err := net.ListenTCP("tcp", serverAddr)
 	if err != nil {
 		panic("failed to listen")
 		return
 	}
 
-	fmt.Println("server listening on 	, start accepting connections...", serverAddr)
-	conn, err := listener.Accept()
-	if err != nil {
-		fmt.Printf("accept failed: %v", err)
+	log.Println("Start accepting connections...")
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Printf("accept failed: %v", err)
+			return
+		}
+		go serveConn(conn)
+	}
+}
+
+func serveConn(conn net.Conn) {
+	log.Printf("New connection: %s\n", conn.RemoteAddr().String())
+	client := NewGameClient(conn)
+	serveGameClient(client)
+	log.Printf("Connection %s terminated\n", conn.RemoteAddr().String())
+}
+
+func serveGameClient(client *GameClient) {
+	// create boot entity for the new client
+	var bootEntity *Entity = entityManager.NewBootEntity()
+	bootEntity.SetClient(client)
+
+	if bootEntity == nil {
+		client.Disconnect()
 		return
 	}
 
-	serve(conn)
-}
+	log.Printf("create boot: %s", bootEntity)
+	// boot := *bootEntity.FieldByName("entity")
 
-func serve(conn net.Conn) {
-	fmt.Printf("connection from %s", conn.RemoteAddr().String())
-	rpcer := rpc.NewRPC(conn, rpc.BsonMessageEncoder{})
-	rpcer.SendMessage(rpc.Message{"1": 1, "2": 2, "hello": "world"})
+	for !client.IsDisconnected() {
+		msg := client.RecvMessage()
+		if msg != nil {
+			log.Printf("Recv message: %v\n", msg)
+			client.OnReceiveMessage(msg)
+		}
+	}
 }

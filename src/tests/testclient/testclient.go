@@ -7,21 +7,17 @@ import (
 )
 
 func main() {
-	localAddr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:12340")
+	remoteAddr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:7000")
 	if err != nil {
 		log.Panicln(err)
 	}
 
-	remoteAddr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:5000")
+	conn, err := net.DialTCP("tcp", nil, remoteAddr)
 	if err != nil {
 		log.Panicln(err)
 	}
-
-	conn, err := net.DialTCP("tcp", localAddr, remoteAddr)
-	if err != nil {
-		log.Panicln(err)
+	rpc := lngsrpc.NewRPC(conn)
+	for i := 0; i < 10; i++ {
+		rpc.SendMessage(map[string]interface{}{"ID": "123", "M": "Test", "ARGS": []int{1, 2, 3}})
 	}
-	rpc := rpc.NewRPC(conn, rpc.BsonMessageEncoder{})
-	msg := rpc.RecvMessage()
-	log.Println(msg)
 }
