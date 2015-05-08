@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"entit",
+				"entities"
+			],
+			[
+				"client",
+				"client_lib_path"
+			],
+			[
+				"CONNECT",
+				"CONNECTING"
+			],
+			[
 				"behav",
 				"behaviorValue	reflect.Value ν"
 			],
@@ -122,6 +134,72 @@
 				"buffer_size": 2213,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "tests/testclient/testclient.lua",
+			"settings":
+			{
+				"buffer_size": 56,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/testclient/testclient.py",
+			"settings":
+			{
+				"buffer_size": 467,
+				"line_ending": "Windows",
+				"name": "test"
+			}
+		},
+		{
+			"file": "client/python/lngs/__init__.py",
+			"settings":
+			{
+				"buffer_size": 114,
+				"line_ending": "Windows",
+				"name": "__ini"
+			}
+		},
+		{
+			"file": "client/python/lngs/rpc.py",
+			"settings":
+			{
+				"buffer_size": 642,
+				"line_ending": "Windows",
+				"name": "rpc"
+			}
+		},
+		{
+			"file": "client/python/lngs/EntityManager.py",
+			"settings":
+			{
+				"buffer_size": 247,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/python/lngs/Entity.py",
+			"settings":
+			{
+				"buffer_size": 221,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/python/lngs/GameClient.py",
+			"settings":
+			{
+				"buffer_size": 121,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "Packages/GoSublime/GoSublime.sublime-build",
@@ -131,16 +209,20 @@
 		"selected_items":
 		[
 			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
 				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
 				"Package Control: Install Package"
 			],
 			[
 				"GoSublime:",
 				"GoSublime: Activate 9o"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"Package Control: inta",
@@ -149,13 +231,9 @@
 			[
 				"Package Control: int",
 				"Package Control: Install Package"
-			],
-			[
-				"Package Control: instal",
-				"Package Control: Install Package"
 			]
 		],
-		"width": 512.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -172,6 +250,7 @@
 	},
 	"file_history":
 	[
+		"/D/LNGS/src/tests/testclient/testclient.lua",
 		"/D/LNGS/src/lngs/common/EntityManager.go",
 		"/D/LNGS/src/lngs/server.go",
 		"/D/LNGS/src/lngs/common/Entity.go",
@@ -261,7 +340,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 96.0,
+		"height": 0.0,
 		"where_history":
 		[
 			".",
@@ -275,6 +354,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"    ",
 			"NewEntityBehavior",
 			"func.*NewEntity",
 			"RecvMessage",
@@ -401,8 +481,7 @@
 			"fpRECT.*\\d\\d\\d",
 			"fpRECT",
 			"FPMultiRaw",
-			"天赋技能区域Y1",
-			"技能区域"
+			"天赋技能区域Y1"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -410,6 +489,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"	",
 			"setClient",
 			"behaviorName",
 			"entityBehaviorType",
@@ -441,7 +521,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 14,
 			"sheets":
 			[
 				{
@@ -456,8 +536,8 @@
 						"selection":
 						[
 							[
-								162,
-								162
+								185,
+								185
 							]
 						],
 						"settings":
@@ -537,8 +617,8 @@
 						"selection":
 						[
 							[
-								287,
-								287
+								65,
+								65
 							]
 						],
 						"settings":
@@ -591,8 +671,8 @@
 						"selection":
 						[
 							[
-								1352,
-								1352
+								1832,
+								1832
 							]
 						],
 						"settings":
@@ -659,6 +739,218 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "tests/testclient/testclient.lua",
+					"settings":
+					{
+						"buffer_size": 56,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								56,
+								56
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "tests/testclient/testclient.py",
+					"settings":
+					{
+						"buffer_size": 467,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								426,
+								426
+							]
+						],
+						"settings":
+						{
+							"auto_name": "test",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "client/python/lngs/__init__.py",
+					"settings":
+					{
+						"buffer_size": 114,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								113,
+								113
+							]
+						],
+						"settings":
+						{
+							"auto_name": "__ini",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "client/python/lngs/rpc.py",
+					"settings":
+					{
+						"buffer_size": 642,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								406,
+								406
+							]
+						],
+						"settings":
+						{
+							"auto_name": "rpc",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "client/python/lngs/EntityManager.py",
+					"settings":
+					{
+						"buffer_size": 247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								247,
+								247
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "client/python/lngs/Entity.py",
+					"settings":
+					{
+						"buffer_size": 221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								220,
+								220
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "client/python/lngs/GameClient.py",
+					"settings":
+					{
+						"buffer_size": 121,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								121,
+								45
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "D:\\LNGS\\src\\client\\python\\lngs",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		}
@@ -697,6 +989,10 @@
 	"output.9o://C:\\Users\\Administrator\\Desktop":
 	{
 		"height": 124.0
+	},
+	"output.9o://C:\\Windows\\system32":
+	{
+		"height": 418.0
 	},
 	"output.9o://D:\\LNGS":
 	{

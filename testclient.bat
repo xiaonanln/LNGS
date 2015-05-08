@@ -1,2 +1,2 @@
-@go run src\tests\testclient\testclient.go
+@src\tests\testclient\testclient.py
 @pause
