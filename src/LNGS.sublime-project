@@ -1,12 +1,14 @@
 {
-    "folders": [
-        {
-            "path": "/D/LNGS"
-        }
-    ], 
-    "settings": {
-        "go_project": true, 
-        "name": "LNGS",
-        "gopath": "/D/LNGS"
-    }
+	"folders":
+	[
+		{
+			"path": "/D/LNGS"
+		}
+	],
+	"settings":
+	{
+		"go_project": true,
+		"gopath": "/D/LNGS",
+		"name": "LNGS"
+	}
 }

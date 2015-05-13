@@ -13,4 +13,5 @@ class Entity(object):
 	def _new_id():
 		return str(ObjectId())
 
-	
+	def __str__(self):
+		return 'entity<%s>' % self.id

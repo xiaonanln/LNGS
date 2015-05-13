@@ -37,3 +37,31 @@ func (self *GameClient) OnReceiveMessage(msg Message) {
 
 	self.owner.OnReceiveMessage(msg)
 }
+
+func (self *GameClient) sendMessage(msg Message) {
+	self.rpc.SendMessage(msg)
+}
+
+func (self *GameClient) CreateEntity(entityid string, entitytype string) {
+	self.sendMessage(map[string]interface{}{
+		"CE": []string{entityid, entitytype},
+	})
+}
+
+func (self *GameClient) DestroyEntity(entityid string) {
+	self.sendMessage(map[string]interface{}{
+		"DE": entityid,
+	})
+}
+
+func (self *GameClient) CallMethod(entityid string, methodname string, args ...interface{}) {
+	self.sendMessage(map[string]interface{}{
+		"ID":   entityid,
+		"M":    methodname,
+		"ARGS": args,
+	})
+}
+
+func (self *GameClient) BecomePlayer(entityid string) {
+	self.CallMethod(entityid, "BecomePlayer")
+}

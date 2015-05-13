@@ -24,13 +24,17 @@ type Entity struct {
 
 func (self *Entity) SetClient(client *GameClient) {
 	if self.client != nil {
+		self.client.DestroyEntity(self.id)
+
 		self.client.owner = nil
 		self.client = nil
 	}
 
 	self.client = client
-	if client != nil {
-		client.owner = self
+	if self.client != nil {
+		self.client.owner = self
+		self.client.CreateEntity(self.id, self.GetBehaviorName())
+		self.client.BecomePlayer(self.id)
 	}
 }
 

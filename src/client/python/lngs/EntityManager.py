@@ -1,16 +1,20 @@
 # coding: utf8
 
-class EntityManager(object):
+from Entity import Entity
 
-	def __init__(self):
-		self.entities = {}
+entities = {}
 
-	def addentity(self, entity):
-		self.entities[entity.id] = entity 
+def _getid(entity_or_id):
+	return entity_or_id.id if isinstance(entity_or_id, Entity) else entity_or_id
 
-	def delentity(self, entity):
-		try: 
-			del self.entities[entity.id]
-		except:
-			pass 
+def addentity(entity):
+	print 'EntityManager.addentity', entity
+	entities[entity.id] = entity 
 
+def delentity(entity):
+	print 'EntityManager.delentity', entity
+	try: del entities[_getid(entity)] 
+	except: pass 
+
+def getentity(entityid):
+	return entities.get( _getid(entityid) )

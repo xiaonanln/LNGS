@@ -2,6 +2,9 @@
 
 import sys
 import os
+import logging 
+
+logging.getLogger().setLevel(logging.DEBUG)
 
 def setup_client_lib_path():
 	exe = sys.argv[0]
@@ -17,6 +20,11 @@ def setup_client_lib_path():
 setup_client_lib_path()
 
 import lngs
+
+client = lngs.GameClient('localhost', 7000)
+
+from entities.Boot import Boot
+client.register_entity_class(Boot)
 
 while True:
 	lngs.loop()
