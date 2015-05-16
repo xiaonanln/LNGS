@@ -80,7 +80,10 @@
 	"buffers":
 	[
 		{
+			"contents": "",
 			"file": "client/python/lngs/rpc/RPC.py",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
 				"buffer_size": 0,
@@ -91,15 +94,7 @@
 			"file": "tests/testclient/testclient.py",
 			"settings":
 			{
-				"buffer_size": 579,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tests/testclient/entities/__init__.py",
-			"settings":
-			{
-				"buffer_size": 0,
+				"buffer_size": 640,
 				"line_ending": "Windows"
 			}
 		},
@@ -107,15 +102,7 @@
 			"file": "tests/testclient/entities/Boot.py",
 			"settings":
 			{
-				"buffer_size": 90,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/python/lngs/__init__.py",
-			"settings":
-			{
-				"buffer_size": 175,
+				"buffer_size": 141,
 				"line_ending": "Windows"
 			}
 		},
@@ -123,7 +110,7 @@
 			"file": "lngs/common/Entity.go",
 			"settings":
 			{
-				"buffer_size": 1941,
+				"buffer_size": 1977,
 				"line_ending": "Windows"
 			}
 		},
@@ -131,7 +118,7 @@
 			"file": "lngs/common/GameClient.go",
 			"settings":
 			{
-				"buffer_size": 1036,
+				"buffer_size": 1339,
 				"line_ending": "Windows"
 			}
 		},
@@ -140,32 +127,6 @@
 			"settings":
 			{
 				"buffer_size": 131,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/python/lngs/GameClient.py",
-			"settings":
-			{
-				"buffer_size": 1363,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 90 files for \"CreateEntity\" (regex)\n\nD:\\LNGS\\src\\client\\python\\lngs\\GameClient.py:\n   20  			self._handle_CallMethod(msg['ID'], msg['M'], msg.get('ARGS', ()))\n   21  		if 'CE' in msg:\n   22: 			# CreateEntity message\n   23: 			self._handle_CreateEntity(*msg['CE'])\n   24  		elif 'DE' in msg:\n   25  			self._handle_DestroyEntity(msg['DE'])\n   ..\n   28  		print 'CallMethod', entityid, method, args\n   29  \n   30: 	def _handle_CreateEntity(self, entityid, entitytype):\n   31: 		print 'CreateEntity', entityid, entitytype\n   32  		clz = self._entity_classes[entityid]\n   33  		print clz\n\nD:\\LNGS\\src\\lngs\\common\\Entity.go:\n   34  	if self.client != nil {\n   35  		self.client.owner = self\n   36: 		self.client.CreateEntity(self.id, self.GetBehaviorName())\n   37  	}\n   38  }\n\nD:\\LNGS\\src\\lngs\\common\\GameClient.go:\n   43  }\n   44  \n   45: func (self *GameClient) CreateEntity(entityid string, entitytype string) {\n   46  	self.sendMessage(map[string]interface{}{\n   47  		\"CE\": []string{entityid, entitytype},\n\n6 matches across 3 files\n\n\nSearching 90 files for \"OnRecvMessage\" (regex)\n\nD:\\LNGS\\src\\client\\python\\lngs\\GameClient.py:\n   11  \n   12  		self.rpc = RPCMessenger(self.sock)\n   13: 		self.rpc.OnRecvMessage = self._on_recv_message\n   14  \n   15  		self._entity_classes = {}\n\nD:\\LNGS\\src\\client\\python\\lngs\\RPCMessenger.py:\n   55  		self.packeter = Packeter()\n   56  		self.out_buffer = ''\n   57: 		self.OnRecvMessage = None\n   58  		\n   59  	def handle_read(self):\n   ..\n   61  		packets = self.packeter.feed(data)\n   62  \n   63: 		if self.OnRecvMessage:\n   64  			for packet in packets:\n   65  				try:\n   66  					msg = BSON(packet).decode()\n   67: 					self.OnRecvMessage(msg)\n   68  				except Exception, e:\n   69  					print >>sys.stderr, e\n\n4 matches across 2 files\n",
-			"settings":
-			{
-				"buffer_size": 1789,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "client/python/lngs/RPCMessenger.py",
-			"settings":
-			{
-				"buffer_size": 2293,
 				"line_ending": "Windows"
 			}
 		}
@@ -218,10 +179,12 @@
 	},
 	"file_history":
 	[
-		"/D/LNGS/src/client/python/lngs/Entity.py",
-		"/D/LNGS/src/client/python/lngs/EntityManager.py",
 		"/D/LNGS/src/client/python/lngs/GameClient.py",
 		"/D/LNGS/src/client/python/lngs/RPCMessenger.py",
+		"/D/LNGS/src/client/python/lngs/EntityManager.py",
+		"/D/LNGS/src/client/python/lngs/Entity.py",
+		"/D/LNGS/src/client/python/lngs/__init__.py",
+		"/D/LNGS/src/tests/testclient/entities/__init__.py",
 		"/D/LNGS/src/client/python/lngs/net/TcpClient.py",
 		"/D/LNGS/src/client/python/lngs/net/Packeter.py",
 		"/D/LNGS/src/client/python/lngs/net/PacketSender.py",
@@ -236,7 +199,6 @@
 		"/D/LNGS/src/lngs/utils.go",
 		"/D/LNGS/src/tests/entities/boot.go",
 		"/D/LNGS/src/tests/testserver/testserver.go",
-		"/D/LNGS/src/client/python/lngs/__init__.py",
 		"/D/LNGS/src/client/python/lngs/rpc.py",
 		"/D/LNGS/src/gopkg.in/mgo.v2/bson/bson.go",
 		"/D/LNGS/src/LNGS.sublime-workspace",
@@ -334,6 +296,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"OnRecvMessage",
+			"Setclient",
 			"OnRecvMessage",
 			"_entity_classes",
 			"CreateEntity",
@@ -459,8 +423,6 @@
 			"function ",
 			"FPMultiRaw",
 			"fp.*\\d\\d",
-			"768",
-			"\\s768",
 			"768"
 		],
 		"highlight": true,
@@ -501,7 +463,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -536,15 +498,15 @@
 					"file": "tests/testclient/testclient.py",
 					"settings":
 					{
-						"buffer_size": 579,
+						"buffer_size": 640,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								486,
-								507
+								146,
+								146
 							]
 						],
 						"settings":
@@ -559,23 +521,22 @@
 				},
 				{
 					"buffer": 2,
-					"file": "tests/testclient/entities/__init__.py",
+					"file": "tests/testclient/entities/Boot.py",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 141,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								140,
+								140
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -586,70 +547,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "tests/testclient/entities/Boot.py",
-					"settings":
-					{
-						"buffer_size": 90,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								90,
-								90
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "client/python/lngs/__init__.py",
-					"settings":
-					{
-						"buffer_size": 175,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								175,
-								175
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "lngs/common/Entity.go",
 					"settings":
 					{
-						"buffer_size": 1941,
+						"buffer_size": 1977,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								623,
-								623
+								117,
+								117
 							]
 						],
 						"settings":
@@ -664,19 +573,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 4,
 					"file": "lngs/common/GameClient.go",
 					"settings":
 					{
-						"buffer_size": 1036,
+						"buffer_size": 1339,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								991,
-								991
+								577,
+								577
 							]
 						],
 						"settings":
@@ -685,13 +594,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 293.0,
+						"translation.y": 517.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 5,
 					"file": "tests/entities/boot.go",
 					"settings":
 					{
@@ -702,8 +611,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								131,
+								131
 							]
 						],
 						"settings":
@@ -713,139 +622,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "client/python/lngs/GameClient.py",
-					"settings":
-					{
-						"buffer_size": 1363,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								262,
-								275
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"settings":
-					{
-						"buffer_size": 1789,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										206,
-										218
-									],
-									[
-										250,
-										262
-									],
-									[
-										436,
-										448
-									],
-									[
-										494,
-										506
-									],
-									[
-										718,
-										730
-									],
-									[
-										871,
-										883
-									],
-									[
-										1210,
-										1223
-									],
-									[
-										1420,
-										1433
-									],
-									[
-										1557,
-										1570
-									],
-									[
-										1678,
-										1691
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								1683,
-								1683
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"output_tag": 2,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 660.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "client/python/lngs/RPCMessenger.py",
-					"settings":
-					{
-						"buffer_size": 2293,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1362,
-								1362
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 866.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -926,7 +702,7 @@
 	},
 	"output.9o://D:\\LNGS\\src\\tests\\testclient":
 	{
-		"height": 278.0
+		"height": 32.0
 	},
 	"output.9o://D:\\LNGS\\src\\tests\\testclient\\entities":
 	{
@@ -966,6 +742,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"boot.py",
+				"src/tests/testclient/entities/Boot.py"
+			],
+			[
+				"gameclient.go",
+				"src/lngs/common/GameClient.go"
+			],
 			[
 				"utils",
 				"src/lngs/utils.go"
