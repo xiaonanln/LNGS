@@ -84,5 +84,16 @@ func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []inter
 	for i, arg := range args {
 		in[i] = reflect.ValueOf(arg)
 	}
+	methodType := method.Type()
+	numArguments := methodType.NumIn()
+	for argIndex := 0; argIndex < numArguments; argIndex++ {
+		var argType reflect.Type = methodType.In(argIndex)
+		log.Println("arg type", argIndex, argType)
+		in[argIndex] = convertType(in[argIndex], argType)
+	}
 	method.Call(in)
+}
+
+func convertType(val reflect.Value, typ reflect.Type) reflect.Value {
+	return val
 }

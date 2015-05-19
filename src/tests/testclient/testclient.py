@@ -21,10 +21,12 @@ setup_client_lib_path()
 
 import lngs
 
-client = lngs.GameClient('localhost', 7000)
+lngs.connect('localhost', 7000)
+
 
 from entities.Boot import Boot
-client.register_entity_class(Boot)
+lngs.client.register_entity_class(Boot)
+
 
 while True:
 	lngs.loop()

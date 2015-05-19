@@ -61,3 +61,4 @@ class GameClient(object):
 	def register_entity_class(self, entity_clz):
 		print 'register_entity_class', entity_clz.__name__
 		self._entity_classes[entity_clz.__name__] = entity_clz
+

@@ -8,6 +8,7 @@ from bson import BSON
 from bson.objectid import ObjectId
 
 import struct
+import Timer
 
 class InvalidPacketError(Exception): pass
 
@@ -59,7 +60,7 @@ class RPCMessenger(dispatcher):
 	def handle_read(self):
 		data = self.recv(8192)
 		packets = self.packeter.feed(data)
-
+		print 'handle_read', len(packets), 'packets'
 		if self.OnRecvMessage:
 			for packet in packets:
 				try:
@@ -67,6 +68,8 @@ class RPCMessenger(dispatcher):
 					self.OnRecvMessage(msg)
 				except Exception, e:
 					print >>sys.stderr, 'OnRecvMessage error: %s' % e
+
+		print 'handle_read done'
 
 	def handle_close(self):
 		print >>sys.stderr, "TcpClient closed: %s, %s" % (self,self.connected)
@@ -82,7 +85,11 @@ class RPCMessenger(dispatcher):
 	def handle_write(self):
 		self.initiate_send()
 
+	def readable(self):
+		return True
+
 	def writable(self):
+		Timer._loop()
 		return len(self.out_buffer) > 0
 
 	def send(self, data):

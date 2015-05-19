@@ -2,8 +2,10 @@ package lngs
 
 import (
 	. "lngs/common"
+	. "lngs/rpc"
 	"log"
 	"net"
+	"runtime/debug"
 )
 
 var (
@@ -57,8 +59,21 @@ func serveGameClient(client *GameClient) {
 	for !client.IsDisconnected() {
 		msg := client.RecvMessage()
 		if msg != nil {
-			log.Printf("Recv message: %v\n", msg)
-			client.OnReceiveMessage(msg)
+			serveMessage(client, msg)
 		}
 	}
+}
+
+func recoverFromError() {
+	if err := recover(); err != nil {
+		log.Println("[W]", err)
+		debug.PrintStack()
+	}
+}
+
+func serveMessage(client *GameClient, msg Message) {
+	defer recoverFromError()
+
+	log.Printf("Recv message: %v\n", msg)
+	client.OnReceiveMessage(msg)
 }
