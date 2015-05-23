@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"append",
+				"Append	reflect.Value ƒ"
+			],
+			[
 				"_handle",
 				"_handle_CallMethod"
 			],
@@ -88,34 +92,10 @@
 			}
 		},
 		{
-			"file": "lngs/common/Entity.go",
-			"settings":
-			{
-				"buffer_size": 1977,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lngs/common/GameClient.go",
-			"settings":
-			{
-				"buffer_size": 1339,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tests/entities/boot.go",
-			"settings":
-			{
-				"buffer_size": 131,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "tests/testclient/entities/Boot.py",
 			"settings":
 			{
-				"buffer_size": 280,
+				"buffer_size": 409,
 				"line_ending": "Windows"
 			}
 		},
@@ -124,6 +104,14 @@
 			"settings":
 			{
 				"buffer_size": 249,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/entities/boot.go",
+			"settings":
+			{
+				"buffer_size": 523,
 				"line_ending": "Windows"
 			}
 		}
@@ -176,12 +164,16 @@
 	},
 	"file_history":
 	[
-		"/D/LNGS/src/client/python/lngs/__init__.py",
+		"/D/LNGS/src/lngs/common/GameClient.go",
+		"/D/LNGS/src/lngs/common/Entity.go",
+		"/D/LNGS/src/client/python/lngs/GameClient.py",
+		"/D/LNGS/src/tests/entities/boot.go",
 		"/D/LNGS/src/tests/testclient/entities/Boot.py",
+		"/D/LNGS/src/lngs/server.go",
+		"/D/LNGS/src/client/python/lngs/__init__.py",
 		"/D/LNGS/src/client/python/lngs/RPCMessenger.py",
 		"/D/LNGS/src/client/python/lngs/Timer.py",
 		"/D/LNGS/src/client/python/lngs/rpc/RPC.py",
-		"/D/LNGS/src/client/python/lngs/GameClient.py",
 		"/D/LNGS/src/client/python/lngs/EntityManager.py",
 		"/D/LNGS/src/client/python/lngs/Entity.py",
 		"/D/LNGS/src/tests/testclient/entities/__init__.py",
@@ -192,12 +184,8 @@
 		"/D/LNGS/src/tests/testclient/testclient.py",
 		"/D/LNGS/src/tests/testclient/testclient.lua",
 		"/D/LNGS/src/lngs/common/EntityManager.go",
-		"/D/LNGS/src/lngs/server.go",
-		"/D/LNGS/src/lngs/common/Entity.go",
-		"/D/LNGS/src/lngs/common/GameClient.go",
 		"/D/LNGS/src/tests/testclient/testclient.go",
 		"/D/LNGS/src/lngs/utils.go",
-		"/D/LNGS/src/tests/entities/boot.go",
 		"/D/LNGS/src/tests/testserver/testserver.go",
 		"/D/LNGS/src/client/python/lngs/rpc.py",
 		"/D/LNGS/src/gopkg.in/mgo.v2/bson/bson.go",
@@ -296,6 +284,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CallMethod",
+			"BecomePlayer",
+			"CallMethod",
+			"PlayGame",
+			"RecvMessage",
+			"OnReceiveMessage",
+			"total methods",
+			"call_entity",
 			"addRepeatTimer",
 			"lngs.loop",
 			"handle_write",
@@ -415,15 +411,7 @@
 			"fp.*\\d\\d",
 			"\"020202\"",
 			"DELTA_COLOR_DEFAULT",
-			"020202",
-			"\"000000\"",
-			"000000",
-			"020202",
-			"\"000000\", ",
-			"\"000000\"",
-			"FPMultiRaw.*",
-			"FPMultiToCache",
-			"delta_color"
+			"020202"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -463,7 +451,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -494,99 +482,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "lngs/common/Entity.go",
-					"settings":
-					{
-						"buffer_size": 1977,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								117,
-								117
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 131.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "lngs/common/GameClient.go",
-					"settings":
-					{
-						"buffer_size": 1339,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								577,
-								577
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 517.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "tests/entities/boot.go",
-					"settings":
-					{
-						"buffer_size": 131,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								131,
-								131
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "tests/testclient/entities/Boot.py",
 					"settings":
 					{
-						"buffer_size": 280,
+						"buffer_size": 409,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								252,
-								252
+								409,
+								409
 							]
 						],
 						"settings":
@@ -600,7 +507,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 2,
 					"file": "client/python/lngs/__init__.py",
 					"settings":
 					{
@@ -618,6 +525,33 @@
 						"settings":
 						{
 							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "tests/entities/boot.go",
+					"settings":
+					{
+						"buffer_size": 523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								523,
+								523
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -742,16 +676,24 @@
 		"selected_items":
 		[
 			[
+				"gamecli",
+				"src/lngs/common/GameClient.go"
+			],
+			[
+				"gameclient.go",
+				"src/lngs/common/GameClient.go"
+			],
+			[
+				"boot.go",
+				"src/tests/entities/boot.go"
+			],
+			[
 				"timer.py",
 				"src/client/python/lngs/Timer.py"
 			],
 			[
 				"boot.py",
 				"src/tests/testclient/entities/Boot.py"
-			],
-			[
-				"gameclient.go",
-				"src/lngs/common/GameClient.go"
 			],
 			[
 				"utils",

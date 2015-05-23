@@ -84,16 +84,36 @@ func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []inter
 	for i, arg := range args {
 		in[i] = reflect.ValueOf(arg)
 	}
-	methodType := method.Type()
-	numArguments := methodType.NumIn()
-	for argIndex := 0; argIndex < numArguments; argIndex++ {
-		var argType reflect.Type = methodType.In(argIndex)
-		log.Println("arg type", argIndex, argType)
-		in[argIndex] = convertType(in[argIndex], argType)
-	}
+	// methodType := method.Type()
+	// numArguments := methodType.NumIn()
+	// for argIndex := 0; argIndex < numArguments; argIndex++ {
+	// 	var argType reflect.Type = methodType.In(argIndex)
+	// 	log.Println("arg type", argIndex, argType)
+	// 	in[argIndex] = convertType(in[argIndex], argType)
+	// }
 	method.Call(in)
 }
 
-func convertType(val reflect.Value, typ reflect.Type) reflect.Value {
-	return val
-}
+// func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {
+// 	switch targetType.Kind() {
+// 	case reflect.Slice:
+// 		elemType := targetType.Elem()
+// 		log.Println("element type", elemType)
+// 		sliceLen := val.Len()
+// 		newSlice := reflect.MakeSlice(targetType, sliceLen, sliceLen)
+// 		for i := 0; i < sliceLen; i++ {
+// 			elem := val.Index(i)
+// 			log.Println("element", i, "is", elem.Interface().(string))
+// 			newSlice.Index(i).Set(convertType(elem, elemType))
+// 			// newSlice = reflect.Append(newSlice)
+// 		}
+// 		log.Println("slice len", sliceLen, "new slice", newSlice.Interface().([]string))
+// 		return newSlice
+
+// 	case reflect.Bool:
+// 		return reflect.ValueOf(val.Interface().(bool))
+// 	case reflect.String:
+// 		return reflect.ValueOf(val.Interface().(string))
+// 	}
+// 	return val
+// }
