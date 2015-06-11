@@ -1,18 +1,19 @@
 package lngs
 
 import (
-	. "lngs/common"
+	. "lngs/db"
 	. "lngs/rpc"
 	"log"
 	"net"
 	"runtime/debug"
 )
 
-var (
-	entityManager = GetEntityManager()
-)
-
 func Run(serverAddrStr string) {
+
+	go serveDB()
+	go serveDB()
+	go serveDB()
+
 	log.Println("Resolving TCP address: ", serverAddrStr)
 	serverAddr, err := net.ResolveTCPAddr("tcp", serverAddrStr)
 	if err != nil {
@@ -34,6 +35,13 @@ func Run(serverAddrStr string) {
 		}
 		go serveConn(conn)
 	}
+}
+
+func serveDB() {
+	dbcon := ConnectDB()
+	defer dbcon.Close()
+	dbmanager := NewDbManager(dbcon)
+	dbmanager.Loop()
 }
 
 func serveConn(conn net.Conn) {

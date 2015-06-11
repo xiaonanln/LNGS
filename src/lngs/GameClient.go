@@ -1,4 +1,4 @@
-package lngscommon
+package lngs
 
 import (
 	. "lngs/rpc"

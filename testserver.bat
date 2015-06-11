@@ -1,2 +1,3 @@
-@go run src\tests\testserver\testserver.go
+@cd src\tests\testserver
+@go run testserver.go
 @pause

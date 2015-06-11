@@ -5,9 +5,13 @@ import (
 )
 
 func RegisterEntityBehavior(entityBehavior interface{}) {
-	lngscommon.GetEntityManager().RegisterEntityBehavior(entityBehavior)
+	GetEntityManager().RegisterEntityBehavior(entityBehavior)
 }
 
 func SetBootEntityBehavior(entityBehavior interface{}) {
-	lngscommon.GetEntityManager().SetBootEntityBehavior(entityBehavior)
+	GetEntityManager().SetBootEntityBehavior(entityBehavior)
+}
+
+func SetConfigFile(configPath string) {
+	lngscommon.ReadConfigFile(configPath)
 }

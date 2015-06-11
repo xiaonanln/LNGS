@@ -1,8 +1,10 @@
-package lngscommon
+package lngs
 
 import (
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
+	. "lngs/common"
+	"lngs/db"
 	. "lngs/rpc"
 	"log"
 	"reflect"
@@ -17,9 +19,10 @@ func NewEntityId() string {
 }
 
 type Entity struct {
-	id       string
-	client   *GameClient
-	behavior reflect.Value
+	id           string
+	client       *GameClient
+	behavior     reflect.Value
+	commandQueue CommandQueue
 }
 
 func (self *Entity) SetClient(client *GameClient) {
@@ -42,7 +45,7 @@ func NewEntity(id string) *Entity {
 	if id == "" {
 		id = NewEntityId()
 	}
-	return &Entity{id, nil, noneBehavior}
+	return &Entity{id, nil, noneBehavior, make(CommandQueue)}
 }
 
 func (self *Entity) GetBehaviorName() string {
@@ -65,6 +68,11 @@ func (self *Entity) OnReceiveMessage(msg Message) {
 	ID := msg["ID"].(string)
 	M := msg["M"].(string)
 
+	if ID != self.id {
+		log.Printf("can not call entity %s from entity %s", ID, self.id)
+		return
+	}
+
 	targetEntity := entityManager.GetEntity(ID)
 	if targetEntity == nil {
 		log.Printf("entity %s not found when calling method %s", ID, M)
@@ -80,9 +88,10 @@ func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []inter
 
 	method := self.behavior.MethodByName(methodname)
 	log.Printf("method %v, total methods %d", method, self.behavior.NumMethod())
-	in := make([]reflect.Value, len(args))
+	in := make([]reflect.Value, len(args)+1)
+	in[0] = reflect.ValueOf(self)
 	for i, arg := range args {
-		in[i] = reflect.ValueOf(arg)
+		in[i+1] = reflect.ValueOf(arg)
 	}
 	// methodType := method.Type()
 	// numArguments := methodType.NumIn()
@@ -92,6 +101,16 @@ func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []inter
 	// 	in[argIndex] = convertType(in[argIndex], argType)
 	// }
 	method.Call(in)
+}
+
+func (self *Entity) InsertDB(collectionName string, docs ...interface{}) {
+	cmd := Command{
+		"insertdb",
+		docs,
+	}
+
+	lngsdb.PostDbCommand(&cmd)
+	return
 }
 
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {
