@@ -21,7 +21,7 @@ setup_client_lib_path()
 
 import lngs
 
-lngs.connect('localhost', 7000)
+lngs.connect('localhost', 7777)
 
 
 from entities.Boot import Boot

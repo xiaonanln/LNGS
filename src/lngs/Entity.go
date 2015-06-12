@@ -103,14 +103,19 @@ func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []inter
 	method.Call(in)
 }
 
-func (self *Entity) InsertDB(collectionName string, docs ...interface{}) {
+func (self *Entity) InsertDB(collectionName string, doc interface{}) {
 	cmd := Command{
+		self.id,
 		"insertdb",
-		docs,
+		[]interface{}{collectionName, doc},
 	}
 
 	lngsdb.PostDbCommand(&cmd)
 	return
+}
+
+func (self *Entity) PostCommand(cmd *Command) {
+	self.commandQueue <- cmd
 }
 
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {

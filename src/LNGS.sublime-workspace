@@ -92,6 +92,14 @@
 	"buffers":
 	[
 		{
+			"file": "lngs/db/DbManager.go",
+			"settings":
+			{
+				"buffer_size": 1138,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "lngs/GameClient.go",
 			"settings":
 			{
@@ -112,6 +120,39 @@
 			"settings":
 			{
 				"buffer_size": 360,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/testclient/testclient.py",
+			"settings":
+			{
+				"buffer_size": 635,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/entities/boot.go",
+			"settings":
+			{
+				"buffer_size": 848,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lngs/chans/chans.go",
+			"settings":
+			{
+				"buffer_size": 17,
+				"line_ending": "Windows",
+				"name": "chans"
+			}
+		},
+		{
+			"file": "lngs/chan/chanmanager.go",
+			"settings":
+			{
+				"buffer_size": 24,
 				"line_ending": "Windows"
 			}
 		}
@@ -164,14 +205,14 @@
 	},
 	"file_history":
 	[
+		"/D/LNGS/src/lngs/EntityManager.go",
+		"/D/LNGS/src/lngs/Entity.go",
+		"/D/LNGS/src/lngs/common/types.go",
 		"/D/LNGS/src/lngs/common/EntityManager.go",
 		"/D/LNGS/src/tests/entities/boot.go",
-		"/D/LNGS/src/lngs/EntityManager.go",
 		"/D/LNGS/src/lngs/db/DbManager.go",
-		"/D/LNGS/src/lngs/Entity.go",
 		"/D/LNGS/src/lngs/server.go",
 		"/D/LNGS/src/lngs/common/Entity.go",
-		"/D/LNGS/src/lngs/common/types.go",
 		"/D/LNGS/src/lngs/common/ConfigReader.go",
 		"/D/LNGS/src/lngs/utils.go",
 		"/D/LNGS/src/tests/testclient/testclient.py",
@@ -294,6 +335,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"commandqueue",
+			"requestqueue",
+			"PostDbCommand",
+			"InsertDB",
 			"entityManager",
 			"PostDbCommand",
 			"Command",
@@ -417,11 +462,7 @@
 			"镜头跟随切换状态显示区域",
 			"fp.*\\d\\d\\d",
 			"const.*sh",
-			"const.*SW",
-			"离开按钮区域",
-			"FPDesperate",
-			"-组队",
-			"XPUP"
+			"const.*SW"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -429,6 +470,8 @@
 		"regex": true,
 		"replace_history":
 		[
+			"commandQueue",
+			"commandqueue",
 			"	",
 			"setClient",
 			"behaviorName",
@@ -461,11 +504,38 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "lngs/db/DbManager.go",
+					"settings":
+					{
+						"buffer_size": 1138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								880,
+								880
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
 					"file": "lngs/GameClient.go",
 					"settings":
 					{
@@ -492,7 +562,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "lngs/db/db.go",
 					"settings":
 					{
@@ -519,7 +589,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "lngs/utils.go",
 					"settings":
 					{
@@ -532,6 +602,114 @@
 							[
 								360,
 								360
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "tests/testclient/testclient.py",
+					"settings":
+					{
+						"buffer_size": 635,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								447,
+								447
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "tests/entities/boot.go",
+					"settings":
+					{
+						"buffer_size": 848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								757,
+								765
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lngs/chans/chans.go",
+					"settings":
+					{
+						"buffer_size": 17,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"auto_name": "chans",
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "lngs/chan/chanmanager.go",
+					"settings":
+					{
+						"buffer_size": 24,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24,
+								24
 							]
 						],
 						"settings":
@@ -666,6 +844,14 @@
 		"selected_items":
 		[
 			[
+				"types",
+				"src/lngs/common/types.go"
+			],
+			[
+				"entity.go",
+				"src/lngs/Entity.go"
+			],
+			[
 				"boot.go",
 				"src/tests/entities/boot.go"
 			],
@@ -676,10 +862,6 @@
 			[
 				"entityman",
 				"src/lngs/common/EntityManager.go"
-			],
-			[
-				"entity.go",
-				"src/lngs/common/Entity.go"
 			],
 			[
 				"gameclient.go",

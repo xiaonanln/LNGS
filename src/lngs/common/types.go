@@ -1,8 +1,9 @@
 package lngscommon
 
 type Command struct {
-	Cmd  string
-	Data interface{}
+	EntityId string
+	Command  string
+	Data     interface{}
 }
 
 type CommandQueue chan *Command
