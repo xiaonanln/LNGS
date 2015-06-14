@@ -3,6 +3,7 @@ package lngs
 import (
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
+	. "lngs/cmdque"
 	. "lngs/common"
 	"lngs/db"
 	. "lngs/rpc"
@@ -45,7 +46,7 @@ func NewEntity(id string) *Entity {
 	if id == "" {
 		id = NewEntityId()
 	}
-	return &Entity{id, nil, noneBehavior, make(CommandQueue)}
+	return &Entity{id, nil, noneBehavior, GetCommandQueue(id)}
 }
 
 func (self *Entity) GetBehaviorName() string {
@@ -103,15 +104,68 @@ func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []inter
 	method.Call(in)
 }
 
-func (self *Entity) InsertDB(collectionName string, doc interface{}) {
+func (self *Entity) CallClient(method string, args ...interface{}) {
+	Debug(self.id, "call client method %s %v", method, args)
+	if self.client != nil {
+
+		self.client.CallMethod(self.id, method, args...)
+	}
+}
+
+func (self *Entity) FindDoc(collectionName string, query interface{}) (interface{}, error) {
 	cmd := Command{
 		self.id,
-		"insertdb",
+		"find",
+		[]interface{}{collectionName, query},
+	}
+	lngsdb.PostDbCommand(&cmd)
+
+	for {
+		cmd := <-self.commandQueue
+		if cmd.Command == "find_cb" {
+			// this is it
+			doc := cmd.Data
+			err, ok := doc.(error)
+			if ok {
+				// error
+				return nil, err
+			} else {
+				return doc, nil
+			}
+		} else {
+			// this is wrong command
+			Debug("Entity %s ignore command %v", self.id, cmd)
+			continue
+		}
+	}
+}
+
+func (self *Entity) InsertDoc(collectionName string, doc interface{}) error {
+	cmd := Command{
+		self.id,
+		"insert",
 		[]interface{}{collectionName, doc},
 	}
 
 	lngsdb.PostDbCommand(&cmd)
-	return
+
+	for {
+		cmd := <-self.commandQueue
+		if cmd.Command == "insert_cb" {
+			// this is it
+			err, ok := cmd.Data.(error)
+			if ok {
+				// error
+				return err
+			} else {
+				return nil
+			}
+		} else {
+			// this is wrong command
+			Debug("Entity %s ignore command %v", self.id, cmd)
+			continue
+		}
+	}
 }
 
 func (self *Entity) PostCommand(cmd *Command) {

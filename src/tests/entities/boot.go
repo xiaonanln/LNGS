@@ -4,6 +4,7 @@ import (
 	"log"
 
 	. "lngs"
+	. "lngs/common"
 )
 
 var ()
@@ -29,5 +30,20 @@ func (behavior *Boot) Login(self *Entity, username string, password string) {
 
 func (behavior *Boot) Register(self *Entity, username string, password string) {
 	log.Println("Register", username, password)
-	self.InsertDB("entities", map[string]interface{}{"username": username, "password": password})
+	// find the player before register
+	doc, err := self.FindDoc("entities", map[string]string{"username": username})
+	Debug("boot", "find player by username: %v, error=%v", doc, err)
+
+	if doc != nil {
+		self.CallClient("OnRegister", "fail")
+		return
+	}
+
+	err = self.InsertDoc("entities", map[string]interface{}{"username": username, "password": password})
+	if err != nil {
+		self.CallClient("OnRegister", "fail")
+		return
+	}
+
+	self.CallClient("OnRegister", "success")
 }

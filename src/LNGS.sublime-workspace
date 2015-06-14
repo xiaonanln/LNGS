@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Comma",
+				"CommandQueue	chan *lngscommon.Command ʈ"
+			],
+			[
 				"entit",
 				"Entity	struct ʈ"
 			],
@@ -92,67 +96,34 @@
 	"buffers":
 	[
 		{
-			"file": "lngs/db/DbManager.go",
-			"settings":
-			{
-				"buffer_size": 1138,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lngs/GameClient.go",
-			"settings":
-			{
-				"buffer_size": 1333,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lngs/db/db.go",
-			"settings":
-			{
-				"buffer_size": 15,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lngs/utils.go",
-			"settings":
-			{
-				"buffer_size": 360,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tests/testclient/testclient.py",
-			"settings":
-			{
-				"buffer_size": 635,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "tests/entities/boot.go",
 			"settings":
 			{
-				"buffer_size": 848,
+				"buffer_size": 1236,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "lngs/chans/chans.go",
+			"file": "lngs/Entity.go",
 			"settings":
 			{
-				"buffer_size": 17,
-				"line_ending": "Windows",
-				"name": "chans"
+				"buffer_size": 4651,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "lngs/chan/chanmanager.go",
+			"file": "lngs/db/DbManager.go",
 			"settings":
 			{
-				"buffer_size": 24,
+				"buffer_size": 2180,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/testclient/entities/Boot.py",
+			"settings":
+			{
+				"buffer_size": 574,
 				"line_ending": "Windows"
 			}
 		}
@@ -205,24 +176,30 @@
 	},
 	"file_history":
 	[
-		"/D/LNGS/src/lngs/EntityManager.go",
-		"/D/LNGS/src/lngs/Entity.go",
-		"/D/LNGS/src/lngs/common/types.go",
-		"/D/LNGS/src/lngs/common/EntityManager.go",
-		"/D/LNGS/src/tests/entities/boot.go",
-		"/D/LNGS/src/lngs/db/DbManager.go",
+		"/D/LNGS/src/tests/testclient/entities/Boot.py",
 		"/D/LNGS/src/lngs/server.go",
+		"/D/LNGS/src/lngs/GameClient.go",
+		"/D/LNGS/src/LNGS.sublime-workspace",
+		"/D/LNGS/src/lngs/db/DbManager.go",
+		"/D/LNGS/src/lngs/Entity.go",
+		"/D/LNGS/src/lngs/cmdque/cmdque.go",
+		"/D/LNGS/src/lngs/chan/chanmanager.go",
+		"/D/LNGS/src/lngs/chans/chans.go",
+		"/D/LNGS/src/tests/entities/boot.go",
+		"/D/LNGS/src/tests/testclient/testclient.py",
+		"/D/LNGS/src/lngs/db/db.go",
+		"/D/LNGS/src/lngs/utils.go",
+		"/D/LNGS/src/lngs/common/utils.go",
+		"/D/LNGS/src/lngs/common/types.go",
+		"/D/LNGS/src/lngs/EntityManager.go",
+		"/D/LNGS/src/lngs/common/EntityManager.go",
 		"/D/LNGS/src/lngs/common/Entity.go",
 		"/D/LNGS/src/lngs/common/ConfigReader.go",
-		"/D/LNGS/src/lngs/utils.go",
-		"/D/LNGS/src/tests/testclient/testclient.py",
 		"/D/LNGS/src/client/python/lngs/__init__.py",
-		"/D/LNGS/src/lngs/db/db.go",
 		"/D/LNGS/src/lngs/common/GameClient.go",
 		"/D/LNGS/src/lngs/db/mongodb.go",
 		"/D/LNGS/src/lngs/db/DbManager",
 		"/D/LNGS/src/lngs/db/mongo.go",
-		"/D/LNGS/src/tests/testclient/entities/Boot.py",
 		"/D/LNGS/src/tests/testserver/testserver.conf",
 		"/D/LNGS/src/tests/testserver/testserver.go",
 		"/D/LNGS/src/lngs/rpc/RpcMessenger.go",
@@ -242,7 +219,6 @@
 		"/D/LNGS/src/tests/testclient/testclient.go",
 		"/D/LNGS/src/client/python/lngs/rpc.py",
 		"/D/LNGS/src/gopkg.in/mgo.v2/bson/bson.go",
-		"/D/LNGS/src/LNGS.sublime-workspace",
 		"/D/LNGS/src/tests/testclient/entities/boot.go",
 		"/D/LNGS/src/lngs/server_utils.go",
 		"/D/LNGS/src/tests/testserver/testserver.json",
@@ -324,6 +300,8 @@
 		"where_history":
 		[
 			"",
+			"*.go",
+			"",
 			".",
 			"",
 			"0, 0, SW, SH",
@@ -335,6 +313,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CallClient",
+			"recoverFromError",
+			"commandQueue",
+			"\"insertdb\"",
+			"insertdb",
+			"FindDB",
+			"Debug",
+			"log.Printf",
+			"log.printf",
+			"PostDbCommand",
+			"PostCommand",
+			"CommandQueue",
+			"PostDbCommand",
+			"commandQueue",
 			"commandqueue",
 			"requestqueue",
 			"PostDbCommand",
@@ -448,21 +440,7 @@
 			"邀请加入",
 			"fp.*\\d\\d\\d",
 			"鬼灵矿小地图寻找",
-			"鬼灵矿小地图寻找友方英雄",
-			"鬼灵矿小地图寻找",
-			"fp.*\\d\\d\\d",
-			"FPExt(\"蓝条\", 147, 714, 300, 728",
-			"fp.*\\d\\d\\d",
-			"黑心湾小地图识别标识区域",
-			"fp.*\\d\\d\\d",
-			"977, 729, SW, SH",
-			"fp.*\\d\\d\\d",
-			"检查神殿占领情况",
-			"fp.*\\d\\d\\d",
-			"镜头跟随切换状态显示区域",
-			"fp.*\\d\\d\\d",
-			"const.*sh",
-			"const.*SW"
+			"鬼灵矿小地图寻找友方英雄"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -470,6 +448,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"\"insert\"",
 			"commandQueue",
 			"commandqueue",
 			"	",
@@ -504,23 +483,23 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "lngs/db/DbManager.go",
+					"file": "tests/entities/boot.go",
 					"settings":
 					{
-						"buffer_size": 1138,
+						"buffer_size": 1236,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								880,
-								880
+								1019,
+								1019
 							]
 						],
 						"settings":
@@ -529,25 +508,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 60.0,
+						"translation.y": 360.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "lngs/GameClient.go",
+					"file": "lngs/Entity.go",
 					"settings":
 					{
-						"buffer_size": 1333,
+						"buffer_size": 4651,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12,
-								12
+								1776,
+								1776
 							]
 						],
 						"settings":
@@ -556,25 +535,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1680.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "lngs/db/db.go",
+					"file": "lngs/db/DbManager.go",
 					"settings":
 					{
-						"buffer_size": 15,
+						"buffer_size": 2180,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15,
-								15
+								1503,
+								1503
 							]
 						],
 						"settings":
@@ -582,139 +561,31 @@
 							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 203.0,
+						"translation.y": 971.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "lngs/utils.go",
+					"file": "tests/testclient/entities/Boot.py",
 					"settings":
 					{
-						"buffer_size": 360,
+						"buffer_size": 574,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								360,
-								360
+								503,
+								503
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "tests/testclient/testclient.py",
-					"settings":
-					{
-						"buffer_size": 635,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								447,
-								447
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "tests/entities/boot.go",
-					"settings":
-					{
-						"buffer_size": 848,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								757,
-								765
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "lngs/chans/chans.go",
-					"settings":
-					{
-						"buffer_size": 17,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17,
-								17
-							]
-						],
-						"settings":
-						{
-							"auto_name": "chans",
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "lngs/chan/chanmanager.go",
-					"settings":
-					{
-						"buffer_size": 24,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								24,
-								24
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"syntax": "Packages/Python/Python.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -844,16 +715,52 @@
 		"selected_items":
 		[
 			[
-				"types",
-				"src/lngs/common/types.go"
+				"boot.py",
+				"src/tests/testclient/entities/Boot.py"
+			],
+			[
+				"dbmanager",
+				"src/lngs/db/DbManager.go"
+			],
+			[
+				"gameclient.go",
+				"src/lngs/GameClient.go"
 			],
 			[
 				"entity.go",
 				"src/lngs/Entity.go"
 			],
 			[
+				"server.go",
+				"src/lngs/server.go"
+			],
+			[
+				"cmdque",
+				"src/lngs/cmdque/cmdque.go"
+			],
+			[
 				"boot.go",
 				"src/tests/entities/boot.go"
+			],
+			[
+				"util.go",
+				"src/lngs/common/utils.go"
+			],
+			[
+				"dbmanager.go",
+				"src/lngs/db/DbManager.go"
+			],
+			[
+				"utils.go",
+				"src/lngs/common/utils.go"
+			],
+			[
+				"dbmana",
+				"src/lngs/db/DbManager.go"
+			],
+			[
+				"types",
+				"src/lngs/common/types.go"
 			],
 			[
 				"testserver.conf",
@@ -864,24 +771,12 @@
 				"src/lngs/common/EntityManager.go"
 			],
 			[
-				"gameclient.go",
-				"src/lngs/common/GameClient.go"
-			],
-			[
-				"server.go",
-				"src/lngs/server.go"
-			],
-			[
 				"gamecli",
 				"src/lngs/common/GameClient.go"
 			],
 			[
 				"timer.py",
 				"src/client/python/lngs/Timer.py"
-			],
-			[
-				"boot.py",
-				"src/tests/testclient/entities/Boot.py"
 			],
 			[
 				"utils",
