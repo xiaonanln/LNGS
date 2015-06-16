@@ -76,13 +76,13 @@ func (self *DbManager) Loop() {
 				collectionName := insertdbArgs[0].(string)
 				query := insertdbArgs[1]
 				cursor := db.C(collectionName).Find(query)
-				var doc map[string]interface{}
+				var doc Doc
 				err := cursor.One(&doc)
 				if err != nil {
 					debug("find %v error: %s", query, err)
 					PostCommandQueue(cmd.EntityId, &Command{"db", "find_cb", err})
 				} else {
-					debug("find %v: %v", query, err)
+					debug("find %v error: %v", query, err)
 					PostCommandQueue(cmd.EntityId, &Command{"db", "find_cb", doc})
 				}
 			}

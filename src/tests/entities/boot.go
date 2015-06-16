@@ -22,10 +22,25 @@ func (behavior *Boot) PlayGame(self *Entity, testInt int, testStr string, testMa
 
 func (behavior *Boot) Login(self *Entity, username string, password string) {
 	log.Println("Login", username, password)
-	if username != "test" || password != "1234556" {
-		log.Println("wrong username or password")
+
+	doc, _ := self.FindDoc("entities", map[string]string{"username": username})
+	if doc == nil {
+		self.CallClient("OnLogin", "player_not_found", username)
+		return
 	}
-	// 根据username找到对应的
+
+	if doc["password"] != password {
+		Debug("boot", "wrong password %s, correct is %s", password, doc["password"])
+		self.CallClient("OnLogin", "wrong_password", username)
+		return
+	}
+
+	// login success, create avatar now
+	self.CallClient("OnLogin", "success", username)
+	Debug("boot", "%s login success", username)
+
+	entityid := doc["_id"].Hex()
+	self.CreatePersistentEntity(entityid)
 }
 
 func (behavior *Boot) Register(self *Entity, username string, password string) {

@@ -5,7 +5,8 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	. "lngs/cmdque"
 	. "lngs/common"
-	"lngs/db"
+
+	. "lngs/db"
 	. "lngs/rpc"
 	"log"
 	"reflect"
@@ -15,8 +16,16 @@ var (
 	noneBehavior = reflect.ValueOf(struct{}{}) // entity with no behavior
 )
 
+func DocId2EntityId(id bson.ObjectId) string {
+	return id.Hex()
+}
+
+func EntityId2DocId(id string) bson.ObjectId {
+	return bson.ObjectIdHex(id)
+}
+
 func NewEntityId() string {
-	return bson.NewObjectId().Hex()
+	return DocId2EntityId(bson.NewObjectId())
 }
 
 type Entity struct {
@@ -112,13 +121,13 @@ func (self *Entity) CallClient(method string, args ...interface{}) {
 	}
 }
 
-func (self *Entity) FindDoc(collectionName string, query interface{}) (interface{}, error) {
+func (self *Entity) FindDoc(collectionName string, query interface{}) (Doc, error) {
 	cmd := Command{
 		self.id,
 		"find",
 		[]interface{}{collectionName, query},
 	}
-	lngsdb.PostDbCommand(&cmd)
+	PostDbCommand(&cmd)
 
 	for {
 		cmd := <-self.commandQueue
@@ -130,7 +139,7 @@ func (self *Entity) FindDoc(collectionName string, query interface{}) (interface
 				// error
 				return nil, err
 			} else {
-				return doc, nil
+				return doc.(Doc), nil
 			}
 		} else {
 			// this is wrong command
@@ -140,14 +149,14 @@ func (self *Entity) FindDoc(collectionName string, query interface{}) (interface
 	}
 }
 
-func (self *Entity) InsertDoc(collectionName string, doc interface{}) error {
+func (self *Entity) InsertDoc(collectionName string, doc Doc) error {
 	cmd := Command{
 		self.id,
 		"insert",
 		[]interface{}{collectionName, doc},
 	}
 
-	lngsdb.PostDbCommand(&cmd)
+	PostDbCommand(&cmd)
 
 	for {
 		cmd := <-self.commandQueue
@@ -170,6 +179,46 @@ func (self *Entity) InsertDoc(collectionName string, doc interface{}) error {
 
 func (self *Entity) PostCommand(cmd *Command) {
 	self.commandQueue <- cmd
+}
+
+func (self *Entity) CreatePersistentEntity(id string) (*Entity, error) {
+
+	doc, err := self.FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
+	if err != nil {
+		return nil, err
+	}
+
+}
+
+func (self *Entity) IsPersistent() bool {
+	_, ok := self.behavior.Interface().(Persistence)
+	return ok
+}
+
+func (self *Entity) GetPersistence() Persistence {
+	p, ok := self.behavior.Interface().(Persistence)
+	if ok {
+		return p
+	} else {
+		return nil
+	}
+}
+
+func (self *Entity) Save() {
+	p := self.GetPersistence()
+	if p == nil {
+		return
+	}
+
+	data := p.GetPersistentData()
+	data["_id"] = EntityId2DocId(self.id)
+	data["_behavior"] = self.GetBehaviorName()
+	self.InsertDoc("entities", data)
+}
+
+type Persistence interface {
+	GetPersistentData() Doc
+	InitWithPersistentData(data Doc)
 }
 
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {
