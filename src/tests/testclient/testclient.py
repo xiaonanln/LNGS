@@ -25,7 +25,9 @@ lngs.connect('127.0.0.1', 7777)
 
 
 from entities.Boot import Boot
+from entities.Avatar import Avatar
 lngs.client.register_entity_class(Boot)
+lngs.client.register_entity_class(Avatar)
 
 
 while True:

@@ -4,11 +4,13 @@ import lngs
 from lngs import Timer
 import logging 
 
+USERNAME, PASSWORD = "123456", "123456"
+
 class Boot(lngs.Entity): 
 	def BecomePlayer(self):
 		logging.info('BecomePlayer %s', self)
 
-		Timer.addTimer(0.1, lambda: self.Login("test", "123456") )
+		Timer.addTimer(0.1, lambda: self.Register() )
 		
 	def playGame(self):
 		lngs.client.call_entity(self.id, 'PlayGame', [100, "test string", {'test': 'dict'}, ['test', 'list']])
@@ -20,8 +22,8 @@ class Boot(lngs.Entity):
 		logging.info('OnLogin %s %s', result, username)
 
 	def Register(self):
-		lngs.client.call_entity(self.id, "Register", ["test3", "123456"])
+		lngs.client.call_entity(self.id, "Register", [USERNAME, PASSWORD])
 		
 	def OnRegister(self, result):
 		logging.info("OnRegister %s", result)
-		self.Login( "test", "123456" ) 
+		self.Login( USERNAME, PASSWORD ) 

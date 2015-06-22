@@ -36,11 +36,19 @@ func (behavior *Boot) Login(self *Entity, username string, password string) {
 	}
 
 	// login success, create avatar now
+	Debug("Boot", "found avatar %v", doc)
+	entityid := doc.HexId()
+	avatar, err := self.CreateEntity("Avatar", entityid)
+	Debug("boot", "create entity %v, error %v", avatar, err)
+	if err != nil {
+		self.CallClient("OnLogin", "fail", username)
+		return
+	}
+
 	self.CallClient("OnLogin", "success", username)
 	Debug("boot", "%s login success", username)
 
-	entityid := doc["_id"].Hex()
-	self.CreatePersistentEntity(entityid)
+	self.GiveClientTo(avatar)
 }
 
 func (behavior *Boot) Register(self *Entity, username string, password string) {
@@ -54,7 +62,7 @@ func (behavior *Boot) Register(self *Entity, username string, password string) {
 		return
 	}
 
-	err = self.InsertDoc("entities", map[string]interface{}{"username": username, "password": password})
+	err = self.InsertDoc("entities", map[string]interface{}{"username": username, "password": password, "_behavior": "Avatar"})
 	if err != nil {
 		self.CallClient("OnRegister", "fail")
 		return

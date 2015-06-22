@@ -6,6 +6,8 @@ import (
 	. "lngs/cmdque"
 	. "lngs/common"
 
+	"errors"
+
 	. "lngs/db"
 	. "lngs/rpc"
 	"log"
@@ -26,6 +28,11 @@ func EntityId2DocId(id string) bson.ObjectId {
 
 func NewEntityId() string {
 	return DocId2EntityId(bson.NewObjectId())
+}
+
+type Persistence interface {
+	GetPersistentData() Doc
+	InitWithPersistentData(data Doc)
 }
 
 type Entity struct {
@@ -51,7 +58,7 @@ func (self *Entity) SetClient(client *GameClient) {
 	}
 }
 
-func NewEntity(id string) *Entity {
+func newEntity(id string) *Entity {
 	if id == "" {
 		id = NewEntityId()
 	}
@@ -177,17 +184,63 @@ func (self *Entity) InsertDoc(collectionName string, doc Doc) error {
 	}
 }
 
+func (self *Entity) UpdateDoc(collectionName string, query interface{}, doc Doc) error {
+	cmd := Command{
+		self.id,
+		"update",
+		[]interface{}{collectionName, query, doc},
+	}
+
+	PostDbCommand(&cmd)
+
+	for {
+		cmd := <-self.commandQueue
+		if cmd.Command == "update_cb" {
+			// this is it
+			err, ok := cmd.Data.(error)
+			if ok {
+				// error
+				return err
+			} else {
+				return nil
+			}
+		} else {
+			// this is wrong command
+			Debug("Entity %s ignore command %v", self.id, cmd)
+			continue
+		}
+	}
+}
+
 func (self *Entity) PostCommand(cmd *Command) {
 	self.commandQueue <- cmd
 }
 
-func (self *Entity) CreatePersistentEntity(id string) (*Entity, error) {
+func (self *Entity) CreateEntity(behaviorName string, id string) (*Entity, error) {
+	newEntity := entityManager.NewEntity(behaviorName, id)
+	if !newEntity.IsPersistent() {
+		Debug("Entity", "Non-persistent entity %s created successfully.", newEntity)
+		return newEntity, nil
+	}
 
 	doc, err := self.FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
 	if err != nil {
+		Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
 		return nil, err
 	}
 
+	if doc != nil && doc["_behavior"] != behaviorName {
+		// entity behavior is wrong
+		return nil, errors.New("wrong behavior")
+	}
+
+	if doc != nil {
+		// no persistent data, just create entity
+		newEntity.InitWithPersistentData(doc)
+	} else {
+		newEntity.InitWithPersistentData(Doc{})
+	}
+	return newEntity, nil
 }
 
 func (self *Entity) IsPersistent() bool {
@@ -204,21 +257,50 @@ func (self *Entity) GetPersistence() Persistence {
 	}
 }
 
-func (self *Entity) Save() {
+func (self *Entity) Save() error {
+	p := self.GetPersistence()
+	if p == nil {
+		return nil
+	}
+
+	data := p.GetPersistentData()
+	entityid := EntityId2DocId(self.id)
+	data["_behavior"] = self.GetBehaviorName()
+
+	query := map[string]interface{}{"_id": entityid}
+	err := self.UpdateDoc("entities", query, Doc{"$set": data})
+	Debug("Entity", "Entity %s saved, error = %v", self, err)
+	return err
+}
+
+func (self *Entity) InitWithPersistentData(data Doc) {
 	p := self.GetPersistence()
 	if p == nil {
 		return
 	}
 
-	data := p.GetPersistentData()
-	data["_id"] = EntityId2DocId(self.id)
-	data["_behavior"] = self.GetBehaviorName()
-	self.InsertDoc("entities", data)
+	Debug("Entity", "Entity %s init with data %v", self, data)
+	p.InitWithPersistentData(data)
 }
 
-type Persistence interface {
-	GetPersistentData() Doc
-	InitWithPersistentData(data Doc)
+func (self *Entity) GiveClientTo(other *Entity) {
+	if self == other || self.client == nil {
+		return
+	}
+
+	client := self.client
+
+	self.SetClient(nil)
+	other.SetClient(client)
+}
+
+func (self *Entity) SendCommand(targetid string, cmdName string, cmdData interface{}) {
+	cmd := Command{
+		self.id,
+		cmdName,
+		cmdData,
+	}
+	PostCommandQueue(targetid, &cmd)
 }
 
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {

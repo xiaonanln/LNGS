@@ -57,9 +57,9 @@ func (self *DbManager) Loop() {
 		switch cmd.Command {
 		case "insert":
 			{
-				insertdbArgs := cmd.Data.([]interface{})
-				collectionName := insertdbArgs[0].(string)
-				doc := insertdbArgs[1]
+				dbArgs := cmd.Data.([]interface{})
+				collectionName := dbArgs[0].(string)
+				doc := dbArgs[1]
 				err := db.C(collectionName).Insert(doc)
 				// send back result
 				if err != nil {
@@ -72,9 +72,9 @@ func (self *DbManager) Loop() {
 			}
 		case "find":
 			{
-				insertdbArgs := cmd.Data.([]interface{})
-				collectionName := insertdbArgs[0].(string)
-				query := insertdbArgs[1]
+				dbArgs := cmd.Data.([]interface{})
+				collectionName := dbArgs[0].(string)
+				query := dbArgs[1]
 				cursor := db.C(collectionName).Find(query)
 				var doc Doc
 				err := cursor.One(&doc)
@@ -84,6 +84,22 @@ func (self *DbManager) Loop() {
 				} else {
 					debug("find %v error: %v", query, err)
 					PostCommandQueue(cmd.EntityId, &Command{"db", "find_cb", doc})
+				}
+			}
+		case "update":
+			{
+				dbArgs := cmd.Data.([]interface{})
+				collectionName := dbArgs[0].(string)
+				query := dbArgs[1]
+				doc := dbArgs[2]
+				err := db.C(collectionName).Update(query, doc)
+				// send back result
+				if err != nil {
+					log.Println(err)
+					PostCommandQueue(cmd.EntityId, &Command{"db", "update_cb", err})
+				} else {
+					debug("update %v", doc)
+					PostCommandQueue(cmd.EntityId, &Command{"db", "update_cb", nil})
 				}
 			}
 		}

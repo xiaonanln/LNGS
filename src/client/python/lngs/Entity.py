@@ -14,4 +14,4 @@ class Entity(object):
 		return str(ObjectId())
 
 	def __str__(self):
-		return 'entity<%s>' % self.id
+		return '%s<%s>' % (self.__class__.__name__, self.id)
