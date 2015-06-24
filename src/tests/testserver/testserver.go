@@ -11,4 +11,5 @@ func main() {
 	lngs.RegisterEntityBehavior(entities.Avatar{})
 	lngs.SetBootEntityBehavior(entities.Boot{})
 	lngs.Run("0.0.0.0:7777")
+
 }

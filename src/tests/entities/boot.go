@@ -5,6 +5,7 @@ import (
 
 	. "lngs"
 	. "lngs/common"
+	"lngs/db"
 )
 
 var ()
@@ -23,7 +24,7 @@ func (behavior *Boot) PlayGame(self *Entity, testInt int, testStr string, testMa
 func (behavior *Boot) Login(self *Entity, username string, password string) {
 	log.Println("Login", username, password)
 
-	doc, _ := self.FindDoc("entities", map[string]string{"username": username})
+	doc, _ := lngsdb.FindDoc("entities", map[string]string{"username": username})
 	if doc == nil {
 		self.CallClient("OnLogin", "player_not_found", username)
 		return
@@ -54,7 +55,7 @@ func (behavior *Boot) Login(self *Entity, username string, password string) {
 func (behavior *Boot) Register(self *Entity, username string, password string) {
 	log.Println("Register", username, password)
 	// find the player before register
-	doc, err := self.FindDoc("entities", map[string]string{"username": username})
+	doc, err := lngsdb.FindDoc("entities", map[string]string{"username": username})
 	Debug("boot", "find player by username: %v, error=%v", doc, err)
 
 	if doc != nil {
@@ -62,7 +63,7 @@ func (behavior *Boot) Register(self *Entity, username string, password string) {
 		return
 	}
 
-	err = self.InsertDoc("entities", map[string]interface{}{"username": username, "password": password, "_behavior": "Avatar"})
+	err = lngsdb.InsertDoc("entities", map[string]interface{}{"username": username, "password": password, "_behavior": "Avatar"})
 	if err != nil {
 		self.CallClient("OnRegister", "fail")
 		return

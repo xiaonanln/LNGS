@@ -2,9 +2,10 @@ package lngs
 
 import (
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
 	. "lngs/cmdque"
 	. "lngs/common"
+
+	"gopkg.in/mgo.v2/bson"
 
 	"errors"
 
@@ -128,90 +129,6 @@ func (self *Entity) CallClient(method string, args ...interface{}) {
 	}
 }
 
-func (self *Entity) FindDoc(collectionName string, query interface{}) (Doc, error) {
-	cmd := Command{
-		self.id,
-		"find",
-		[]interface{}{collectionName, query},
-	}
-	PostDbCommand(&cmd)
-
-	for {
-		cmd := <-self.commandQueue
-		if cmd.Command == "find_cb" {
-			// this is it
-			doc := cmd.Data
-			err, ok := doc.(error)
-			if ok {
-				// error
-				return nil, err
-			} else {
-				return doc.(Doc), nil
-			}
-		} else {
-			// this is wrong command
-			Debug("Entity %s ignore command %v", self.id, cmd)
-			continue
-		}
-	}
-}
-
-func (self *Entity) InsertDoc(collectionName string, doc Doc) error {
-	cmd := Command{
-		self.id,
-		"insert",
-		[]interface{}{collectionName, doc},
-	}
-
-	PostDbCommand(&cmd)
-
-	for {
-		cmd := <-self.commandQueue
-		if cmd.Command == "insert_cb" {
-			// this is it
-			err, ok := cmd.Data.(error)
-			if ok {
-				// error
-				return err
-			} else {
-				return nil
-			}
-		} else {
-			// this is wrong command
-			Debug("Entity %s ignore command %v", self.id, cmd)
-			continue
-		}
-	}
-}
-
-func (self *Entity) UpdateDoc(collectionName string, query interface{}, doc Doc) error {
-	cmd := Command{
-		self.id,
-		"update",
-		[]interface{}{collectionName, query, doc},
-	}
-
-	PostDbCommand(&cmd)
-
-	for {
-		cmd := <-self.commandQueue
-		if cmd.Command == "update_cb" {
-			// this is it
-			err, ok := cmd.Data.(error)
-			if ok {
-				// error
-				return err
-			} else {
-				return nil
-			}
-		} else {
-			// this is wrong command
-			Debug("Entity %s ignore command %v", self.id, cmd)
-			continue
-		}
-	}
-}
-
 func (self *Entity) PostCommand(cmd *Command) {
 	self.commandQueue <- cmd
 }
@@ -223,7 +140,7 @@ func (self *Entity) CreateEntity(behaviorName string, id string) (*Entity, error
 		return newEntity, nil
 	}
 
-	doc, err := self.FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
+	doc, err := FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
 	if err != nil {
 		Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
 		return nil, err
@@ -268,8 +185,13 @@ func (self *Entity) Save() error {
 	data["_behavior"] = self.GetBehaviorName()
 
 	query := map[string]interface{}{"_id": entityid}
-	err := self.UpdateDoc("entities", query, Doc{"$set": data})
-	Debug("Entity", "Entity %s saved, error = %v", self, err)
+	err := UpdateDoc("entities", query, Doc{"$set": data})
+	for err != nil {
+		log.Println("Save entity %s failed: %v, retry...", self, err)
+		err = UpdateDoc("entities", query, Doc{"$set": data})
+	}
+
+	Debug("Entity", "Entity %s saved successfuly", self)
 	return err
 }
 
