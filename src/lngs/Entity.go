@@ -69,7 +69,6 @@ func newEntity(id string) *Entity {
 func (self *Entity) GetBehaviorName() string {
 	behaviorType := reflect.Indirect(self.behavior).Type()
 	name := behaviorType.Name()
-	log.Printf("behavior name %v %s", behaviorType, name)
 	return name
 }
 
