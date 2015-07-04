@@ -13,3 +13,4 @@ class Avatar(lngs.Entity):
 		logging.info('AddExp %d', exp)
 		lngs.client.call_entity(self.id, 'AddExp', [10])
 	
+	

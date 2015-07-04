@@ -23,12 +23,20 @@ import lngs
 
 lngs.connect('127.0.0.1', 7777)
 
-
+import entities
 from entities.Boot import Boot
 from entities.Avatar import Avatar
 lngs.client.register_entity_class(Boot)
 lngs.client.register_entity_class(Avatar)
 
+try:
+	username, password = sys.argv[1:3]
+except:
+	username, password = "123456", "123456"
+	
+logging.debug("test client running with username = %s, password = %s", username, password)
+entities.Boot.USERNAME = username
+entities.Boot.PASSWORD = password
 
 while True:
 	lngs.loop()

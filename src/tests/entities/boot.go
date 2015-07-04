@@ -13,6 +13,9 @@ var ()
 type Boot struct {
 }
 
+func (behavior *Boot) Init() {
+}
+
 func (behavior *Boot) Test(self *Entity, a, b, c int) {
 	log.Printf("Boot.Text called")
 }

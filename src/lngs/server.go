@@ -58,6 +58,11 @@ func serveGameClient(client *GameClient) {
 			serveMessage(client, msg)
 		}
 	}
+
+	log.Printf("Game client %s disconnected", client)
+	if client.owner != nil {
+		client.owner.SetClient(nil)
+	}
 }
 
 func recoverFromError() {

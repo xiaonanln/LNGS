@@ -84,7 +84,11 @@ func FindDoc(collectionName string, selector interface{}) (Doc, error) {
 
 	doc := make(Doc)
 	err := conn.db.C(collectionName).Find(selector).One(doc)
-	return doc, err
+	if err != nil {
+		return nil, err
+	} else {
+		return doc, nil
+	}
 }
 
 func UpdateDoc(collectionName string, selector interface{}, update Doc) error {
