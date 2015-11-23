@@ -12,6 +12,7 @@ import (
 	. "lngs/rpc"
 	"log"
 	"reflect"
+	"sync"
 )
 
 var (
@@ -40,6 +41,7 @@ type Entity struct {
 	client       *GameClient
 	behavior     reflect.Value
 	commandQueue CommandQueue
+	lock         sync.Mutex
 }
 
 func (self *Entity) SetClient(client *GameClient) {
@@ -56,6 +58,14 @@ func (self *Entity) SetClient(client *GameClient) {
 		self.client.CreateEntity(self.id, self.GetBehaviorName())
 		self.client.BecomePlayer(self.id)
 	}
+}
+
+func (self *Entity) Lock() {
+	self.lock.Lock()
+}
+
+func (self *Entity) Unlock() {
+	self.lock.Unlock()
 }
 
 func newEntity(id string) *Entity {
@@ -217,7 +227,7 @@ func (self *Entity) PostCommand(cmd *Command) {
 }
 
 func (self *Entity) CreateEntity(behaviorName string, id string) (*Entity, error) {
-	newEntity := entityManager.NewEntity(behaviorName, id)
+	newEntity := entityManager.newEntity(behaviorName, id)
 	if !newEntity.IsPersistent() {
 		Debug("Entity", "Non-persistent entity %s created successfully.", newEntity)
 		return newEntity, nil

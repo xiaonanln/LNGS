@@ -49,7 +49,7 @@ func (self *EntityManager) SetBootEntityBehavior(entityBehavior interface{}) {
 	self.bootentityBehaviorTypeName = behaviorName
 }
 
-func (self *EntityManager) NewEntity(behaviorName string, id string) *Entity {
+func (self *EntityManager) newEntity(behaviorName string, id string) *Entity {
 	entityBehaviorType := self.entityBehaviorTypes[behaviorName]
 	if entityBehaviorType == nil {
 		log.Panicf("unknown behavior name: %s", behaviorName)
@@ -68,7 +68,7 @@ func (self *EntityManager) NewBootEntity() *Entity {
 		log.Panicf("boot entity name is not set")
 		return nil
 	}
-	return self.NewEntity(self.bootentityBehaviorTypeName, "")
+	return self.newEntity(self.bootentityBehaviorTypeName, "")
 }
 
 func GetEntityManager() *EntityManager {
