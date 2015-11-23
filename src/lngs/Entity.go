@@ -87,7 +87,11 @@ func newEntity(id string) *Entity {
 	if id == "" {
 		id = NewEntityId()
 	}
-	return &Entity{id, nil, noneBehavior, GetCommandQueue(id)}
+	return &Entity{
+		id:           id,
+		behavior:     noneBehavior,
+		commandQueue: GetCommandQueue(id),
+	}
 }
 
 func (self *Entity) Id() string {

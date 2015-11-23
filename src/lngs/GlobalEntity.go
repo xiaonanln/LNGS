@@ -19,7 +19,7 @@ func CreateGlobalEntity(behaviorName string, entityName string) *Entity {
 		}
 	}
 
-	entity := entityManager.NewEntity(behaviorName, "")
+	entity := entityManager.newEntity(behaviorName, "")
 	globalEntities[entityName] = entity
 	return entity
 }
