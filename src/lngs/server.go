@@ -1,7 +1,6 @@
 package lngs
 
 import (
-	. "lngs/db"
 	. "lngs/rpc"
 	"log"
 	"net"
@@ -9,10 +8,6 @@ import (
 )
 
 func Run(serverAddrStr string) {
-
-	go serveDB()
-	go serveDB()
-	go serveDB()
 
 	log.Println("Resolving TCP address: ", serverAddrStr)
 	serverAddr, err := net.ResolveTCPAddr("tcp", serverAddrStr)
@@ -35,13 +30,6 @@ func Run(serverAddrStr string) {
 		}
 		go serveConn(conn)
 	}
-}
-
-func serveDB() {
-	dbcon := ConnectDB()
-	defer dbcon.Close()
-	dbmanager := NewDbManager(dbcon)
-	dbmanager.Loop()
 }
 
 func serveConn(conn net.Conn) {
@@ -69,6 +57,11 @@ func serveGameClient(client *GameClient) {
 		if msg != nil {
 			serveMessage(client, msg)
 		}
+	}
+
+	log.Printf("Game client %s disconnected", client)
+	if client.owner != nil {
+		client.owner.SetClient(nil)
 	}
 }
 

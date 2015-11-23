@@ -34,7 +34,11 @@ func (self *EntityManager) RegisterEntityBehavior(entityBehavior interface{}) {
 func (self *EntityManager) NewEntityBehavior(behaviorName string) reflect.Value {
 	var behaviorType reflect.Type = self.entityBehaviorTypes[behaviorName]
 	if behaviorType != nil {
-		return reflect.New(behaviorType)
+		behavior := reflect.New(behaviorType)
+		initMethod := behavior.MethodByName("Init")
+		log.Println(behaviorName, "Init", initMethod)
+		initMethod.Call([]reflect.Value{})
+		return behavior
 	} else {
 		log.Panicf("NewEntityBehavior: entity behavior not registered: %s\n", behaviorName)
 		return noneBehavior

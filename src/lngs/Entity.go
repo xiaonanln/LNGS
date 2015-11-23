@@ -2,9 +2,10 @@ package lngs
 
 import (
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
 	. "lngs/cmdque"
 	. "lngs/common"
+
+	"gopkg.in/mgo.v2/bson"
 
 	"errors"
 
@@ -45,6 +46,12 @@ type Entity struct {
 }
 
 func (self *Entity) SetClient(client *GameClient) {
+	if client == self.client {
+		return // client not changed at all
+	}
+
+	old_client := self.client
+
 	if self.client != nil {
 		self.client.DestroyEntity(self.id)
 
@@ -57,6 +64,14 @@ func (self *Entity) SetClient(client *GameClient) {
 		self.client.owner = self
 		self.client.CreateEntity(self.id, self.GetBehaviorName())
 		self.client.BecomePlayer(self.id)
+	}
+
+	if old_client != nil && self.client == nil {
+		self.onLoseClient(old_client)
+	} else if old_client == nil && self.client != nil {
+		self.onGetNewClient()
+	} else {
+		self.onChangeClient(old_client)
 	}
 }
 
@@ -75,10 +90,13 @@ func newEntity(id string) *Entity {
 	return &Entity{id, nil, noneBehavior, GetCommandQueue(id)}
 }
 
+func (self *Entity) Id() string {
+	return self.id
+}
+
 func (self *Entity) GetBehaviorName() string {
 	behaviorType := reflect.Indirect(self.behavior).Type()
 	name := behaviorType.Name()
-	log.Printf("behavior name %v %s", behaviorType, name)
 	return name
 }
 
@@ -107,27 +125,12 @@ func (self *Entity) OnReceiveMessage(msg Message) {
 	}
 
 	ARGS := msg["ARGS"].([]interface{})
-	targetEntity.OnCallMethod(self, M, ARGS)
+	targetEntity.CallMethod(M, ARGS...)
 }
 
-func (self *Entity) OnCallMethod(caller *Entity, methodname string, args []interface{}) {
-	log.Printf("%s calling %s.%s", caller, self, methodname)
-
-	method := self.behavior.MethodByName(methodname)
-	log.Printf("method %v, total methods %d", method, self.behavior.NumMethod())
-	in := make([]reflect.Value, len(args)+1)
-	in[0] = reflect.ValueOf(self)
-	for i, arg := range args {
-		in[i+1] = reflect.ValueOf(arg)
-	}
-	// methodType := method.Type()
-	// numArguments := methodType.NumIn()
-	// for argIndex := 0; argIndex < numArguments; argIndex++ {
-	// 	var argType reflect.Type = methodType.In(argIndex)
-	// 	log.Println("arg type", argIndex, argType)
-	// 	in[argIndex] = convertType(in[argIndex], argType)
-	// }
-	method.Call(in)
+func (self *Entity) CallMethod(methodname string, args ...interface{}) {
+	log.Printf("Entity method: %s.%s", self, methodname)
+	self.callBehaviorMethod(methodname, args...)
 }
 
 func (self *Entity) CallClient(method string, args ...interface{}) {
@@ -135,90 +138,6 @@ func (self *Entity) CallClient(method string, args ...interface{}) {
 	if self.client != nil {
 
 		self.client.CallMethod(self.id, method, args...)
-	}
-}
-
-func (self *Entity) FindDoc(collectionName string, query interface{}) (Doc, error) {
-	cmd := Command{
-		self.id,
-		"find",
-		[]interface{}{collectionName, query},
-	}
-	PostDbCommand(&cmd)
-
-	for {
-		cmd := <-self.commandQueue
-		if cmd.Command == "find_cb" {
-			// this is it
-			doc := cmd.Data
-			err, ok := doc.(error)
-			if ok {
-				// error
-				return nil, err
-			} else {
-				return doc.(Doc), nil
-			}
-		} else {
-			// this is wrong command
-			Debug("Entity %s ignore command %v", self.id, cmd)
-			continue
-		}
-	}
-}
-
-func (self *Entity) InsertDoc(collectionName string, doc Doc) error {
-	cmd := Command{
-		self.id,
-		"insert",
-		[]interface{}{collectionName, doc},
-	}
-
-	PostDbCommand(&cmd)
-
-	for {
-		cmd := <-self.commandQueue
-		if cmd.Command == "insert_cb" {
-			// this is it
-			err, ok := cmd.Data.(error)
-			if ok {
-				// error
-				return err
-			} else {
-				return nil
-			}
-		} else {
-			// this is wrong command
-			Debug("Entity %s ignore command %v", self.id, cmd)
-			continue
-		}
-	}
-}
-
-func (self *Entity) UpdateDoc(collectionName string, query interface{}, doc Doc) error {
-	cmd := Command{
-		self.id,
-		"update",
-		[]interface{}{collectionName, query, doc},
-	}
-
-	PostDbCommand(&cmd)
-
-	for {
-		cmd := <-self.commandQueue
-		if cmd.Command == "update_cb" {
-			// this is it
-			err, ok := cmd.Data.(error)
-			if ok {
-				// error
-				return err
-			} else {
-				return nil
-			}
-		} else {
-			// this is wrong command
-			Debug("Entity %s ignore command %v", self.id, cmd)
-			continue
-		}
 	}
 }
 
@@ -233,7 +152,7 @@ func (self *Entity) CreateEntity(behaviorName string, id string) (*Entity, error
 		return newEntity, nil
 	}
 
-	doc, err := self.FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
+	doc, err := FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
 	if err != nil {
 		Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
 		return nil, err
@@ -278,8 +197,13 @@ func (self *Entity) Save() error {
 	data["_behavior"] = self.GetBehaviorName()
 
 	query := map[string]interface{}{"_id": entityid}
-	err := self.UpdateDoc("entities", query, Doc{"$set": data})
-	Debug("Entity", "Entity %s saved, error = %v", self, err)
+	err := UpdateDoc("entities", query, Doc{"$set": data})
+	for err != nil {
+		log.Println("Save entity %s failed: %v, retry...", self, err)
+		err = UpdateDoc("entities", query, Doc{"$set": data})
+	}
+
+	Debug("Entity", "Entity %s saved successfuly", self)
 	return err
 }
 
@@ -311,6 +235,38 @@ func (self *Entity) SendCommand(targetid string, cmdName string, cmdData interfa
 		cmdData,
 	}
 	PostCommandQueue(targetid, &cmd)
+}
+
+func (self *Entity) callBehaviorMethod(methodname string, args ...interface{}) bool {
+	method := self.behavior.MethodByName(methodname)
+	if !method.IsValid() {
+		log.Printf("Entity %s: method %s not found\n", self, methodname)
+		return false
+	}
+
+	in := make([]reflect.Value, len(args)+1)
+	in[0] = reflect.ValueOf(self)
+
+	for i, arg := range args {
+		in[i+1] = reflect.ValueOf(arg)
+	}
+	method.Call(in)
+	return true
+}
+
+func (self *Entity) onGetNewClient() {
+	// get new client: self.client
+	self.callBehaviorMethod("OnGetNewClient")
+}
+
+func (self *Entity) onLoseClient(old_client *GameClient) {
+	// lose client: old_client
+	self.callBehaviorMethod("OnLoseClient", old_client)
+}
+
+func (self *Entity) onChangeClient(old_client *GameClient) {
+	// client changed from old_client to self.client
+	self.callBehaviorMethod("OnChangeClient", old_client)
 }
 
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {

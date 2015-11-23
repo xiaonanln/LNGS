@@ -2,16 +2,18 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
-func main() {
-	m := make(map[int]int)
-	m[1] = 1
-	fmt.Printf("%v\n", m)
-	x := m
-	x[2] = 2
-	fmt.Printf("%v %v\n", m, x)
+type A struct {
+	A int
+	B int
+	C map[int]int
+	d *int
+}
 
-	m = nil
-	m[1] = 1
+func main() {
+	t := reflect.TypeOf(A{})
+	fmt.Println(t)
+
 }
