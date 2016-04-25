@@ -1,3 +1,3 @@
-@cd src\tests\testserver
-@go run testserver.go
+gb build
+bin\testserver.exe
 @pause

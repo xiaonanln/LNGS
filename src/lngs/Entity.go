@@ -63,7 +63,7 @@ func (self *Entity) SetClient(client *GameClient) {
 	if self.client != nil {
 		self.client.owner = self
 		self.client.CreateEntity(self.id, self.GetBehaviorName())
-		self.client.BecomePlayer(self.id)
+		self.client.BecomePlayer(self.id, self.GetPersistentData())
 	}
 
 	if old_client != nil && self.client == nil {
@@ -209,6 +209,15 @@ func (self *Entity) Save() error {
 
 	Debug("Entity", "Entity %s saved successfuly", self)
 	return err
+}
+
+func (self *Entity) GetPersistentData()  Doc {
+	p := self.GetPersistence()
+	if p == nil {
+		return nil
+	}
+
+	return p.GetPersistentData()
 }
 
 func (self *Entity) InitWithPersistentData(data Doc) {

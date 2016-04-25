@@ -24,19 +24,22 @@ func (behavior *Boot) PlayGame(self *Entity, testInt int, testStr string, testMa
 	log.Printf("Boot.PlayGame %v, %v, %v, %v", testInt, testStr, testMap, testList)
 }
 
-func (behavior *Boot) Login(self *Entity, username string, password string) {
-	log.Println("Login", username, password)
+func (behavior *Boot) Login(self *Entity, accountId string) {
+	var err error 
+	log.Println("Login", accountId)
 
-	doc, _ := lngsdb.FindDoc("entities", map[string]string{"username": username})
+	doc, _ := lngsdb.FindDoc("entities", map[string]string{"account": accountId})
 	if doc == nil {
-		self.CallClient("OnLogin", "player_not_found", username)
-		return
-	}
-
-	if doc["password"] != password {
-		Debug("boot", "wrong password %s, correct is %s", password, doc["password"])
-		self.CallClient("OnLogin", "wrong_password", username)
-		return
+		err = lngsdb.InsertDoc("entities", map[string]interface{}{"account": accountId, "_behavior": "Avatar"})
+		if err != nil {
+			self.CallClient("Login", "fail")
+			return
+		}
+		doc, _ := lngsdb.FindDoc("entities", map[string]string{"account": accountId})
+		if doc == nil {
+			self.CallClient("Login", "fail")
+			return
+		}
 	}
 
 	// login success, create avatar now
@@ -45,32 +48,12 @@ func (behavior *Boot) Login(self *Entity, username string, password string) {
 	avatar, err := self.CreateEntity("Avatar", entityid)
 	Debug("boot", "create entity %v, error %v", avatar, err)
 	if err != nil {
-		self.CallClient("OnLogin", "fail", username)
+		self.CallClient("OnLogin", "fail")
 		return
 	}
 
-	self.CallClient("OnLogin", "success", username)
-	Debug("boot", "%s login success", username)
+	self.CallClient("OnLogin", "success")
+	Debug("boot", "%s login success", accountId)
 
 	self.GiveClientTo(avatar)
-}
-
-func (behavior *Boot) Register(self *Entity, username string, password string) {
-	log.Println("Register", username, password)
-	// find the player before register
-	doc, err := lngsdb.FindDoc("entities", map[string]string{"username": username})
-	Debug("boot", "find player by username: %v, error=%v", doc, err)
-
-	if doc != nil {
-		self.CallClient("OnRegister", "fail")
-		return
-	}
-
-	err = lngsdb.InsertDoc("entities", map[string]interface{}{"username": username, "password": password, "_behavior": "Avatar"})
-	if err != nil {
-		self.CallClient("OnRegister", "fail")
-		return
-	}
-
-	self.CallClient("OnRegister", "success")
 }

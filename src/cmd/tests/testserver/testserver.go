@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	lngs.SetConfigFile("testserver.conf")
+	// lngs.SetConfigFile("testserver.conf")
 	lngs.RegisterEntityBehavior(Boot{})
 	lngs.RegisterEntityBehavior(Avatar{})
 	lngs.RegisterEntityBehavior(OnlineManager{})

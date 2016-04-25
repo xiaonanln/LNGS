@@ -4,6 +4,7 @@ import (
 	. "lngs/rpc"
 	"log"
 	"net"
+	"lngs/db"
 )
 
 type GameClient struct {
@@ -62,6 +63,6 @@ func (self *GameClient) CallMethod(entityid string, methodname string, args ...i
 	})
 }
 
-func (self *GameClient) BecomePlayer(entityid string) {
-	self.CallMethod(entityid, "BecomePlayer")
+func (self *GameClient) BecomePlayer(entityid string, data lngsdb.Doc) {
+	self.CallMethod(entityid, "BecomePlayer", data)
 }

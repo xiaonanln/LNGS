@@ -24,7 +24,7 @@ func (msgEncoder JsonMessageEncoder) EncodeMessage(msg Message) ([]byte, error) 
 func (msgEncoder JsonMessageEncoder) DecodeMessage(data []byte) (Message, error) {
 	msg := make(Message)
 	log.Println("decode message %d bytes", len(data))
-	err := json.Unmarshal(data, msg)
+	err := json.Unmarshal(data, &msg)
 	return msg, err
 }
 
@@ -46,7 +46,7 @@ type RPCMessenger struct {
 }
 
 func NewRPC(conn net.Conn) *RPCMessenger {
-	rpc := RPCMessenger{conn, BsonMessageEncoder{}, false, nil}
+	rpc := RPCMessenger{conn, JsonMessageEncoder{}, false, nil}
 	return &rpc
 }
 

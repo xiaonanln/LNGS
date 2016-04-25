@@ -12,7 +12,7 @@ func CreateGlobalEntity(behaviorName string, entityName string) *Entity {
 	if entity, ok := globalEntities[entityName]; ok {
 		// global entity exists
 		if entity.GetBehaviorName() == behaviorName {
-			log.Printf("Global entity %s (behavior %s) already exists\n")
+			log.Printf("Global entity %s (behavior %s) already exists\n", entityName, behaviorName)
 			return entity
 		} else {
 			log.Panicf("Global entity %s (behavior %s) already exists, expected behavior is %s\n", entityName, entity.GetBehaviorName(), behaviorName)
