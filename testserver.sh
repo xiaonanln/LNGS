@@ -1,3 +1,3 @@
 #!/bin/sh
-cd src/tests/testserver
-go run testserver.go
+
+make && ./bin/testserver
