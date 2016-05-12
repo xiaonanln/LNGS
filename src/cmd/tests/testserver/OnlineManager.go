@@ -11,7 +11,7 @@ type OnlineManager struct {
 	onlineAvatars map[string]bool
 }
 
-func (behavior *OnlineManager) Init() {
+func (behavior *OnlineManager) Init(self *Entity) {
 	behavior.onlineAvatars = make(map[string]bool)
 }
 
@@ -29,3 +29,7 @@ func (behavior *OnlineManager) NotifyAvatarLogout(self *Entity, entityid string)
 
 	log.Printf("OnlineManager.NotifyAvatarLogout entityid = %s, total online %d", entityid, len(behavior.onlineAvatars))
 }
+
+// func (behavior *OnlineManager) GetSaveInterval() int {
+// 	return 10
+// }

@@ -1,3 +1,2 @@
-gb build
-bin\testserver.exe
+gb build && bin\testserver.exe
 @pause

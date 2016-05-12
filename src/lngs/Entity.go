@@ -33,8 +33,7 @@ func NewEntityId() string {
 }
 
 type Persistence interface {
-	GetPersistentData() Doc
-	InitWithPersistentData(data Doc)
+	GetSaveInterval() int
 }
 
 type Entity struct {
@@ -42,8 +41,9 @@ type Entity struct {
 	client       *GameClient
 	behavior     reflect.Value
 	commandQueue CommandQueue
-	lock         sync.Mutex
-}
+	lock         sync.Mutex 
+	Attrs		 MapAttr 
+} 
 
 func (self *Entity) SetClient(client *GameClient) {
 	if client == self.client {
@@ -91,6 +91,7 @@ func newEntity(id string) *Entity {
 		id:           id,
 		behavior:     noneBehavior,
 		commandQueue: GetCommandQueue(id),
+		Attrs : *NewMapAttr(), 
 	}
 }
 
@@ -108,8 +109,8 @@ func (self *Entity) String() string {
 	return fmt.Sprintf("%s<%s>", self.GetBehaviorName(), self.id)
 }
 
-func (self *Entity) SetBehavior(behaviorName string) {
-	behaviorValue := entityManager.NewEntityBehavior(behaviorName)
+func (self *Entity) setBehavior(behaviorName string) {
+	behaviorValue := entityManager.newEntityBehavior(self, behaviorName)
 	self.behavior = behaviorValue
 }
 
@@ -128,8 +129,12 @@ func (self *Entity) OnReceiveMessage(msg Message) {
 		return
 	}
 
-	ARGS := msg["ARGS"].([]interface{})
-	targetEntity.CallMethod(M, ARGS...)
+	ARGS, ok := msg["ARGS"].([]interface{})
+	if ok {
+		targetEntity.CallMethod(M, ARGS...)
+	} else {
+		targetEntity.CallMethod(M)
+	}
 }
 
 func (self *Entity) CallMethod(methodname string, args ...interface{}) {
@@ -149,31 +154,50 @@ func (self *Entity) PostCommand(cmd *Command) {
 	self.commandQueue <- cmd
 }
 
-func (self *Entity) CreateEntity(behaviorName string, id string) (*Entity, error) {
+func CreateEntity(behaviorName string, id string) (*Entity, error) {
 	newEntity := entityManager.newEntity(behaviorName, id)
-	if !newEntity.IsPersistent() {
-		Debug("Entity", "Non-persistent entity %s created successfully.", newEntity)
-		return newEntity, nil
-	}
 
-	doc, err := FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
-	if err != nil {
-		Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
-		return nil, err
-	}
+	if newEntity.IsPersistent() {
+		var doc Doc
+		var err error 
 
-	if doc != nil && doc["_behavior"] != behaviorName {
-		// entity behavior is wrong
-		return nil, errors.New("wrong behavior")
-	}
+		if id != "" {
+			doc, err = FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
+			if err != nil {
+				Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
+				return nil, err
+			}
 
-	if doc != nil {
-		// no persistent data, just create entity
-		newEntity.InitWithPersistentData(doc)
+			if doc != nil && doc["_behavior"] != behaviorName {
+				// entity behavior is wrong
+				return nil, errors.New("wrong behavior")
+			}
+		}
+		
+		entityManager.putEntity(newEntity) // after get data from DB successfully, put entity to entity manager
+
+		if doc != nil {
+			// no persistent data, just create entity
+			newEntity.initWithPersistentData(doc)
+		} else {
+			newEntity.initWithPersistentData(Doc{})
+		}
+
 	} else {
-		newEntity.InitWithPersistentData(Doc{})
+		entityManager.putEntity(newEntity)
 	}
+	
+
+	behavior := newEntity.behavior
+	initMethod := behavior.MethodByName("Init")
+	log.Println(behaviorName, "Init", initMethod)
+	initMethod.Call([]reflect.Value{reflect.ValueOf(newEntity)})
+
 	return newEntity, nil
+}
+
+func (self *Entity) CreateEntity(behaviorName string, id string) (*Entity, error) {
+	return CreateEntity(behaviorName, id)
 }
 
 func (self *Entity) IsPersistent() bool {
@@ -181,7 +205,7 @@ func (self *Entity) IsPersistent() bool {
 	return ok
 }
 
-func (self *Entity) GetPersistence() Persistence {
+func (self *Entity) getPersistence() Persistence {
 	p, ok := self.behavior.Interface().(Persistence)
 	if ok {
 		return p
@@ -191,12 +215,12 @@ func (self *Entity) GetPersistence() Persistence {
 }
 
 func (self *Entity) Save() error {
-	p := self.GetPersistence()
+	p := self.getPersistence()
 	if p == nil {
 		return nil
 	}
 
-	data := p.GetPersistentData()
+	data := self.GetPersistentData()
 	entityid := EntityId2DocId(self.id)
 	data["_behavior"] = self.GetBehaviorName()
 
@@ -212,22 +236,12 @@ func (self *Entity) Save() error {
 }
 
 func (self *Entity) GetPersistentData()  Doc {
-	p := self.GetPersistence()
-	if p == nil {
-		return nil
-	}
-
-	return p.GetPersistentData()
+	return self.Attrs.ToDoc()
 }
 
-func (self *Entity) InitWithPersistentData(data Doc) {
-	p := self.GetPersistence()
-	if p == nil {
-		return
-	}
-
-	Debug("Entity", "Entity %s init with data %v", self, data)
-	p.InitWithPersistentData(data)
+func (self *Entity) initWithPersistentData(data Doc) {
+	self.Attrs.AssignDoc(data)
+	Debug("Entity", "Entity %s init with data %v, Attrs = %v", self, data, self.Attrs)
 }
 
 func (self *Entity) GiveClientTo(other *Entity) {
@@ -280,6 +294,17 @@ func (self *Entity) onLoseClient(old_client *GameClient) {
 func (self *Entity) onChangeClient(old_client *GameClient) {
 	// client changed from old_client to self.client
 	self.callBehaviorMethod("OnChangeClient", old_client)
+}
+
+func (self *Entity) NotifyAttrChange(attrName string) {
+	attrVal := self.Attrs.attrs[attrName]
+	mapAttrVal, ok := attrVal.(*MapAttr)
+	if ok {
+		attrVal = mapAttrVal.ToDoc()
+	} else {
+		attrVal = attrVal
+	}
+	self.CallClient("OnAttrChange", attrName, attrVal)
 }
 
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {

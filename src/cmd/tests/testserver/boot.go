@@ -13,11 +13,11 @@ var ()
 type Boot struct {
 }
 
-func (behavior *Boot) Init() {
+func (behavior *Boot) Init(self *Entity) {
 }
 
 func (behavior *Boot) Test(self *Entity, a, b, c int) {
-	log.Printf("Boot.Text called")
+	log.Printf("Boot.Test called")
 }
 
 func (behavior *Boot) PlayGame(self *Entity, testInt int, testStr string, testMap map[string]interface{}, testList []interface{}) {
@@ -45,11 +45,16 @@ func (behavior *Boot) Login(self *Entity, accountId string) {
 	// login success, create avatar now
 	Debug("Boot", "found avatar %v", doc)
 	entityid := doc.HexId()
-	avatar, err := self.CreateEntity("Avatar", entityid)
-	Debug("boot", "create entity %v, error %v", avatar, err)
-	if err != nil {
-		self.CallClient("OnLogin", "fail")
-		return
+
+	avatar := GetEntity(entityid)
+	if avatar == nil {
+		// avatar already exists
+		avatar, err = self.CreateEntity("Avatar", entityid)
+		Debug("boot", "create entity %v, error %v", avatar, err)
+		if err != nil {
+			self.CallClient("OnLogin", "fail")
+			return
+		}
 	}
 
 	self.CallClient("OnLogin", "success")
