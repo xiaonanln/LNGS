@@ -5,6 +5,7 @@ import (
 
 	. "lngs"
 	// . "lngs/common"
+	"strconv"
 )
 
 type Avatar struct {
@@ -58,3 +59,36 @@ func (behavior *Avatar) GetSaveInterval() int {
 	return 10
 }
 
+func (behavior *Avatar) FinishBattle(self *Entity, result int) {
+	log.Printf("%v.FinishBattle: result = %v", self, result)
+	if result == 1 {
+		// win
+		behavior.tryGetNewChest(self)
+	}
+}
+
+func (behavior *Avatar) tryGetNewChest(self *Entity) {
+	// get new chest according to avatar level
+	chests := self.GetMapAttr("chests")
+	log.Printf("tryGetNewChest: chests: %v", chests)
+	if chests.Size() >= 4 {
+		return 
+	}
+
+	emptyKey := ""
+	for i := 1; i <= 4; i++ {
+		key := strconv.Itoa(i)
+		if !chests.HasKey(key) {
+			// found empty chest slot
+			emptyKey = key
+			break 
+		}
+	}
+
+	newChest := NewMapAttr().AssignDoc(map[string]interface{}{
+		"level": 1, 
+		})
+	chests.Set(emptyKey, newChest)
+
+	self.NotifyAttrChange("chests")
+}

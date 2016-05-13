@@ -7,6 +7,15 @@ type MapAttr struct {
 	dirtySet map[string] bool
 }
 
+func (self *MapAttr) Size() int {
+	return len(self.attrs)
+}
+
+func (self *MapAttr) HasKey(key string) bool {
+	_, ok := self.attrs[key]
+	return ok
+}
+
 func (self *MapAttr) Set(key string, val interface{}) {
 	self.attrs[key] = val
 	self.dirtySet[key] = true
@@ -68,7 +77,7 @@ func (self *MapAttr) ToDoc() lngsdb.Doc {
 }
 
 
-func (self *MapAttr) AssignDoc(doc lngsdb.Doc) {
+func (self *MapAttr) AssignDoc(doc lngsdb.Doc) *MapAttr {
 	for k, v := range doc {
 		innerMap, ok := v.(lngsdb.Doc)
 		if ok {
@@ -78,8 +87,8 @@ func (self *MapAttr) AssignDoc(doc lngsdb.Doc) {
 		} else {
 			self.attrs[k] = v
 		}
-		
 	}
+	return self
 }
 
 func NewMapAttr() *MapAttr {

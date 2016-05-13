@@ -14,6 +14,7 @@ import (
 	"log"
 	"reflect"
 	"sync"
+	"lngs/typeconv"
 )
 
 var (
@@ -271,11 +272,15 @@ func (self *Entity) callBehaviorMethod(methodname string, args ...interface{}) b
 		return false
 	}
 
+	methodType := method.Type()
+
 	in := make([]reflect.Value, len(args)+1)
 	in[0] = reflect.ValueOf(self)
 
 	for i, arg := range args {
-		in[i+1] = reflect.ValueOf(arg)
+		argType := methodType.In(i+1)
+		argVal := reflect.ValueOf(arg)
+		in[i+1] = typeconv.Convert(argVal, argType)
 	}
 	method.Call(in)
 	return true
@@ -307,6 +312,30 @@ func (self *Entity) NotifyAttrChange(attrName string) {
 	self.CallClient("OnAttrChange", attrName, attrVal)
 }
 
+func (self *Entity) Set(key string, val interface{}) {
+	self.Attrs.Set(key, val)
+}
+
+
+func (self *Entity) GetInt(key string, defaultVal int) int {
+	return self.Attrs.GetInt(key, defaultVal)
+}
+
+func (self *Entity) GetStr(key string, defaultVal string) string {
+	return self.Attrs.GetStr(key, defaultVal)
+}
+
+func (self *Entity) GetMapAttr(key string) *MapAttr {
+	return self.Attrs.GetMapAttr(key)
+}
+
+func (self *Entity) GetFloat(key string, defaultVal float64) float64 {
+	return self.Attrs.GetFloat(key, defaultVal)
+}
+
+func (self *Entity) GetBool(key string, defaultVal bool) bool {
+	return self.Attrs.GetBool(key, defaultVal)
+}
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {
 // 	switch targetType.Kind() {
 // 	case reflect.Slice:
