@@ -8,12 +8,17 @@ import (
 	"strconv"
 )
 
+var (
+	worldChatroom = NewChatroom()
+)
+
 type Avatar struct {
-	exp int
 }
 
 func (behavior *Avatar) Init(self *Entity) {
 	// Initialize Avatar Attrs by default values
+	self.Set("icon", self.GetInt("icon", 1))
+	self.Attrs.Set("name", self.Attrs.GetStr("name", "匿名"))
 	self.Attrs.Set("exp", self.Attrs.GetInt("exp", 0))
 	self.Attrs.Set("cups", self.Attrs.GetInt("cups", 0))
 	self.Attrs.Set("gold", self.Attrs.GetInt("gold", 0))
@@ -48,15 +53,19 @@ func (behavior *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
 
 func (behavior *Avatar) Say(self *Entity, text string) {
 	// player say something in the tribe
-	for _, entity := range Entities() {
-		if entity.GetBehaviorName() == "Avatar" {
-			entity.CallClient("OnSay", self.Id(), text)
-		}
-	}
+	worldChatroom.Say(self, text)
 }
 
 func (behavior *Avatar) GetSaveInterval() int {
 	return 10
+}
+ 
+func (behavior *Avatar) EnterWorldChatroom(self *Entity) {
+	worldChatroom.Enter(self)
+}
+
+func (behavior *Avatar) LeaveWorldChatroom(self *Entity) {
+	worldChatroom.Leave(self)
 }
 
 func (behavior *Avatar) FinishBattle(self *Entity, result int) {

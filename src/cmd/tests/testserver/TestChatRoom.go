@@ -1,9 +1,9 @@
 package main
 
-type TestChatRoom struct {
+type TestChatroom struct {
 
 }
 
 var (
-	testChatRoom = TestChatRoom{}
+	testChatroom = TestChatroom{}
 )
