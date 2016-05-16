@@ -132,13 +132,13 @@ func (self *Entity) OnReceiveMessage(msg Message) {
 
 	ARGS, ok := msg["ARGS"].([]interface{})
 	if ok {
-		targetEntity.CallMethod(M, ARGS...)
+		targetEntity.Call(M, ARGS...)
 	} else {
-		targetEntity.CallMethod(M)
+		targetEntity.Call(M)
 	}
 }
 
-func (self *Entity) CallMethod(methodname string, args ...interface{}) {
+func (self *Entity) Call(methodname string, args ...interface{}) {
 	log.Printf("Entity method: %s.%s", self, methodname)
 	self.callBehaviorMethod(methodname, args...)
 }
@@ -147,7 +147,7 @@ func (self *Entity) CallClient(method string, args ...interface{}) {
 	Debug(self.id, "call client method %s %v", method, args)
 	if self.client != nil {
 
-		self.client.CallMethod(self.id, method, args...)
+		self.client.Call(self.id, method, args...)
 	}
 }
 

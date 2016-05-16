@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	worldChatroom = NewChatroom()
+	worldChatroom = NewChatroom("WorldChatroom")
 )
 
 type Avatar struct {
@@ -42,13 +42,13 @@ func (behavior *Avatar) Test(self *Entity) {
 func (behavior *Avatar) OnGetNewClient(self *Entity) {
 	onlineManager := GetGlobalEntity("OnlineManager")
 	log.Printf("Entity %s get new client, OnlineManager %s", self, onlineManager)
-	onlineManager.CallMethod("NotifyAvatarLogin", self.Id())
+	onlineManager.Call("NotifyAvatarLogin", self.Id())
 }
 
 func (behavior *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
 	onlineManager := GetGlobalEntity("OnlineManager")
 	log.Printf("Entity %s lose client, OnlineManager %s", self, onlineManager)
-	onlineManager.CallMethod("NotifyAvatarLogout", self.Id())
+	onlineManager.Call("NotifyAvatarLogout", self.Id())
 }
 
 func (behavior *Avatar) Say(self *Entity, text string) {

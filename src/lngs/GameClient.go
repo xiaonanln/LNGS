@@ -55,7 +55,7 @@ func (self *GameClient) DestroyEntity(entityid string) {
 	})
 }
 
-func (self *GameClient) CallMethod(entityid string, methodname string, args ...interface{}) {
+func (self *GameClient) Call(entityid string, methodname string, args ...interface{}) {
 	self.sendMessage(map[string]interface{}{
 		"ID":   entityid,
 		"M":    methodname,
@@ -64,5 +64,5 @@ func (self *GameClient) CallMethod(entityid string, methodname string, args ...i
 }
 
 func (self *GameClient) BecomePlayer(entityid string, data lngsdb.Doc) {
-	self.CallMethod(entityid, "BecomePlayer", data)
+	self.Call(entityid, "BecomePlayer", data)
 }
