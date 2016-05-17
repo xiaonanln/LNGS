@@ -236,6 +236,16 @@ func (self *Entity) Save() error {
 	return err
 }
 
+func (self *Entity) Destroy() error {
+	err := self.Save()
+	if err != nil {
+		return err 
+	}
+
+	entityManager.delEntity(self)
+	return nil 
+}
+
 func (self *Entity) GetPersistentData()  Doc {
 	return self.Attrs.ToDoc()
 }

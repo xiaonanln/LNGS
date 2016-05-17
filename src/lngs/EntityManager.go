@@ -80,6 +80,10 @@ func (self *EntityManager) putEntity(entity *Entity) {
 	self.entities[entity.id] = entity
 }
 
+func (self *EntityManager) delEntity(entity *Entity) {
+	delete(self.entities, entity.id)
+}
+
 func (self *EntityManager) NewBootEntity() *Entity {
 	if self.bootentityBehaviorTypeName == "" {
 		log.Panicf("boot entity name is not set")

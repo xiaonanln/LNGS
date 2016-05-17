@@ -18,7 +18,7 @@ type Avatar struct {
 func (behavior *Avatar) Init(self *Entity) {
 	// Initialize Avatar Attrs by default values
 	self.Set("icon", self.GetInt("icon", 1))
-	self.Attrs.Set("name", self.Attrs.GetStr("name", "匿名"))
+	self.Attrs.Set("name", "") // test only
 	self.Attrs.Set("exp", self.Attrs.GetInt("exp", 0))
 	self.Attrs.Set("cups", self.Attrs.GetInt("cups", 0))
 	self.Attrs.Set("gold", self.Attrs.GetInt("gold", 0))
@@ -49,6 +49,8 @@ func (behavior *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
 	onlineManager := GetGlobalEntity("OnlineManager")
 	log.Printf("Entity %s lose client, OnlineManager %s", self, onlineManager)
 	onlineManager.Call("NotifyAvatarLogout", self.Id())
+
+	self.Destroy()
 }
 
 func (behavior *Avatar) Say(self *Entity, text string) {
@@ -60,6 +62,24 @@ func (behavior *Avatar) GetSaveInterval() int {
 	return 10
 }
  
+func (behavior *Avatar) SetAvatarName(self *Entity, name string) {
+	if name == "" {
+		self.CallClient("Toast", "名字不能为空")
+		return 
+	}
+
+	curName := self.GetStr("name", "")
+	if curName != "" {
+		// avatar already has name
+		self.CallClient("OnSetAvatarName", curName)
+		return 
+	}
+
+	self.Set("name", name)
+	self.NotifyAttrChange("name")
+	self.CallClient("OnSetAvatarName", name)
+}
+
 func (behavior *Avatar) EnterWorldChatroom(self *Entity) {
 	worldChatroom.Enter(self)
 }
