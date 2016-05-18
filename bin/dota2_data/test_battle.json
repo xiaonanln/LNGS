@@ -1,0 +1,102 @@
+{
+    "1": {
+        "Desc": "\u7eff\u65b91", 
+        "HeroKind": 1, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 1, 
+        "PosX": 0.16666666666666666, 
+        "PosY": 0.15, 
+        "Side": 1
+    }, 
+    "2": {
+        "Desc": "\u7eff\u65b92", 
+        "HeroKind": 2, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 2, 
+        "PosX": 0.3333333333333333, 
+        "PosY": 0.1, 
+        "Side": 1
+    }, 
+    "3": {
+        "Desc": "\u7eff\u65b93", 
+        "HeroKind": 3, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 3, 
+        "PosX": 0.5, 
+        "PosY": 0.15, 
+        "Side": 1
+    }, 
+    "4": {
+        "Desc": "\u7eff\u65b94", 
+        "HeroKind": 4, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 4, 
+        "PosX": 0.6666666666666666, 
+        "PosY": 0.1, 
+        "Side": 1
+    }, 
+    "5": {
+        "Desc": "\u7eff\u65b95", 
+        "HeroKind": 5, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 5, 
+        "PosX": 0.8333333333333334, 
+        "PosY": 0.15, 
+        "Side": 1
+    }, 
+    "6": {
+        "Desc": "\u7ea2\u65b91", 
+        "HeroKind": 6, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 6, 
+        "PosX": 0.16666666666666666, 
+        "PosY": 0.15, 
+        "Side": 2
+    }, 
+    "7": {
+        "Desc": "\u7ea2\u65b92", 
+        "HeroKind": 7, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 7, 
+        "PosX": 0.3333333333333333, 
+        "PosY": 0.1, 
+        "Side": 2
+    }, 
+    "8": {
+        "Desc": "\u7ea2\u65b93", 
+        "HeroKind": 8, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 8, 
+        "PosX": 0.5, 
+        "PosY": 0.15, 
+        "Side": 2
+    }, 
+    "9": {
+        "Desc": "\u7ea2\u65b94", 
+        "HeroKind": 9, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 9, 
+        "PosX": 0.6666666666666666, 
+        "PosY": 0.1, 
+        "Side": 2
+    }, 
+    "10": {
+        "Desc": "\u7ea2\u65b95", 
+        "HeroKind": 10, 
+        "HeroLevel": 10, 
+        "HeroSkillLevel": 10, 
+        "Index": 10, 
+        "PosX": 0.8333333333333334, 
+        "PosY": 0.15, 
+        "Side": 2
+    }
+}

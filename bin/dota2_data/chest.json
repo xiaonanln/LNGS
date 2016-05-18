@@ -1,0 +1,46 @@
+{
+    "1": {
+        "CardNum": 9, 
+        "GiftNumMax": 16, 
+        "GiftNumMin": 12, 
+        "GoldMax": 58, 
+        "GoldMin": 46, 
+        "Icon": 1, 
+        "Index": 1, 
+        "SuperNumMax": 3, 
+        "SuperNumMin": 5
+    }, 
+    "2": {
+        "CardNum": 18, 
+        "GiftNumMax": 32, 
+        "GiftNumMin": 24, 
+        "GoldMax": 116, 
+        "GoldMin": 92, 
+        "Icon": 2, 
+        "Index": 2, 
+        "SuperNumMax": 6, 
+        "SuperNumMin": 10
+    }, 
+    "3": {
+        "CardNum": 36, 
+        "GiftNumMax": 64, 
+        "GiftNumMin": 48, 
+        "GoldMax": 232, 
+        "GoldMin": 184, 
+        "Icon": 3, 
+        "Index": 3, 
+        "SuperNumMax": 12, 
+        "SuperNumMin": 20
+    }, 
+    "4": {
+        "CardNum": 72, 
+        "GiftNumMax": 128, 
+        "GiftNumMin": 96, 
+        "GoldMax": 464, 
+        "GoldMin": 368, 
+        "Icon": 4, 
+        "Index": 4, 
+        "SuperNumMax": 24, 
+        "SuperNumMin": 40
+    }
+}

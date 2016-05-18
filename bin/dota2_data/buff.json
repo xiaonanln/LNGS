@@ -1,0 +1,62 @@
+{
+    "1": {
+        "BaseDamage": null, 
+        "BaseDamageRate": null, 
+        "DamagePerLevel": null, 
+        "DamageRatePerLevel": null, 
+        "Effect": "GWBF_Sephiroth1.Skill3", 
+        "Index": 1, 
+        "Name": "\u6655\u7729", 
+        "ProhibitAttack": 1, 
+        "ProhibitMove": 1, 
+        "Stackable": 0
+    }, 
+    "2": {
+        "BaseDamage": null, 
+        "BaseDamageRate": null, 
+        "DamagePerLevel": null, 
+        "DamageRatePerLevel": null, 
+        "Effect": "JS_TX_Altair.Skill2", 
+        "Index": 2, 
+        "Name": "\u51bb\u7ed3", 
+        "ProhibitAttack": 1, 
+        "ProhibitMove": 1, 
+        "Stackable": 0
+    }, 
+    "3": {
+        "BaseDamage": 5, 
+        "BaseDamageRate": null, 
+        "DamagePerLevel": 1, 
+        "DamageRatePerLevel": null, 
+        "Effect": "JS_TX_Gandalf.Skill3", 
+        "Index": 3, 
+        "Name": "\u652f\u914d\u6b7b\u7075", 
+        "ProhibitAttack": null, 
+        "ProhibitMove": null, 
+        "Stackable": 1
+    }, 
+    "4": {
+        "BaseDamage": null, 
+        "BaseDamageRate": 50, 
+        "DamagePerLevel": null, 
+        "DamageRatePerLevel": 10, 
+        "Effect": "JS_TX_Gandalf.Skill3", 
+        "Index": 4, 
+        "Name": "\u795e\u4e4b\u529b\u91cf", 
+        "ProhibitAttack": null, 
+        "ProhibitMove": null, 
+        "Stackable": 0
+    }, 
+    "99": {
+        "BaseDamage": null, 
+        "BaseDamageRate": null, 
+        "DamagePerLevel": null, 
+        "DamageRatePerLevel": null, 
+        "Effect": "JS_TX_Gandalf.Skill3", 
+        "Index": 99, 
+        "Name": "\u5f00\u573a\u6d4b\u8bd5buff", 
+        "ProhibitAttack": null, 
+        "ProhibitMove": 1, 
+        "Stackable": null
+    }
+}
