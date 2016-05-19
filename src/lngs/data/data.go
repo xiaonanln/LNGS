@@ -8,6 +8,7 @@ import (
 
 var (
 	dataPath = ""
+	dataCache = map[string]*DataFile{}
 )
 
 func SetDataPath(path string) error {
@@ -19,4 +20,27 @@ func SetDataPath(path string) error {
 	dataPath = _dataPath
 	log.Printf("SetDataPath: %s", dataPath)
 	return nil
+}
+
+func getDataFile(dataName string) *DataFile {
+	data, ok := dataCache[dataName]
+	if ok {
+		return data
+	}
+
+	return openDataFile(dataName)
+}
+
+func GetDataRecord(dataName string, recordId int) *DataRecord {
+	dataFile := getDataFile(dataName)
+	record, ok := dataFile.records[recordId]
+	if !ok {
+		log.Panicf("record %d not exists", recordId)
+	}
+
+	return record
+}
+
+func Reload() {
+	dataCache = map[string]*DataFile{} // clear
 }

@@ -7,6 +7,7 @@ import (
 	// . "lngs/common"
 	"strconv"
 	"strings"
+	"lngs/data"
 )
 
 var (
@@ -116,6 +117,22 @@ func (behavior *Avatar) SetAvatarName(self *Entity, name string) {
 
 func (behavior *Avatar) addChest(self *Entity, chestId int) {
 	// 增加一个chest
+	lngsdata.GetDataRecord("chest", chestId)
+
+	chests := self.GetMapAttr("chests")
+
+	chestIdStr := strconv.Itoa(chestId)
+	chests.Set(chestIdStr, chests.GetInt(chestIdStr, 0) + 1)
+	self.NotifyAttrChange("chests")
+}
+
+func (behavior *Avatar) addGold(self *Entity, gold int) {
+	if gold < 0 {
+		log.Panicf("addGold: negative gold %d", gold)
+		return 
+	}
+
+	self.Set( "gold",  self.GetInt("gold", 0) + gold )
 }
 
 func (behavior *Avatar) EnterWorldChatroom(self *Entity) {
@@ -136,26 +153,6 @@ func (behavior *Avatar) FinishBattle(self *Entity, result int) {
 
 func (behavior *Avatar) tryGetNewChest(self *Entity) {
 	// get new chest according to avatar level
-	chests := self.GetMapAttr("chests")
-	log.Printf("tryGetNewChest: chests: %v", chests)
-	if chests.Size() >= 4 {
-		return 
-	}
-
-	emptyKey := ""
-	for i := 1; i <= 4; i++ {
-		key := strconv.Itoa(i)
-		if !chests.HasKey(key) {
-			// found empty chest slot
-			emptyKey = key
-			break 
-		}
-	}
-
-	newChest := NewMapAttr().AssignDoc(map[string]interface{}{
-		"level": 1, 
-		})
-	chests.Set(emptyKey, newChest)
-
-	self.NotifyAttrChange("chests")
+	chestId := RandInt(1, 4)
+	behavior.addChest(self, chestId)
 }
