@@ -6,6 +6,7 @@ import (
 
 	. "lngs"
 	"lngs/data"
+	"lngs/utils"
 	"strconv"
 	"strings"
 )
@@ -83,9 +84,14 @@ func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 		gold, _ := strconv.Atoi(args[0])
 		self.Set("gold", gold)
 		self.NotifyAttrChange("gold")
-	} else if cmd == "chest" {
+	} else if cmd == "chest" || cmd == "getChest" {
 		chestID, _ := strconv.Atoi(args[0])
 		behavior.addChest(self, chestID)
+	} else if cmd == "openChest" {
+		chestID, _ := strconv.Atoi(args[0])
+		behavior.openChest(self, chestID)
+	} else if cmd == "clearCards" {
+		behavior.clearCards(self)
 	} else {
 		self.CallClient("Toast", "无法识别的GM指令："+gmcmd)
 		return
@@ -142,7 +148,7 @@ func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
 
 func (behavior *Avatar) tryGetNewChest(self *Entity) {
 	// get new chest according to avatar level
-	chestID := RandInt(1, 4)
+	chestID := lngsutils.RandInt(1, 4)
 	behavior.addChest(self, chestID)
 }
 
@@ -171,7 +177,8 @@ func (behavior *Avatar) openChest(self *Entity, chestID int) {
 
 	chests.Set(chestIDStr, chestCount-1) // reduce chest count first
 
-	behavior.addGold(self, RandInt(chestData.GetInt("GoldMin"), chestData.GetInt("GoldMax")))
+	addGold := lngsutils.RandInt(chestData.GetInt("GoldMin"), chestData.GetInt("GoldMax"))
+	behavior.addGold(self, addGold)
 	cardNum := chestData.GetInt("CardNum")
 	cards := behavior.genRandomChestCards(chestID, cardNum)
 	// put cards to avatar
@@ -181,14 +188,22 @@ func (behavior *Avatar) openChest(self *Entity, chestID int) {
 
 	self.NotifyAttrChange("chests")
 	self.NotifyAttrChange("cards")
+	self.NotifyAttrChange("gold")
+
+	self.CallClient("OnOpenChest", addGold, cards)
+}
+
+func (behavior *Avatar) clearCards(self *Entity) {
+	self.Set("cards", NewMapAttr())
+	self.NotifyAttrChange("cards")
 }
 
 func (behavior *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
-	maxHeroIndex := lngsdata.GetMaxDataRecordIndex("hero")
 	cards := map[string]int{}
+	heroIndexes := lngsdata.GetDataRecordIndexes("hero")
 
 	for i := 0; i < cardNum; i++ {
-		heroIndex := RandInt(1, maxHeroIndex)
+		heroIndex := lngsutils.ChooseInt(heroIndexes)
 		cardID := fmt.Sprintf("H%d", heroIndex)
 		cards[cardID] = cards[cardID] + 1
 	}

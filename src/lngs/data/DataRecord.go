@@ -24,7 +24,12 @@ func (self *DataRecord) Index() int {
 }
 
 func (self *DataRecord) GetInt(field string) int {
-	return self.data[field].(int)
+	v := self.data[field].(float64)
+	if v != float64(int(v)) {
+		// v is not int
+		log.Panicf("Field %s is not int: %v", field, v)
+	}
+	return int(v) 
 }
 
 
