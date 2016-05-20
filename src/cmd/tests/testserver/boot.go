@@ -2,10 +2,9 @@ package main
 
 import (
 	"log"
-
+	"lngs/db"
 	. "lngs"
 	. "lngs/common"
-	"lngs/db"
 )
 
 var ()
@@ -24,8 +23,9 @@ func (behavior *Boot) PlayGame(self *Entity, testInt int, testStr string, testMa
 	log.Printf("Boot.PlayGame %v, %v, %v, %v", testInt, testStr, testMap, testList)
 }
 
+// Login : login request
 func (behavior *Boot) Login(self *Entity, accountId string) {
-	var err error 
+	var err error
 	log.Println("Login", accountId)
 
 	doc, _ := lngsdb.FindDoc("entities", map[string]string{"account": accountId})

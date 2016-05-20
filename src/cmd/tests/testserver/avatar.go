@@ -1,13 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	. "lngs"
-	// . "lngs/common"
+	"lngs/data"
 	"strconv"
 	"strings"
-	"lngs/data"
 )
 
 var (
@@ -25,9 +25,10 @@ func (behavior *Avatar) Init(self *Entity) {
 	self.Attrs.Set("gold", self.Attrs.GetInt("gold", 0))
 	self.Attrs.Set("diamond", self.Attrs.GetInt("diamond", 0))
 
-self.Attrs.GetMapAttr("chests") 
+	self.Attrs.GetMapAttr("chests")
+	self.Attrs.GetMapAttr("cards")
 
-	self.Attrs.GetMapAttr("heroes") 
+	self.Attrs.GetMapAttr("heroes")
 	self.Attrs.GetMapAttr("items")
 	self.Attrs.GetMapAttr("embattles")
 
@@ -37,7 +38,7 @@ self.Attrs.GetMapAttr("chests")
 func (behavior *Avatar) Test(self *Entity) {
 	log.Printf("!!!!!!!!!!!!!!!!!!!!!!! Avatar.Test !!!!!!!!!!!!!!!!!!!!!!!")
 	testAttr := self.Attrs.GetMapAttr("testAttr")
-	testAttr.Set("testAttr", testAttr.GetInt("testVal", 0) + 1)
+	testAttr.Set("testAttr", testAttr.GetInt("testVal", 0)+1)
 	self.NotifyAttrChange("testAttr")
 }
 
@@ -61,7 +62,7 @@ func (behavior *Avatar) Say(self *Entity, text string) {
 		// process gm cmd
 		gmcmd := text[1:]
 		behavior.handleGmcmd(self, gmcmd)
-		return 
+		return
 	}
 
 	worldChatroom.Say(self, text)
@@ -70,7 +71,7 @@ func (behavior *Avatar) Say(self *Entity, text string) {
 func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 	gmcmd = strings.TrimSpace(gmcmd)
 	if gmcmd == "" {
-		return 
+		return
 	}
 
 	sp := strings.Split(gmcmd, " ")
@@ -83,31 +84,33 @@ func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 		self.Set("gold", gold)
 		self.NotifyAttrChange("gold")
 	} else if cmd == "chest" {
-		chestId, _ := strconv.Atoi(args[0])
-		behavior.addChest(self, chestId)
+		chestID, _ := strconv.Atoi(args[0])
+		behavior.addChest(self, chestID)
 	} else {
-		self.CallClient("Toast", "无法识别的GM指令：" + gmcmd)
-		return 
+		self.CallClient("Toast", "无法识别的GM指令："+gmcmd)
+		return
 	}
 
-	self.CallClient("Toast", "GM指令执行成功：" + gmcmd)
+	self.CallClient("Toast", "GM指令执行成功："+gmcmd)
 }
 
+// GetSaveInterval returns the save interval of entities
 func (behavior *Avatar) GetSaveInterval() int {
 	return 10
 }
- 
+
+// SetAvatarName : set avatar name from client
 func (behavior *Avatar) SetAvatarName(self *Entity, name string) {
 	if name == "" {
 		self.CallClient("Toast", "名字不能为空")
-		return 
+		return
 	}
 
 	curName := self.GetStr("name", "")
 	if curName != "" {
 		// avatar already has name
 		self.CallClient("OnSetAvatarName", curName)
-		return 
+		return
 	}
 
 	self.Set("name", name)
@@ -115,26 +118,7 @@ func (behavior *Avatar) SetAvatarName(self *Entity, name string) {
 	self.CallClient("OnSetAvatarName", name)
 }
 
-func (behavior *Avatar) addChest(self *Entity, chestId int) {
-	// 增加一个chest
-	lngsdata.GetDataRecord("chest", chestId)
-
-	chests := self.GetMapAttr("chests")
-
-	chestIdStr := strconv.Itoa(chestId)
-	chests.Set(chestIdStr, chests.GetInt(chestIdStr, 0) + 1)
-	self.NotifyAttrChange("chests")
-}
-
-func (behavior *Avatar) addGold(self *Entity, gold int) {
-	if gold < 0 {
-		log.Panicf("addGold: negative gold %d", gold)
-		return 
-	}
-
-	self.Set( "gold",  self.GetInt("gold", 0) + gold )
-}
-
+// EnterWorldChatroom : enter world chat room request
 func (behavior *Avatar) EnterWorldChatroom(self *Entity) {
 	worldChatroom.Enter(self)
 }
@@ -151,8 +135,82 @@ func (behavior *Avatar) FinishBattle(self *Entity, result int) {
 	}
 }
 
+// OpenChest : open chest request
+func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
+	behavior.openChest(self, chestID)
+}
+
 func (behavior *Avatar) tryGetNewChest(self *Entity) {
 	// get new chest according to avatar level
-	chestId := RandInt(1, 4)
-	behavior.addChest(self, chestId)
+	chestID := RandInt(1, 4)
+	behavior.addChest(self, chestID)
+}
+
+func (behavior *Avatar) addChest(self *Entity, chestID int) {
+	// add a chest
+	lngsdata.GetDataRecord("chest", chestID)
+
+	chests := self.GetMapAttr("chests")
+
+	chestIDStr := strconv.Itoa(chestID)
+	chests.Set(chestIDStr, chests.GetInt(chestIDStr, 0)+1)
+	self.NotifyAttrChange("chests")
+}
+
+func (behavior *Avatar) openChest(self *Entity, chestID int) {
+	// open a chest
+	chests := self.GetMapAttr("chests")
+	chestData := lngsdata.GetDataRecord("chest", chestID)
+
+	chestIDStr := strconv.Itoa(chestID)
+	chestCount := chests.GetInt(chestIDStr, 0)
+	if chestCount <= 0 {
+		// got no chest
+		return
+	}
+
+	chests.Set(chestIDStr, chestCount-1) // reduce chest count first
+
+	behavior.addGold(self, RandInt(chestData.GetInt("GoldMin"), chestData.GetInt("GoldMax")))
+	cardNum := chestData.GetInt("CardNum")
+	cards := behavior.genRandomChestCards(chestID, cardNum)
+	// put cards to avatar
+	for cardID, num := range cards {
+		behavior.addCard(self, cardID, num)
+	}
+
+	self.NotifyAttrChange("chests")
+	self.NotifyAttrChange("cards")
+}
+
+func (behavior *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
+	maxHeroIndex := lngsdata.GetMaxDataRecordIndex("hero")
+	cards := map[string]int{}
+
+	for i := 0; i < cardNum; i++ {
+		heroIndex := RandInt(1, maxHeroIndex)
+		cardID := fmt.Sprintf("H%d", heroIndex)
+		cards[cardID] = cards[cardID] + 1
+	}
+
+	return cards
+}
+
+func (behavior *Avatar) addGold(self *Entity, gold int) {
+	if gold < 0 {
+		log.Panicf("addGold: negative gold %d", gold)
+		return
+	}
+
+	self.Set("gold", self.GetInt("gold", 0)+gold)
+}
+
+func (behavior *Avatar) addCard(self *Entity, cardID string, num int) {
+	if num < 0 {
+		log.Panicf("addCard %s: negative num %d", cardID, num)
+		return
+
+	}
+	cards := self.GetMapAttr("cards")
+	cards.Set(cardID, cards.GetInt(cardID, 0)+num)
 }

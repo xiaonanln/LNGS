@@ -3,8 +3,8 @@ package lngs
 import "lngs/db"
 
 type MapAttr struct {
-	attrs map[string]interface{}
-	dirtySet map[string] bool
+	attrs    map[string]interface{}
+	dirtySet map[string]bool
 }
 
 func (self *MapAttr) Size() int {
@@ -39,6 +39,8 @@ func (self *MapAttr) GetStr(key string, defaultVal string) string {
 
 func (self *MapAttr) GetMapAttr(key string) *MapAttr {
 	val, ok := self.attrs[key]
+	self.dirtySet[key] = true // even GetMapAttr makes it dirty
+
 	if !ok {
 		attrs := NewMapAttr()
 		self.attrs[key] = attrs
@@ -73,9 +75,8 @@ func (self *MapAttr) ToDoc() lngsdb.Doc {
 			doc[k] = v
 		}
 	}
-	return doc 
+	return doc
 }
-
 
 func (self *MapAttr) AssignDoc(doc lngsdb.Doc) *MapAttr {
 	for k, v := range doc {
@@ -93,7 +94,7 @@ func (self *MapAttr) AssignDoc(doc lngsdb.Doc) *MapAttr {
 
 func NewMapAttr() *MapAttr {
 	return &MapAttr{
-		attrs: make(map[string]interface{}), 
-		dirtySet: make(map[string] bool), 
+		attrs:    make(map[string]interface{}),
+		dirtySet: make(map[string]bool),
 	}
 }

@@ -7,14 +7,14 @@ import (
 )
 
 var (
-	dataPath = ""
+	dataPath  = ""
 	dataCache = map[string]*DataFile{}
 )
 
 func SetDataPath(path string) error {
 	_dataPath, err := filepath.Abs(path)
 	if err != nil {
-		return err 
+		return err
 	}
 
 	dataPath = _dataPath
@@ -29,6 +29,20 @@ func getDataFile(dataName string) *DataFile {
 	}
 
 	return openDataFile(dataName)
+}
+
+// GetDataRecordIndexe : return all index of data
+func GetDataRecordIndexes(dataName string) []int {
+	datafile := getDataFile(dataName)
+	return datafile.getIndexes()
+}
+
+func GetMaxDataRecordIndex(dataName string) int {
+	return getDataFile(dataName).getMaxIndex()
+}
+
+func GetMinDataRecordIndex(dataName string) int {
+	return getDataFile(dataName).getMinIndex()
 }
 
 func GetDataRecord(dataName string, recordId int) *DataRecord {
