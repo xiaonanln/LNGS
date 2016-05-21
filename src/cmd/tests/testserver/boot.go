@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
-	"lngs/db"
 	. "lngs"
 	. "lngs/common"
+	"lngs/db"
+	"log"
 )
 
 var ()
@@ -61,4 +61,8 @@ func (behavior *Boot) Login(self *Entity, accountId string) {
 	Debug("boot", "%s login success", accountId)
 
 	self.GiveClientTo(avatar)
+}
+
+func (behavior *Boot) OnLoseClient(self *Entity, old_client *GameClient) {
+	self.Destroy()
 }

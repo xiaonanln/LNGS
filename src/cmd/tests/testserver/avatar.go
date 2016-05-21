@@ -86,7 +86,11 @@ func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 		self.NotifyAttrChange("gold")
 	} else if cmd == "chest" || cmd == "getChest" {
 		chestID, _ := strconv.Atoi(args[0])
-		behavior.addChest(self, chestID)
+		var chestCount int = 1
+		if len(args) >= 2 {
+			chestCount, _ = strconv.Atoi(args[1])
+		}
+		behavior.addChest(self, chestID, chestCount)
 	} else if cmd == "openChest" {
 		chestID, _ := strconv.Atoi(args[0])
 		behavior.openChest(self, chestID)
@@ -149,17 +153,17 @@ func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
 func (behavior *Avatar) tryGetNewChest(self *Entity) {
 	// get new chest according to avatar level
 	chestID := lngsutils.RandInt(1, 4)
-	behavior.addChest(self, chestID)
+	behavior.addChest(self, chestID, 1)
 }
 
-func (behavior *Avatar) addChest(self *Entity, chestID int) {
+func (behavior *Avatar) addChest(self *Entity, chestID int, count int) {
 	// add a chest
 	lngsdata.GetDataRecord("chest", chestID)
 
 	chests := self.GetMapAttr("chests")
 
 	chestIDStr := strconv.Itoa(chestID)
-	chests.Set(chestIDStr, chests.GetInt(chestIDStr, 0)+1)
+	chests.Set(chestIDStr, chests.GetInt(chestIDStr, 0)+count)
 	self.NotifyAttrChange("chests")
 }
 
