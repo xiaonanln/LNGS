@@ -2,8 +2,8 @@ package main
 
 import (
 	. "lngs"
-	. "lngs/common"
 	"lngs/db"
+	. "lngs/utils"
 	"log"
 )
 

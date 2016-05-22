@@ -228,8 +228,15 @@ func (behavior *Avatar) addCard(self *Entity, cardID string, num int) {
 	if num < 0 {
 		log.Panicf("addCard %s: negative num %d", cardID, num)
 		return
-
 	}
+
 	cards := self.GetMapAttr("cards")
-	cards.Set(cardID, cards.GetInt(cardID, 0)+num)
+	cardInfo := cards.GetMapAttr(cardID)
+
+	cardLv := cardInfo.GetInt("lv", 0)
+	if cardLv == 0 {
+		cardInfo.Set("lv", 1) // 第一次获得卡牌的时候自动设置为等级1
+	}
+
+	cardInfo.Set("num", cardInfo.GetInt("num", 0)+num)
 }

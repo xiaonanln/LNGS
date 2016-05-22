@@ -4,6 +4,7 @@ import (
 	"fmt"
 	. "lngs/cmdque"
 	. "lngs/common"
+	"lngs/utils"
 
 	"gopkg.in/mgo.v2/bson"
 
@@ -11,10 +12,10 @@ import (
 
 	. "lngs/db"
 	. "lngs/rpc"
+	"lngs/typeconv"
 	"log"
 	"reflect"
 	"sync"
-	"lngs/typeconv"
 )
 
 var (
@@ -42,9 +43,9 @@ type Entity struct {
 	client       *GameClient
 	behavior     reflect.Value
 	commandQueue CommandQueue
-	lock         sync.Mutex 
-	Attrs		 MapAttr 
-} 
+	lock         sync.Mutex
+	Attrs        MapAttr
+}
 
 func (self *Entity) SetClient(client *GameClient) {
 	if client == self.client {
@@ -92,7 +93,7 @@ func newEntity(id string) *Entity {
 		id:           id,
 		behavior:     noneBehavior,
 		commandQueue: GetCommandQueue(id),
-		Attrs : *NewMapAttr(), 
+		Attrs:        *NewMapAttr(),
 	}
 }
 
@@ -144,7 +145,7 @@ func (self *Entity) Call(methodname string, args ...interface{}) {
 }
 
 func (self *Entity) CallClient(method string, args ...interface{}) {
-	Debug(self.id, "call client method %s %v", method, args)
+	lngsutils.Debug(self.id, "call client method %s %v", method, args)
 	if self.client != nil {
 
 		self.client.Call(self.id, method, args...)
@@ -160,12 +161,12 @@ func CreateEntity(behaviorName string, id string) (*Entity, error) {
 
 	if newEntity.IsPersistent() {
 		var doc Doc
-		var err error 
+		var err error
 
 		if id != "" {
 			doc, err = FindDoc("entities", map[string]interface{}{"_id": EntityId2DocId(id)})
 			if err != nil {
-				Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
+				lngsutils.Debug("Entity", "Create persistent entity failed: entity not found in entities collection: %s", id)
 				return nil, err
 			}
 
@@ -174,7 +175,7 @@ func CreateEntity(behaviorName string, id string) (*Entity, error) {
 				return nil, errors.New("wrong behavior")
 			}
 		}
-		
+
 		entityManager.putEntity(newEntity) // after get data from DB successfully, put entity to entity manager
 
 		if doc != nil {
@@ -187,7 +188,6 @@ func CreateEntity(behaviorName string, id string) (*Entity, error) {
 	} else {
 		entityManager.putEntity(newEntity)
 	}
-	
 
 	behavior := newEntity.behavior
 	initMethod := behavior.MethodByName("Init")
@@ -232,27 +232,28 @@ func (self *Entity) Save() error {
 		err = UpdateDoc("entities", query, Doc{"$set": data})
 	}
 
-	Debug("Entity", "Entity %s saved successfuly", self)
+	lngsutils.Debug("Entity", "Entity %s saved successfuly", self)
 	return err
 }
 
 func (self *Entity) Destroy() error {
 	err := self.Save()
 	if err != nil {
-		return err 
+		return err
 	}
 
 	entityManager.delEntity(self)
-	return nil 
+	lngsutils.Debug("Entity", "Entity %s destroyed", self)
+	return nil
 }
 
-func (self *Entity) GetPersistentData()  Doc {
+func (self *Entity) GetPersistentData() Doc {
 	return self.Attrs.ToDoc()
 }
 
 func (self *Entity) initWithPersistentData(data Doc) {
 	self.Attrs.AssignDoc(data)
-	Debug("Entity", "Entity %s init with data %v, Attrs = %v", self, data, self.Attrs)
+	lngsutils.Debug("Entity", "Entity %s init with data %v, Attrs = %v", self, data, self.Attrs)
 }
 
 func (self *Entity) GiveClientTo(other *Entity) {
@@ -288,7 +289,7 @@ func (self *Entity) callBehaviorMethod(methodname string, args ...interface{}) b
 	in[0] = reflect.ValueOf(self)
 
 	for i, arg := range args {
-		argType := methodType.In(i+1)
+		argType := methodType.In(i + 1)
 		argVal := reflect.ValueOf(arg)
 		in[i+1] = typeconv.Convert(argVal, argType)
 	}
@@ -326,7 +327,6 @@ func (self *Entity) Set(key string, val interface{}) {
 	self.Attrs.Set(key, val)
 }
 
-
 func (self *Entity) GetInt(key string, defaultVal int) int {
 	return self.Attrs.GetInt(key, defaultVal)
 }
@@ -346,6 +346,7 @@ func (self *Entity) GetFloat(key string, defaultVal float64) float64 {
 func (self *Entity) GetBool(key string, defaultVal bool) bool {
 	return self.Attrs.GetBool(key, defaultVal)
 }
+
 // func convertType(val reflect.Value, targetType reflect.Type) reflect.Value {
 // 	switch targetType.Kind() {
 // 	case reflect.Slice:
