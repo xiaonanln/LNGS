@@ -49,6 +49,28 @@ func (self *MapAttr) GetMapAttr(key string) *MapAttr {
 	return val.(*MapAttr)
 }
 
+func (self *MapAttr) GetKeys() []string {
+	size := len(self.attrs)
+	keys := make([]string, 0, size)
+	for k, _ := range self.attrs {
+		keys = append(keys, k)
+	}
+	return keys
+}
+
+func (self *MapAttr) GetValues() []interface{} {
+	size := len(self.attrs)
+	vals := make([]interface{}, 0, size)
+	for _, v := range self.attrs {
+		vals = append(vals, v)
+	}
+	return vals
+}
+
+func (self *MapAttr) GetAttrs() map[string]interface{} {
+	return self.attrs
+}
+
 func (self *MapAttr) GetFloat(key string, defaultVal float64) float64 {
 	val, ok := self.attrs[key]
 	if !ok {

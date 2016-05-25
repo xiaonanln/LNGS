@@ -145,6 +145,51 @@ func (behavior *Avatar) FinishBattle(self *Entity, result int) {
 	}
 }
 
+// EnterInstance : enter instance request
+func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
+	instanceData := lngsdata.GetDataRecord("instance", instanceID)
+	monsters := instanceData.GetList("Monsters")
+	log.Printf("%v.EnterInstance: instanceID=%v, monsters=%v\n", self, instanceID, monsters)
+
+	cards := self.GetMapAttr("cards") // all cards
+	heros := [][]interface{}{
+		[]interface{}{[]int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}},
+		[]interface{}{[]int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}},
+		[]interface{}{[]int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}},
+	}
+
+	pos := 0
+	for cardID, _cardInfo := range cards.GetAttrs() {
+		if cardID[0] != 'H' {
+			continue
+		}
+		heroKind, _ := strconv.Atoi(cardID[1:])
+		cardInfo := _cardInfo.(*MapAttr)
+		cardLv := cardInfo.GetInt("lv", 1)
+		row := pos / 5
+		col := pos % 5
+		heros[row][col] = []int{heroKind, cardLv, cardLv, cardLv}
+		pos = pos + 1
+
+		if pos >= 5 {
+			break
+		}
+	}
+
+	red := map[string]interface{}{
+		"heros": heros,
+	}
+
+	green := map[string]interface{}{
+		"monsters": monsters,
+	}
+
+	instanceInfo := map[string]int{
+		"instanceId": instanceID,
+	}
+	self.CallClient("OnEnterInstance", red, green, instanceInfo)
+}
+
 // OpenChest : open chest request
 func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
 	behavior.openChest(self, chestID)
