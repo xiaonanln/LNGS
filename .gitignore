@@ -4,7 +4,6 @@
 *.so
 
 # Folders
-bin
 _obj
 _test
 build
@@ -27,3 +26,4 @@ _testmain.go
 *.pyc
 *~
 *.sublime-workspace
+*.swp
