@@ -32,7 +32,10 @@ func (self *DataRecord) GetInt(field string) int {
 	return int(v)
 }
 
-func (self *DataRecord) GetFloat(field string) float64 {
+func (self *DataRecord) GetFloat(field string, defaultVal float64) float64 {
+	if self.data[field] == nil {
+		return defaultVal
+	}
 	return self.data[field].(float64)
 }
 

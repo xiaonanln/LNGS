@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"math/rand"
 
 	. "lngs"
 	"lngs/data"
@@ -137,12 +138,24 @@ func (behavior *Avatar) LeaveWorldChatroom(self *Entity) {
 	worldChatroom.Leave(self)
 }
 
-func (behavior *Avatar) FinishBattle(self *Entity, result int) {
-	log.Printf("%v.FinishBattle: result = %v", self, result)
-	if result == 1 {
-		// win
-		behavior.tryGetNewChest(self)
+// FinishInstance : player finishs an instance
+func (behavior *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
+	log.Printf("%v.FinishBattle: instanceID=%v, win = %v", self, instanceID, win)
+	instanceData := lngsdata.GetDataRecord("instance", instanceID)
+	rewardChests := make([]int, 0, 4)
+	if win {
+		for chestID := 1; chestID <= 4; chestID++ {
+			rewardChestProbKey := "RewardChest" + strconv.Itoa(chestID)
+			prob := instanceData.GetFloat(rewardChestProbKey, 0.0)
+			if rand.Float64() < prob {
+				// get the chest
+				behavior.addChest(self, chestID, 1)
+				rewardChests = append(rewardChests, chestID)
+			}
+		}
 	}
+
+	self.CallClient("OnFinishInstance", instanceID, win, rewardChests)
 }
 
 // EnterInstance : enter instance request
@@ -184,21 +197,12 @@ func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
 		"monsters": monsters,
 	}
 
-	instanceInfo := map[string]int{
-		"instanceId": instanceID,
-	}
-	self.CallClient("OnEnterInstance", red, green, instanceInfo)
+	self.CallClient("OnEnterInstance", instanceID, red, green)
 }
 
 // OpenChest : open chest request
 func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
 	behavior.openChest(self, chestID)
-}
-
-func (behavior *Avatar) tryGetNewChest(self *Entity) {
-	// get new chest according to avatar level
-	chestID := lngsutils.RandInt(1, 4)
-	behavior.addChest(self, chestID, 1)
 }
 
 func (behavior *Avatar) addChest(self *Entity, chestID int, count int) {
