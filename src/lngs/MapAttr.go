@@ -21,6 +21,13 @@ func (self *MapAttr) Set(key string, val interface{}) {
 	self.dirtySet[key] = true
 }
 
+func (self *MapAttr) SetDefault(key string, val interface{}) {
+	if _, ok := self.attrs[key]; !ok {
+		self.attrs[key] = val
+		self.dirtySet[key] = true
+	}
+}
+
 func (self *MapAttr) GetInt(key string, defaultVal int) int {
 	val, ok := self.attrs[key]
 	if !ok {

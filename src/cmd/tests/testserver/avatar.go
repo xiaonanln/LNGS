@@ -32,6 +32,7 @@ func (behavior *Avatar) Init(self *Entity) {
 
 	self.Attrs.GetMapAttr("heroes")
 	self.Attrs.GetMapAttr("items")
+	// self.Attrs.Set("embattles", NewMapAttr())
 	self.Attrs.GetMapAttr("embattles")
 
 	self.Attrs.GetMapAttr("testAttr")
@@ -239,6 +240,31 @@ func (behavior *Avatar) BuyGold(self *Entity, gold int) {
 	self.Set("diamond", hasDiamond-consumeDiamond)
 	self.Set("gold", self.GetInt("gold", 0)+gold)
 	self.CallClient("OnBuyGold", gold, consumeDiamond)
+}
+
+func (behavior *Avatar) Embattle(self *Entity, embattleIndex int, cardID string, embattlePos int) {
+	cards := self.GetMapAttr("cards")
+	if !cards.HasKey(cardID) {
+		// card not found
+		self.CallClient("Toast", "找不到英雄卡牌："+cardID)
+		return
+	}
+
+	embattles := self.GetMapAttr("embattles")
+	embattle := embattles.GetMapAttr(strconv.Itoa(embattleIndex))
+	embattle.Set(strconv.Itoa(embattlePos), cardID)
+	self.NotifyAttrChange("embattles")
+
+	self.CallClient("OnEmbattle", embattleIndex)
+}
+
+func (behavior *Avatar) SetEmbattleIndex(self *Entity, embattleIndex int) {
+	if embattleIndex != 1 && embattleIndex != 2 && embattleIndex != 3 {
+		return
+	}
+
+	self.Set("embattleIndex", embattleIndex)
+	self.NotifyAttrChange("embattleIndex")
 }
 
 func (behavior *Avatar) addChest(self *Entity, chestID int, count int) {
