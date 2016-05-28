@@ -45,6 +45,10 @@ func GetMinDataRecordIndex(dataName string) int {
 	return getDataFile(dataName).getMinIndex()
 }
 
+func GetDataRecords(dataName string) map[int]*DataRecord {
+	return getDataFile(dataName).records
+}
+
 func GetDataRecord(dataName string, recordId int) *DataRecord {
 	dataFile := getDataFile(dataName)
 	record, ok := dataFile.records[recordId]

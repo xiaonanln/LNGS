@@ -97,6 +97,14 @@ func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 		behavior.openChest(self, chestID)
 	} else if cmd == "clearCards" {
 		behavior.clearCards(self)
+	} else if cmd == "set" {
+		attrName := args[0]
+		val, _ := strconv.Atoi(args[1])
+		self.Set(attrName, val)
+	} else if cmd == "add" {
+		attrName := args[0]
+		addVal, _ := strconv.Atoi(args[1])
+		self.Set(attrName, self.GetInt(attrName, 0)+addVal)
 	} else {
 		self.CallClient("Toast", "无法识别的GM指令："+gmcmd)
 		return
@@ -203,6 +211,20 @@ func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
 // OpenChest : open chest request
 func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
 	behavior.openChest(self, chestID)
+}
+
+// BuyGold : buy gold with diamond
+func (behavior *Avatar) BuyGold(self *Entity, gold int) {
+	consumeDiamond := 1
+	hasDiamond := self.GetInt("diamond", 0)
+	if hasDiamond < consumeDiamond {
+		self.CallClient("Toast", "宝石不足")
+		return
+	}
+
+	self.Set("diamond", hasDiamond-consumeDiamond)
+	self.Set("gold", self.GetInt("gold", 0)+gold)
+	self.CallClient("OnBuyGold", gold, consumeDiamond)
 }
 
 func (behavior *Avatar) addChest(self *Entity, chestID int, count int) {
