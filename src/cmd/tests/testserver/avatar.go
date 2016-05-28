@@ -215,7 +215,21 @@ func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
 
 // BuyGold : buy gold with diamond
 func (behavior *Avatar) BuyGold(self *Entity, gold int) {
-	consumeDiamond := 1
+	consumeDiamond := -1
+
+	for _, buygoldData := range lngsdata.GetDataRecords("buygold") {
+		if buygoldData.GetInt("Gold") == gold {
+			consumeDiamond = buygoldData.GetInt("Diamond")
+			break
+		}
+	}
+
+	if consumeDiamond <= 0 {
+		// data record not found
+		self.CallClient("Toast", "金币数量错误")
+		return
+	}
+
 	hasDiamond := self.GetInt("diamond", 0)
 	if hasDiamond < consumeDiamond {
 		self.CallClient("Toast", "宝石不足")
