@@ -171,42 +171,39 @@ func (behavior *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	monsters := instanceData.GetList("Monsters")
-	log.Printf("%v.EnterInstance: instanceID=%v, monsters=%v\n", self, instanceID, monsters)
 
-	cards := self.GetMapAttr("cards") // all cards
-	heros := [][]interface{}{
-		[]interface{}{[]int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}},
-		[]interface{}{[]int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}},
-		[]interface{}{[]int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}, []int{0, 0, 0, 0}},
-	}
-
-	pos := 0
-	for cardID, _cardInfo := range cards.GetAttrs() {
-		if cardID[0] != 'H' {
-			continue
-		}
-		heroKind, _ := strconv.Atoi(cardID[1:])
-		cardInfo := _cardInfo.(*MapAttr)
-		cardLv := cardInfo.GetInt("lv", 1)
-		row := pos / 5
-		col := pos % 5
-		heros[row][col] = []int{heroKind, cardLv, cardLv, cardLv}
-		pos = pos + 1
-
-		if pos >= 5 {
-			break
-		}
-	}
+	embattleCards := behavior.getEmbattleCards(self)
+	log.Printf("%v.EnterInstance: instanceID=%v, monsters=%v, embattle=%v\n", self, instanceID, monsters, embattleCards)
 
 	red := map[string]interface{}{
-		"heros": heros,
+		"C1": embattleCards,
 	}
 
 	green := map[string]interface{}{
 		"monsters": monsters,
 	}
 
-	self.CallClient("OnEnterInstance", instanceID, red, green)
+	controlIndex := 1
+	self.CallClient("OnEnterInstance", instanceID, red, green, controlIndex)
+}
+
+func (behavior *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
+	cards := self.GetMapAttr("cards") // all cards
+	embattleIndex := self.GetInt("embattleIndex", 0)
+	embattles := self.GetMapAttr("embattles")
+	embattle := embattles.GetMapAttr(strconv.Itoa(embattleIndex))
+
+	embattleCards := make(map[string]interface{}, 5)
+	for i := 0; i <= 5; i++ {
+		cardID := embattle.GetStr(strconv.Itoa(i), "")
+
+		if cardID != "" {
+			cardInfo := *cards.GetMapAttr(cardID)
+			log.Printf("Embattle ===> Card %s attrs %v", cardID, cardInfo.GetAttrs())
+			embattleCards[cardID] = cardInfo.GetAttrs()
+		}
+	}
+	return embattleCards
 }
 
 // OpenChest : open chest request
