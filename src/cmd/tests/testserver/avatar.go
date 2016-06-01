@@ -312,7 +312,13 @@ func (behavior *Avatar) clearCards(self *Entity) {
 
 func (behavior *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
 	cards := map[string]int{}
-	heroIndexes := lngsdata.GetDataRecordIndexes("hero")
+	_heroIndexes := lngsdata.GetDataRecordIndexes("hero")
+	heroIndexes := make([]int, 0, len(_heroIndexes))
+	for _, index := range _heroIndexes {
+		if index <= MAX_HERO_INDEX && index >= MIN_HERO_INDEX {
+			heroIndexes = append(heroIndexes, index)
+		}
+	}
 
 	for i := 0; i < cardNum; i++ {
 		heroIndex := lngsutils.ChooseInt(heroIndexes)
