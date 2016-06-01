@@ -180,7 +180,7 @@ func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
 	}
 
 	green := map[string]interface{}{
-		"monsters": monsters,
+	//"monsters": monsters,
 	}
 
 	controlIndex := 1
