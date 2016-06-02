@@ -312,15 +312,17 @@ func (self *Entity) onChangeClient(old_client *GameClient) {
 	self.callBehaviorMethod("OnChangeClient", old_client)
 }
 
-func (self *Entity) NotifyAttrChange(attrName string) {
-	attrVal := self.Attrs.attrs[attrName]
-	mapAttrVal, ok := attrVal.(*MapAttr)
-	if ok {
-		attrVal = mapAttrVal.ToDoc()
-	} else {
-		attrVal = attrVal
+func (self *Entity) NotifyAttrChange(attrNames ...string) {
+	for _, attrName := range attrNames {
+		attrVal := self.Attrs.attrs[attrName]
+		mapAttrVal, ok := attrVal.(*MapAttr)
+		if ok {
+			attrVal = mapAttrVal.ToDoc()
+		} else {
+			attrVal = attrVal
+		}
+		self.CallClient("OnAttrChange", attrName, attrVal)
 	}
-	self.CallClient("OnAttrChange", attrName, attrVal)
 }
 
 func (self *Entity) Set(key string, val interface{}) {

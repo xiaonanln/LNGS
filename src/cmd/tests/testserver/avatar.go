@@ -307,7 +307,9 @@ func (behavior *Avatar) openChest(self *Entity, chestID int) {
 
 func (behavior *Avatar) clearCards(self *Entity) {
 	self.Set("cards", NewMapAttr())
-	self.NotifyAttrChange("cards")
+	self.Set("embattles", NewMapAttr())
+
+	self.NotifyAttrChange("cards", "embattles")
 }
 
 func (behavior *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
