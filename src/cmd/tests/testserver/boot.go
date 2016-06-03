@@ -35,7 +35,7 @@ func (behavior *Boot) Login(self *Entity, accountId string) {
 			self.CallClient("Login", "fail")
 			return
 		}
-		doc, _ := lngsdb.FindDoc("entities", map[string]string{"account": accountId})
+		doc, _ = lngsdb.FindDoc("entities", map[string]string{"account": accountId})
 		if doc == nil {
 			self.CallClient("Login", "fail")
 			return
