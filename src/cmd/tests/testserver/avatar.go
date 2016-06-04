@@ -19,7 +19,7 @@ var (
 type Avatar struct {
 }
 
-func (behavior *Avatar) Init(self *Entity) {
+func (avatar *Avatar) Init(self *Entity) {
 	// Initialize Avatar Attrs by default values
 	self.Set("icon", self.GetInt("icon", 1))
 	self.Attrs.Set("name", "") // test only
@@ -38,20 +38,53 @@ func (behavior *Avatar) Init(self *Entity) {
 	self.Attrs.GetMapAttr("testAttr")
 }
 
-func (behavior *Avatar) Test(self *Entity) {
+func (avatar *Avatar) Test(self *Entity) {
 	log.Printf("!!!!!!!!!!!!!!!!!!!!!!! Avatar.Test !!!!!!!!!!!!!!!!!!!!!!!")
 	testAttr := self.Attrs.GetMapAttr("testAttr")
 	testAttr.Set("testAttr", testAttr.GetInt("testVal", 0)+1)
 	self.NotifyAttrChange("testAttr")
 }
 
-func (behavior *Avatar) OnGetNewClient(self *Entity) {
+func (avatar *Avatar) OnGetNewClient(self *Entity) {
+	// 玩家上线
 	onlineManager := GetGlobalEntity("OnlineManager")
 	log.Printf("Entity %s get new client, OnlineManager %s", self, onlineManager)
 	onlineManager.Call("NotifyAvatarLogin", self.Id())
+
+	avatar.tryDailyRefresh(self)
 }
 
-func (behavior *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
+func (avatar *Avatar) tryDailyRefresh(self *Entity) {
+	// dailyTs := int64(self.GetInt("dailyTs", 0))
+	ts := GetTime()
+	// if IsSameDay(dailyTs, ts) {
+	// 	return
+	// }
+
+	// 开始每日刷新逻辑
+	self.Set("dailyTs", ts)
+	self.NotifyAttrChange("dailyTs")
+
+	avatar.dailyRefresh(self)
+}
+
+func (avatar *Avatar) dailyRefresh(self *Entity) {
+	log.Printf("%v.dailyRefresh ...", self)
+	avatar.refreshShop(self)
+}
+
+func (avatar *Avatar) refreshShop(self *Entity) {
+	// 刷新商店
+	shopInfo := self.GetMapAttr("shop") // 商店数据
+	shopInfo.Set("sell1", RandHeroIndexOfClass(1))
+	shopInfo.Set("sell2", RandHeroIndexOfClass(2))
+	shopInfo.Set("sell3", RandHeroIndexOfClass(3))
+
+	self.NotifyAttrChange("shop")
+}
+
+func (avatar *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
+	// 玩家下线
 	onlineManager := GetGlobalEntity("OnlineManager")
 	log.Printf("Entity %s lose client, OnlineManager %s", self, onlineManager)
 	onlineManager.Call("NotifyAvatarLogout", self.Id())
@@ -59,19 +92,19 @@ func (behavior *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
 	self.Destroy()
 }
 
-func (behavior *Avatar) Say(self *Entity, text string) {
+func (avatar *Avatar) Say(self *Entity, text string) {
 	// player say something in the tribe
 	if len(text) > 0 && text[0] == '$' {
 		// process gm cmd
 		gmcmd := text[1:]
-		behavior.handleGmcmd(self, gmcmd)
+		avatar.handleGmcmd(self, gmcmd)
 		return
 	}
 
 	worldChatroom.Say(self, text)
 }
 
-func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
+func (avatar *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 	gmcmd = strings.TrimSpace(gmcmd)
 	if gmcmd == "" {
 		return
@@ -92,12 +125,12 @@ func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 		if len(args) >= 2 {
 			chestCount, _ = strconv.Atoi(args[1])
 		}
-		behavior.addChest(self, chestID, chestCount)
+		avatar.addChest(self, chestID, chestCount)
 	} else if cmd == "openChest" {
 		chestID, _ := strconv.Atoi(args[0])
-		behavior.openChest(self, chestID)
+		avatar.openChest(self, chestID)
 	} else if cmd == "clearCards" {
-		behavior.clearCards(self)
+		avatar.clearCards(self)
 	} else if cmd == "set" {
 		attrName := args[0]
 		val, _ := strconv.Atoi(args[1])
@@ -115,12 +148,12 @@ func (behavior *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 }
 
 // GetSaveInterval returns the save interval of entities
-func (behavior *Avatar) GetSaveInterval() int {
+func (avatar *Avatar) GetSaveInterval() int {
 	return 10
 }
 
 // SetAvatarName : set avatar name from client
-func (behavior *Avatar) SetAvatarName(self *Entity, name string) {
+func (avatar *Avatar) SetAvatarName(self *Entity, name string) {
 	if name == "" {
 		self.CallClient("Toast", "名字不能为空")
 		return
@@ -139,26 +172,26 @@ func (behavior *Avatar) SetAvatarName(self *Entity, name string) {
 }
 
 // EnterWorldChatroom : enter world chat room request
-func (behavior *Avatar) EnterWorldChatroom(self *Entity) {
+func (avatar *Avatar) EnterWorldChatroom(self *Entity) {
 	worldChatroom.Enter(self)
 }
 
-func (behavior *Avatar) LeaveWorldChatroom(self *Entity) {
+func (avatar *Avatar) LeaveWorldChatroom(self *Entity) {
 	worldChatroom.Leave(self)
 }
 
 // FinishInstance : player finishs an instance
-func (behavior *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
+func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 	log.Printf("%v.FinishBattle: instanceID=%v, win = %v", self, instanceID, win)
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	rewardChests := make([]int, 0, 4)
 	if win {
 		for chestID := 1; chestID <= 4; chestID++ {
 			rewardChestProbKey := "RewardChest" + strconv.Itoa(chestID)
-			prob := instanceData.GetFloat(rewardChestProbKey, 0.0)
+			prob := instanceData.GetFloat(rewardChestProbKey)
 			if rand.Float64() < prob {
 				// get the chest
-				behavior.addChest(self, chestID, 1)
+				avatar.addChest(self, chestID, 1)
 				rewardChests = append(rewardChests, chestID)
 			}
 		}
@@ -168,11 +201,11 @@ func (behavior *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 }
 
 // EnterInstance : enter instance request
-func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
+func (avatar *Avatar) EnterInstance(self *Entity, instanceID int) {
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	monsters := instanceData.GetList("Monsters")
 
-	embattleCards := behavior.getEmbattleCards(self)
+	embattleCards := avatar.getEmbattleCards(self)
 	log.Printf("%v.EnterInstance: instanceID=%v, monsters=%v, embattle=%v\n", self, instanceID, monsters, embattleCards)
 
 	red := map[string]interface{}{
@@ -187,7 +220,7 @@ func (behavior *Avatar) EnterInstance(self *Entity, instanceID int) {
 	self.CallClient("OnEnterInstance", instanceID, red, green, controlIndex)
 }
 
-func (behavior *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
+func (avatar *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
 	cards := self.GetMapAttr("cards") // all cards
 	embattleIndex := self.GetInt("embattleIndex", 0)
 	embattles := self.GetMapAttr("embattles")
@@ -199,20 +232,20 @@ func (behavior *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
 
 		if cardID != "" {
 			cardInfo := *cards.GetMapAttr(cardID)
-			log.Printf("Embattle ===> Card %s attrs %v", cardID, cardInfo.GetAttrs())
-			embattleCards[cardID] = cardInfo.GetAttrs()
+			log.Printf("Embattle ===> Card %s attrs %v", cardID, cardInfo.GetMap())
+			embattleCards[cardID] = cardInfo.GetMap()
 		}
 	}
 	return embattleCards
 }
 
 // OpenChest : open chest request
-func (behavior *Avatar) OpenChest(self *Entity, chestID int) {
-	behavior.openChest(self, chestID)
+func (avatar *Avatar) OpenChest(self *Entity, chestID int) {
+	avatar.openChest(self, chestID)
 }
 
 // BuyGold : buy gold with diamond
-func (behavior *Avatar) BuyGold(self *Entity, gold int) {
+func (avatar *Avatar) BuyGold(self *Entity, gold int) {
 	consumeDiamond := -1
 
 	for _, buygoldData := range lngsdata.GetDataRecords("buygold") {
@@ -239,7 +272,7 @@ func (behavior *Avatar) BuyGold(self *Entity, gold int) {
 	self.CallClient("OnBuyGold", gold, consumeDiamond)
 }
 
-func (behavior *Avatar) Embattle(self *Entity, embattleIndex int, cardID string, embattlePos int) {
+func (avatar *Avatar) Embattle(self *Entity, embattleIndex int, cardID string, embattlePos int) {
 	cards := self.GetMapAttr("cards")
 	if !cards.HasKey(cardID) {
 		// card not found
@@ -255,7 +288,7 @@ func (behavior *Avatar) Embattle(self *Entity, embattleIndex int, cardID string,
 	self.CallClient("OnEmbattle", embattleIndex)
 }
 
-func (behavior *Avatar) SetEmbattleIndex(self *Entity, embattleIndex int) {
+func (avatar *Avatar) SetEmbattleIndex(self *Entity, embattleIndex int) {
 	if embattleIndex != 1 && embattleIndex != 2 && embattleIndex != 3 {
 		return
 	}
@@ -264,7 +297,7 @@ func (behavior *Avatar) SetEmbattleIndex(self *Entity, embattleIndex int) {
 	self.NotifyAttrChange("embattleIndex")
 }
 
-func (behavior *Avatar) addChest(self *Entity, chestID int, count int) {
+func (avatar *Avatar) addChest(self *Entity, chestID int, count int) {
 	// add a chest
 	lngsdata.GetDataRecord("chest", chestID)
 
@@ -275,7 +308,7 @@ func (behavior *Avatar) addChest(self *Entity, chestID int, count int) {
 	self.NotifyAttrChange("chests")
 }
 
-func (behavior *Avatar) openChest(self *Entity, chestID int) {
+func (avatar *Avatar) openChest(self *Entity, chestID int) {
 	// open a chest
 	chests := self.GetMapAttr("chests")
 	chestData := lngsdata.GetDataRecord("chest", chestID)
@@ -290,12 +323,12 @@ func (behavior *Avatar) openChest(self *Entity, chestID int) {
 	chests.Set(chestIDStr, chestCount-1) // reduce chest count first
 
 	addGold := lngsutils.RandInt(chestData.GetInt("GoldMin"), chestData.GetInt("GoldMax"))
-	behavior.addGold(self, addGold)
+	avatar.addGold(self, addGold)
 	cardNum := chestData.GetInt("CardNum")
-	cards := behavior.genRandomChestCards(chestID, cardNum)
+	cards := avatar.genRandomChestCards(chestID, cardNum)
 	// put cards to avatar
 	for cardID, num := range cards {
-		behavior.addCard(self, cardID, num)
+		avatar.addCard(self, cardID, num)
 	}
 
 	self.NotifyAttrChange("chests")
@@ -305,25 +338,18 @@ func (behavior *Avatar) openChest(self *Entity, chestID int) {
 	self.CallClient("OnOpenChest", addGold, cards)
 }
 
-func (behavior *Avatar) clearCards(self *Entity) {
+func (avatar *Avatar) clearCards(self *Entity) {
 	self.Set("cards", NewMapAttr())
 	self.Set("embattles", NewMapAttr())
 
 	self.NotifyAttrChange("cards", "embattles")
 }
 
-func (behavior *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
+func (avatar *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
 	cards := map[string]int{}
-	_heroIndexes := lngsdata.GetDataRecordIndexes("hero")
-	heroIndexes := make([]int, 0, len(_heroIndexes))
-	for _, index := range _heroIndexes {
-		if index <= MAX_HERO_INDEX && index >= MIN_HERO_INDEX {
-			heroIndexes = append(heroIndexes, index)
-		}
-	}
 
 	for i := 0; i < cardNum; i++ {
-		heroIndex := lngsutils.ChooseInt(heroIndexes)
+		heroIndex := RandHeroIndex()
 		cardID := fmt.Sprintf("H%d", heroIndex)
 		cards[cardID] = cards[cardID] + 1
 	}
@@ -331,7 +357,7 @@ func (behavior *Avatar) genRandomChestCards(chestID int, cardNum int) map[string
 	return cards
 }
 
-func (behavior *Avatar) addGold(self *Entity, gold int) {
+func (avatar *Avatar) addGold(self *Entity, gold int) {
 	if gold < 0 {
 		log.Panicf("addGold: negative gold %d", gold)
 		return
@@ -340,7 +366,7 @@ func (behavior *Avatar) addGold(self *Entity, gold int) {
 	self.Set("gold", self.GetInt("gold", 0)+gold)
 }
 
-func (behavior *Avatar) addCard(self *Entity, cardID string, num int) {
+func (avatar *Avatar) addCard(self *Entity, cardID string, num int) {
 	if num < 0 {
 		log.Panicf("addCard %s: negative num %d", cardID, num)
 		return

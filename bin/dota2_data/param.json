@@ -1,0 +1,14 @@
+{
+    "1": {
+        "Desc": "\u653e\u5361\u6700\u5927\u51b7\u5374\u65f6\u95f4\uff08\u79d2\uff09", 
+        "Index": 1, 
+        "Param": "MaxPutCD", 
+        "Value": 5
+    }, 
+    "2": {
+        "Desc": "\u5173\u5361\u6700\u957f\u6218\u6597\u65f6\u95f4\uff08\u79d2\uff0c\u5230\u65f6\u7b97\u8f93\uff09", 
+        "Index": 2, 
+        "Param": "MaxInstanceTime", 
+        "Value": 600
+    }
+}

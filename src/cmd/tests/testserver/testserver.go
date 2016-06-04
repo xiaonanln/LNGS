@@ -2,10 +2,10 @@ package main
 
 import (
 	"lngs"
-	"os"
-	"log"
-	"path/filepath"
 	"lngs/data"
+	"log"
+	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -15,14 +15,15 @@ func main() {
 	dataPath := filepath.Join(binPath, "dota2_data")
 	log.Printf("Data path: %s", dataPath)
 	lngsdata.SetDataPath(dataPath)
-	
-	log.Printf("buff[1] = %v\n", *lngsdata.GetDataRecord("buff", 1))
-	log.Printf("skill[1] = %v\n", *lngsdata.GetDataRecord("skill", 1))
-	log.Printf("hero[1] = %v\n", *lngsdata.GetDataRecord("hero", 1))
-	log.Printf("super[1] = %v\n", *lngsdata.GetDataRecord("super", 1))
-	log.Printf("chest[1] = %v\n", *lngsdata.GetDataRecord("chest", 1))
 
-	lngsdata.Reload()
+	// log.Printf("buff[1] = %v\n", *lngsdata.GetDataRecord("buff", 1))
+	// log.Printf("skill[1] = %v\n", *lngsdata.GetDataRecord("skill", 1))
+	// log.Printf("hero[1] = %v\n", *lngsdata.GetDataRecord("hero", 1))
+	// log.Printf("super[1] = %v\n", *lngsdata.GetDataRecord("super", 1))
+	// log.Printf("chest[1] = %v\n", *lngsdata.GetDataRecord("chest", 1))
+
+	cardUtilsInit()
+	// lngsdata.Reload()
 
 	lngs.RegisterEntityBehavior(Boot{})
 	lngs.RegisterEntityBehavior(Avatar{})

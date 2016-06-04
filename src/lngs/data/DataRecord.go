@@ -15,7 +15,7 @@ func interpretDataRecord(data interface{}) *DataRecord {
 	}
 
 	return &DataRecord{
-		data: recordData,
+	data: recordData,
 	}
 }
 
@@ -24,7 +24,12 @@ func (self *DataRecord) Index() int {
 }
 
 func (self *DataRecord) GetInt(field string) int {
+	if self.data[field] == nil {
+		return 0
+	}
+
 	v := self.data[field].(float64)
+
 	if v != float64(int(v)) {
 		// v is not int
 		log.Panicf("Field %s is not int: %v", field, v)
@@ -32,9 +37,9 @@ func (self *DataRecord) GetInt(field string) int {
 	return int(v)
 }
 
-func (self *DataRecord) GetFloat(field string, defaultVal float64) float64 {
+func (self *DataRecord) GetFloat(field string) float64 {
 	if self.data[field] == nil {
-		return defaultVal
+		return 0.0
 	}
 	return self.data[field].(float64)
 }

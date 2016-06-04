@@ -33,6 +33,11 @@ func (self *MapAttr) GetInt(key string, defaultVal int) int {
 	if !ok {
 		return defaultVal
 	}
+	i64, ok := val.(int64)
+	if ok {
+		return int(i64)
+	}
+
 	return val.(int)
 }
 
@@ -74,7 +79,7 @@ func (self *MapAttr) GetValues() []interface{} {
 	return vals
 }
 
-func (self *MapAttr) GetAttrs() map[string]interface{} {
+func (self *MapAttr) GetMap() map[string]interface{} {
 	return self.attrs
 }
 

@@ -37,9 +37,9 @@
     }, 
     "4": {
         "BaseDamage": null, 
-        "BaseDamageRate": 50, 
+        "BaseDamageRate": 100, 
         "DamagePerLevel": null, 
-        "DamageRatePerLevel": 10, 
+        "DamageRatePerLevel": 20, 
         "Effect": "JS_TX_Gandalf.Skill3", 
         "Index": 4, 
         "Name": "\u795e\u4e4b\u529b\u91cf", 
