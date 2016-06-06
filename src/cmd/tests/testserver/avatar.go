@@ -273,7 +273,36 @@ func (avatar *Avatar) BuyGold(self *Entity, gold int) {
 
 	self.Set("diamond", hasDiamond-consumeDiamond)
 	self.Set("gold", self.GetInt("gold", 0)+gold)
+	self.NotifyAttrChange("diamond", "gold")
 	self.CallClient("OnBuyGold", gold, consumeDiamond)
+}
+
+func (avatar *Avatar) BuyCard(self *Entity, cardID string) {
+	shop := self.GetMapAttr("shop")
+
+	sellPrice := -1
+	for i := 1; i <= 6; i++ {
+		is := strconv.Itoa(i)
+		sellCardID := shop.GetStr("sell"+is, "")
+		if cardID == sellCardID {
+			sellPrice = shop.GetInt("price"+is, 0)
+			break
+		}
+	}
+
+	if sellPrice <= 0 {
+		return
+	}
+
+	hasGold := self.GetInt("gold", 0)
+	if hasGold < sellPrice {
+		return
+	}
+
+	self.Set("gold", hasGold-sellPrice)
+	avatar.addCard(self, cardID, 1)
+	self.NotifyAttrChange("gold", "cards")
+	self.CallClient("OnBuyCard", cardID)
 }
 
 func (avatar *Avatar) Embattle(self *Entity, embattleIndex int, cardID string, embattlePos int) {
