@@ -302,8 +302,40 @@ func (avatar *Avatar) SetEmbattleIndex(self *Entity, embattleIndex int) {
 }
 
 func (avatar *Avatar) UpgradeCard(self *Entity, cardID string) {
+	cardType, _, cardData := InterpretCardID(cardID)
+	cardQuality := cardData.GetInt("Class")
 
+	cards := self.GetMapAttr("cards")
+	if !cards.HasKey(cardID) {
+		log.Printf("Card %s not found", cardID)
+		return
+	}
+
+	cardInfo := cards.GetMapAttr(cardID)
+	cardLevel := cardInfo.GetInt("lv", 0)
+	cardCount := cardInfo.GetInt("num", 0)
+
+	requireCount := GetCardUpgradeRequireCount(cardType, cardQuality, cardLevel)
+
+	if cardLevel >= MAX_CARD_LEVEL || cardCount < requireCount {
+		return
+	}
+	cardInfo.Set("num", cardCount-requireCount)
+	cardLevel = cardLevel + 1
+	cardInfo.Set("lv", cardLevel)
+
+	self.NotifyAttrChange("cards")
+	self.CallClient("OnUpgradeCard", cardID, cardLevel)
 }
+
+// func (avatar *Avatar) getCardLevel(self *Entity, cardID string) int {
+// 	cards := self.GetMapAttr("cards")
+// 	if !cards.HasKey(cardID) {
+// 		return 0
+// 	}
+
+// 	return
+// }
 
 func (avatar *Avatar) addChest(self *Entity, chestID int, count int) {
 	// add a chest
