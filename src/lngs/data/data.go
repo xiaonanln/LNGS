@@ -28,7 +28,9 @@ func getDataFile(dataName string) *DataFile {
 		return data
 	}
 
-	return openDataFile(dataName)
+	data = openDataFile(dataName)
+	dataCache[dataName] = data
+	return data
 }
 
 // GetDataRecordIndexe : return all index of data

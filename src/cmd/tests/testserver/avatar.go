@@ -24,6 +24,7 @@ func (avatar *Avatar) Init(self *Entity) {
 	self.Set("icon", self.GetInt("icon", 1))
 	self.Attrs.Set("name", "") // test only
 	self.Attrs.Set("exp", self.Attrs.GetInt("exp", 0))
+	self.Attrs.Set("level", self.Attrs.GetInt("level", 0))
 	self.Attrs.Set("gold", self.Attrs.GetInt("gold", 0))
 	self.Attrs.Set("diamond", self.Attrs.GetInt("diamond", 0))
 
@@ -76,9 +77,9 @@ func (avatar *Avatar) dailyRefresh(self *Entity) {
 func (avatar *Avatar) refreshShop(self *Entity) {
 	// 刷新商店
 	shopInfo := self.GetMapAttr("shop") // 商店数据
-	shopInfo.Set("sell1", RandHeroIndexOfClass(1))
-	shopInfo.Set("sell2", RandHeroIndexOfClass(2))
-	shopInfo.Set("sell3", RandHeroIndexOfClass(3))
+	shopInfo.Set("sell1", fmt.Sprintf("H%d", RandHeroIndexOfClass(1)))
+	shopInfo.Set("sell2", fmt.Sprintf("H%d", RandHeroIndexOfClass(2)))
+	shopInfo.Set("sell3", fmt.Sprintf("H%d", RandHeroIndexOfClass(3)))
 
 	self.NotifyAttrChange("shop")
 }
