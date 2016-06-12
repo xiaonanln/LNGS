@@ -107,6 +107,10 @@ func (self *Entity) GetBehaviorName() string {
 	return name
 }
 
+func (self *Entity) GetBehavior() interface{} {
+	return self.behavior.Interface()
+}
+
 func (self *Entity) String() string {
 	return fmt.Sprintf("%s<%s>", self.GetBehaviorName(), self.id)
 }

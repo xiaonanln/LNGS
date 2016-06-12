@@ -93,6 +93,8 @@ func (avatar *Avatar) OnLoseClient(self *Entity, old_client *GameClient) {
 	log.Printf("Entity %s lose client, OnlineManager %s", self, onlineManager)
 	onlineManager.Call("NotifyAvatarLogout", self.Id())
 
+	theSoloManager.OnAvatarLogout(self)
+
 	self.Destroy()
 }
 
@@ -222,6 +224,22 @@ func (avatar *Avatar) EnterInstance(self *Entity, instanceID int) {
 
 	controlIndex := 1
 	self.CallClient("OnEnterInstance", instanceID, red, green, controlIndex)
+}
+
+func OnSoloMatched(battleID string, entity1 *Entity, entity2 *Entity) {
+	avatar1 := entity1.GetBehavior().(*Avatar)
+	avatar2 := entity2.GetBehavior().(*Avatar)
+
+	red := map[string]interface{}{
+		"C1": avatar1.getEmbattleCards(entity1),
+	}
+
+	green := map[string]interface{}{
+		"C2": avatar2.getEmbattleCards(entity2),
+	}
+
+	entity1.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 1)
+	entity2.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 2)
 }
 
 func (avatar *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
@@ -355,6 +373,12 @@ func (avatar *Avatar) UpgradeCard(self *Entity, cardID string) {
 
 	self.NotifyAttrChange("cards")
 	self.CallClient("OnUpgradeCard", cardID, cardLevel)
+}
+
+// StartSolo 开始匹配
+func (avatar *Avatar) StartSolo(self *Entity) {
+	theSoloManager.StartSolo(self)
+	self.CallClient("OnStartSolo")
 }
 
 // func (avatar *Avatar) getCardLevel(self *Entity, cardID string) int {

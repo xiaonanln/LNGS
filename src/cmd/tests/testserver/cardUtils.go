@@ -60,10 +60,9 @@ func cardUtilsInit() {
 		key := fmt.Sprintf("%s-%d-%d", cardTypeS, cardQuality, cardLevel)
 		cardUpgradeRequireCount[key] = upgradeRequireCount
 	}
-	for k, v := range cardUpgradeRequireCount {
-		log.Printf("Card upgrade %s = %d", k, v)
-	}
-
+	// for k, v := range cardUpgradeRequireCount {
+	// 	log.Printf("Card upgrade %s = %d", k, v)
+	// }
 }
 
 func GetCardUpgradeRequireCount(cardType string, cardQuality int, cardLevel int) int {
