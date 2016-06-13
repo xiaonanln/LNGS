@@ -1,352 +1,770 @@
 {
     "1": {
         "CardLevel": 1, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 1, 
-        "UpgradeRequireCount": 2
+        "UpgradeRequireCount": 2, 
+        "UpgradeRequireGold": 200
     }, 
     "2": {
         "CardLevel": 2, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 2, 
-        "UpgradeRequireCount": 4
+        "UpgradeRequireCount": 4, 
+        "UpgradeRequireGold": 400
     }, 
     "3": {
         "CardLevel": 3, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 3, 
-        "UpgradeRequireCount": 8
+        "UpgradeRequireCount": 8, 
+        "UpgradeRequireGold": 800
     }, 
     "4": {
         "CardLevel": 4, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 4, 
-        "UpgradeRequireCount": 16
+        "UpgradeRequireCount": 15, 
+        "UpgradeRequireGold": 1500
     }, 
     "5": {
         "CardLevel": 5, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 5, 
-        "UpgradeRequireCount": 32
+        "UpgradeRequireCount": 30, 
+        "UpgradeRequireGold": 3000
     }, 
     "6": {
         "CardLevel": 6, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 6, 
-        "UpgradeRequireCount": 64
+        "UpgradeRequireCount": 50, 
+        "UpgradeRequireGold": 5000
     }, 
     "7": {
         "CardLevel": 7, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 7, 
-        "UpgradeRequireCount": 128
+        "UpgradeRequireCount": 75, 
+        "UpgradeRequireGold": 7500
     }, 
     "8": {
         "CardLevel": 8, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 8, 
-        "UpgradeRequireCount": 256
+        "UpgradeRequireCount": 100, 
+        "UpgradeRequireGold": 10000
     }, 
     "9": {
         "CardLevel": 9, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 9, 
-        "UpgradeRequireCount": 512
+        "UpgradeRequireCount": 150, 
+        "UpgradeRequireGold": 15000
     }, 
     "10": {
         "CardLevel": 10, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 10, 
-        "UpgradeRequireCount": 1024
+        "UpgradeRequireCount": 200, 
+        "UpgradeRequireGold": 20000
     }, 
     "11": {
         "CardLevel": 11, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 11, 
-        "UpgradeRequireCount": 2048
+        "UpgradeRequireCount": 300, 
+        "UpgradeRequireGold": 30000
     }, 
     "12": {
         "CardLevel": 12, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 12, 
-        "UpgradeRequireCount": 4096
+        "UpgradeRequireCount": 500, 
+        "UpgradeRequireGold": 50000
     }, 
     "13": {
         "CardLevel": 13, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 13, 
-        "UpgradeRequireCount": 8192
+        "UpgradeRequireCount": 1000, 
+        "UpgradeRequireGold": 100000
     }, 
     "14": {
         "CardLevel": 14, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 14, 
-        "UpgradeRequireCount": 16384
+        "UpgradeRequireCount": 2000, 
+        "UpgradeRequireGold": 200000
     }, 
     "15": {
         "CardLevel": 15, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 15, 
-        "UpgradeRequireCount": 32768
+        "UpgradeRequireCount": 3000, 
+        "UpgradeRequireGold": 300000
     }, 
     "16": {
         "CardLevel": 16, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 16, 
-        "UpgradeRequireCount": 65536
+        "UpgradeRequireCount": 5000, 
+        "UpgradeRequireGold": 500000
     }, 
     "17": {
         "CardLevel": 17, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 17, 
-        "UpgradeRequireCount": 131072
+        "UpgradeRequireCount": 7500, 
+        "UpgradeRequireGold": 750000
     }, 
     "18": {
         "CardLevel": 18, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 18, 
-        "UpgradeRequireCount": 262144
+        "UpgradeRequireCount": 10000, 
+        "UpgradeRequireGold": 1000000
     }, 
     "19": {
         "CardLevel": 19, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 19, 
-        "UpgradeRequireCount": 524288
+        "UpgradeRequireCount": 15000, 
+        "UpgradeRequireGold": 1500000
     }, 
     "20": {
         "CardLevel": 20, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 20, 
-        "UpgradeRequireCount": 1048576
+        "UpgradeRequireCount": 20000, 
+        "UpgradeRequireGold": 2000000
     }, 
     "21": {
         "CardLevel": 21, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 21, 
-        "UpgradeRequireCount": 2097152
+        "UpgradeRequireCount": 30000, 
+        "UpgradeRequireGold": 3000000
     }, 
     "22": {
         "CardLevel": 22, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 22, 
-        "UpgradeRequireCount": 4194304
+        "UpgradeRequireCount": 50000, 
+        "UpgradeRequireGold": 5000000
     }, 
     "23": {
         "CardLevel": 23, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 23, 
-        "UpgradeRequireCount": 8388608
+        "UpgradeRequireCount": 75000, 
+        "UpgradeRequireGold": 7500000
     }, 
     "24": {
         "CardLevel": 24, 
-        "CardQuality": 4, 
+        "CardQuality": 1, 
         "CardType": 1, 
         "Index": 24, 
-        "UpgradeRequireCount": 16777216
+        "UpgradeRequireCount": 100000, 
+        "UpgradeRequireGold": 10000000
     }, 
     "25": {
-        "CardLevel": 25, 
-        "CardQuality": 4, 
+        "CardLevel": 1, 
+        "CardQuality": 2, 
         "CardType": 1, 
         "Index": 25, 
-        "UpgradeRequireCount": 33554432
+        "UpgradeRequireCount": 2, 
+        "UpgradeRequireGold": 200
     }, 
     "26": {
-        "CardLevel": 1, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 2, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 26, 
-        "UpgradeRequireCount": 2
+        "UpgradeRequireCount": 4, 
+        "UpgradeRequireGold": 400
     }, 
     "27": {
-        "CardLevel": 2, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 3, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 27, 
-        "UpgradeRequireCount": 4
+        "UpgradeRequireCount": 8, 
+        "UpgradeRequireGold": 800
     }, 
     "28": {
-        "CardLevel": 3, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 4, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 28, 
-        "UpgradeRequireCount": 8
+        "UpgradeRequireCount": 15, 
+        "UpgradeRequireGold": 1500
     }, 
     "29": {
-        "CardLevel": 4, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 5, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 29, 
-        "UpgradeRequireCount": 16
+        "UpgradeRequireCount": 30, 
+        "UpgradeRequireGold": 3000
     }, 
     "30": {
-        "CardLevel": 5, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 6, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 30, 
-        "UpgradeRequireCount": 32
+        "UpgradeRequireCount": 50, 
+        "UpgradeRequireGold": 5000
     }, 
     "31": {
-        "CardLevel": 6, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 7, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 31, 
-        "UpgradeRequireCount": 64
+        "UpgradeRequireCount": 75, 
+        "UpgradeRequireGold": 7500
     }, 
     "32": {
-        "CardLevel": 7, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 8, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 32, 
-        "UpgradeRequireCount": 128
+        "UpgradeRequireCount": 100, 
+        "UpgradeRequireGold": 10000
     }, 
     "33": {
-        "CardLevel": 8, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 9, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 33, 
-        "UpgradeRequireCount": 256
+        "UpgradeRequireCount": 150, 
+        "UpgradeRequireGold": 15000
     }, 
     "34": {
-        "CardLevel": 9, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 10, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 34, 
-        "UpgradeRequireCount": 512
+        "UpgradeRequireCount": 200, 
+        "UpgradeRequireGold": 20000
     }, 
     "35": {
-        "CardLevel": 10, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 11, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 35, 
-        "UpgradeRequireCount": 1024
+        "UpgradeRequireCount": 300, 
+        "UpgradeRequireGold": 30000
     }, 
     "36": {
-        "CardLevel": 11, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 12, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 36, 
-        "UpgradeRequireCount": 2048
+        "UpgradeRequireCount": 500, 
+        "UpgradeRequireGold": 50000
     }, 
     "37": {
-        "CardLevel": 12, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 13, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 37, 
-        "UpgradeRequireCount": 4096
+        "UpgradeRequireCount": 1000, 
+        "UpgradeRequireGold": 100000
     }, 
     "38": {
-        "CardLevel": 13, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 14, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 38, 
-        "UpgradeRequireCount": 8192
+        "UpgradeRequireCount": 2000, 
+        "UpgradeRequireGold": 200000
     }, 
     "39": {
-        "CardLevel": 14, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 15, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 39, 
-        "UpgradeRequireCount": 16384
+        "UpgradeRequireCount": 3000, 
+        "UpgradeRequireGold": 300000
     }, 
     "40": {
-        "CardLevel": 15, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 16, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 40, 
-        "UpgradeRequireCount": 32768
+        "UpgradeRequireCount": 5000, 
+        "UpgradeRequireGold": 500000
     }, 
     "41": {
-        "CardLevel": 16, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 17, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 41, 
-        "UpgradeRequireCount": 65536
+        "UpgradeRequireCount": 7500, 
+        "UpgradeRequireGold": 750000
     }, 
     "42": {
-        "CardLevel": 17, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 18, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 42, 
-        "UpgradeRequireCount": 131072
+        "UpgradeRequireCount": 10000, 
+        "UpgradeRequireGold": 1000000
     }, 
     "43": {
-        "CardLevel": 18, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 19, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 43, 
-        "UpgradeRequireCount": 262144
+        "UpgradeRequireCount": 15000, 
+        "UpgradeRequireGold": 1500000
     }, 
     "44": {
-        "CardLevel": 19, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 20, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 44, 
-        "UpgradeRequireCount": 524288
+        "UpgradeRequireCount": 20000, 
+        "UpgradeRequireGold": 2000000
     }, 
     "45": {
-        "CardLevel": 20, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 21, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 45, 
-        "UpgradeRequireCount": 1048576
+        "UpgradeRequireCount": 30000, 
+        "UpgradeRequireGold": 3000000
     }, 
     "46": {
-        "CardLevel": 21, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 22, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 46, 
-        "UpgradeRequireCount": 2097152
+        "UpgradeRequireCount": 50000, 
+        "UpgradeRequireGold": 5000000
     }, 
     "47": {
-        "CardLevel": 22, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 23, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 47, 
-        "UpgradeRequireCount": 4194304
+        "UpgradeRequireCount": 75000, 
+        "UpgradeRequireGold": 7500000
     }, 
     "48": {
-        "CardLevel": 23, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 24, 
+        "CardQuality": 2, 
+        "CardType": 1, 
         "Index": 48, 
-        "UpgradeRequireCount": 8388608
+        "UpgradeRequireCount": 100000, 
+        "UpgradeRequireGold": 10000000
     }, 
     "49": {
-        "CardLevel": 24, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 1, 
+        "CardQuality": 3, 
+        "CardType": 1, 
         "Index": 49, 
-        "UpgradeRequireCount": 16777216
+        "UpgradeRequireCount": 2, 
+        "UpgradeRequireGold": 200
     }, 
     "50": {
-        "CardLevel": 25, 
-        "CardQuality": 1, 
-        "CardType": 2, 
+        "CardLevel": 2, 
+        "CardQuality": 3, 
+        "CardType": 1, 
         "Index": 50, 
-        "UpgradeRequireCount": 33554432
+        "UpgradeRequireCount": 4, 
+        "UpgradeRequireGold": 400
+    }, 
+    "51": {
+        "CardLevel": 3, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 51, 
+        "UpgradeRequireCount": 8, 
+        "UpgradeRequireGold": 800
+    }, 
+    "52": {
+        "CardLevel": 4, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 52, 
+        "UpgradeRequireCount": 15, 
+        "UpgradeRequireGold": 1500
+    }, 
+    "53": {
+        "CardLevel": 5, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 53, 
+        "UpgradeRequireCount": 30, 
+        "UpgradeRequireGold": 3000
+    }, 
+    "54": {
+        "CardLevel": 6, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 54, 
+        "UpgradeRequireCount": 50, 
+        "UpgradeRequireGold": 5000
+    }, 
+    "55": {
+        "CardLevel": 7, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 55, 
+        "UpgradeRequireCount": 75, 
+        "UpgradeRequireGold": 7500
+    }, 
+    "56": {
+        "CardLevel": 8, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 56, 
+        "UpgradeRequireCount": 100, 
+        "UpgradeRequireGold": 10000
+    }, 
+    "57": {
+        "CardLevel": 9, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 57, 
+        "UpgradeRequireCount": 150, 
+        "UpgradeRequireGold": 15000
+    }, 
+    "58": {
+        "CardLevel": 10, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 58, 
+        "UpgradeRequireCount": 200, 
+        "UpgradeRequireGold": 20000
+    }, 
+    "59": {
+        "CardLevel": 11, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 59, 
+        "UpgradeRequireCount": 300, 
+        "UpgradeRequireGold": 30000
+    }, 
+    "60": {
+        "CardLevel": 12, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 60, 
+        "UpgradeRequireCount": 500, 
+        "UpgradeRequireGold": 50000
+    }, 
+    "61": {
+        "CardLevel": 13, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 61, 
+        "UpgradeRequireCount": 1000, 
+        "UpgradeRequireGold": 100000
+    }, 
+    "62": {
+        "CardLevel": 14, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 62, 
+        "UpgradeRequireCount": 2000, 
+        "UpgradeRequireGold": 200000
+    }, 
+    "63": {
+        "CardLevel": 15, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 63, 
+        "UpgradeRequireCount": 3000, 
+        "UpgradeRequireGold": 300000
+    }, 
+    "64": {
+        "CardLevel": 16, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 64, 
+        "UpgradeRequireCount": 5000, 
+        "UpgradeRequireGold": 500000
+    }, 
+    "65": {
+        "CardLevel": 17, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 65, 
+        "UpgradeRequireCount": 7500, 
+        "UpgradeRequireGold": 750000
+    }, 
+    "66": {
+        "CardLevel": 18, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 66, 
+        "UpgradeRequireCount": 10000, 
+        "UpgradeRequireGold": 1000000
+    }, 
+    "67": {
+        "CardLevel": 19, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 67, 
+        "UpgradeRequireCount": 15000, 
+        "UpgradeRequireGold": 1500000
+    }, 
+    "68": {
+        "CardLevel": 20, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 68, 
+        "UpgradeRequireCount": 20000, 
+        "UpgradeRequireGold": 2000000
+    }, 
+    "69": {
+        "CardLevel": 21, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 69, 
+        "UpgradeRequireCount": 30000, 
+        "UpgradeRequireGold": 3000000
+    }, 
+    "70": {
+        "CardLevel": 22, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 70, 
+        "UpgradeRequireCount": 50000, 
+        "UpgradeRequireGold": 5000000
+    }, 
+    "71": {
+        "CardLevel": 23, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 71, 
+        "UpgradeRequireCount": 75000, 
+        "UpgradeRequireGold": 7500000
+    }, 
+    "72": {
+        "CardLevel": 24, 
+        "CardQuality": 3, 
+        "CardType": 1, 
+        "Index": 72, 
+        "UpgradeRequireCount": 100000, 
+        "UpgradeRequireGold": 10000000
+    }, 
+    "73": {
+        "CardLevel": 1, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 73, 
+        "UpgradeRequireCount": 2, 
+        "UpgradeRequireGold": 200
+    }, 
+    "74": {
+        "CardLevel": 2, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 74, 
+        "UpgradeRequireCount": 4, 
+        "UpgradeRequireGold": 400
+    }, 
+    "75": {
+        "CardLevel": 3, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 75, 
+        "UpgradeRequireCount": 8, 
+        "UpgradeRequireGold": 800
+    }, 
+    "76": {
+        "CardLevel": 4, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 76, 
+        "UpgradeRequireCount": 15, 
+        "UpgradeRequireGold": 1500
+    }, 
+    "77": {
+        "CardLevel": 5, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 77, 
+        "UpgradeRequireCount": 30, 
+        "UpgradeRequireGold": 3000
+    }, 
+    "78": {
+        "CardLevel": 6, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 78, 
+        "UpgradeRequireCount": 50, 
+        "UpgradeRequireGold": 5000
+    }, 
+    "79": {
+        "CardLevel": 7, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 79, 
+        "UpgradeRequireCount": 75, 
+        "UpgradeRequireGold": 7500
+    }, 
+    "80": {
+        "CardLevel": 8, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 80, 
+        "UpgradeRequireCount": 100, 
+        "UpgradeRequireGold": 10000
+    }, 
+    "81": {
+        "CardLevel": 9, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 81, 
+        "UpgradeRequireCount": 150, 
+        "UpgradeRequireGold": 15000
+    }, 
+    "82": {
+        "CardLevel": 10, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 82, 
+        "UpgradeRequireCount": 200, 
+        "UpgradeRequireGold": 20000
+    }, 
+    "83": {
+        "CardLevel": 11, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 83, 
+        "UpgradeRequireCount": 300, 
+        "UpgradeRequireGold": 30000
+    }, 
+    "84": {
+        "CardLevel": 12, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 84, 
+        "UpgradeRequireCount": 500, 
+        "UpgradeRequireGold": 50000
+    }, 
+    "85": {
+        "CardLevel": 13, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 85, 
+        "UpgradeRequireCount": 1000, 
+        "UpgradeRequireGold": 100000
+    }, 
+    "86": {
+        "CardLevel": 14, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 86, 
+        "UpgradeRequireCount": 2000, 
+        "UpgradeRequireGold": 200000
+    }, 
+    "87": {
+        "CardLevel": 15, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 87, 
+        "UpgradeRequireCount": 3000, 
+        "UpgradeRequireGold": 300000
+    }, 
+    "88": {
+        "CardLevel": 16, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 88, 
+        "UpgradeRequireCount": 5000, 
+        "UpgradeRequireGold": 500000
+    }, 
+    "89": {
+        "CardLevel": 17, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 89, 
+        "UpgradeRequireCount": 7500, 
+        "UpgradeRequireGold": 750000
+    }, 
+    "90": {
+        "CardLevel": 18, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 90, 
+        "UpgradeRequireCount": 10000, 
+        "UpgradeRequireGold": 1000000
+    }, 
+    "91": {
+        "CardLevel": 19, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 91, 
+        "UpgradeRequireCount": 15000, 
+        "UpgradeRequireGold": 1500000
+    }, 
+    "92": {
+        "CardLevel": 20, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 92, 
+        "UpgradeRequireCount": 20000, 
+        "UpgradeRequireGold": 2000000
+    }, 
+    "93": {
+        "CardLevel": 21, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 93, 
+        "UpgradeRequireCount": 30000, 
+        "UpgradeRequireGold": 3000000
+    }, 
+    "94": {
+        "CardLevel": 22, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 94, 
+        "UpgradeRequireCount": 50000, 
+        "UpgradeRequireGold": 5000000
+    }, 
+    "95": {
+        "CardLevel": 23, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 95, 
+        "UpgradeRequireCount": 75000, 
+        "UpgradeRequireGold": 7500000
+    }, 
+    "96": {
+        "CardLevel": 24, 
+        "CardQuality": 4, 
+        "CardType": 1, 
+        "Index": 96, 
+        "UpgradeRequireCount": 100000, 
+        "UpgradeRequireGold": 10000000
     }
 }
