@@ -13,6 +13,7 @@ import (
 )
 
 var (
+	INITIAL_CARDS = []string{"H2", "H4", "H5", "H6", "H8"}
 	worldChatroom = NewChatroom("WorldChatroom")
 )
 
@@ -172,9 +173,24 @@ func (avatar *Avatar) SetAvatarName(self *Entity, name string) {
 		return
 	}
 
-	self.Set("name", name)
+	avatar.initNewAvatar(self, name)
 	self.NotifyAttrChange("name")
 	self.CallClient("OnSetAvatarName", name)
+}
+
+func (avatar *Avatar) initNewAvatar(self *Entity, name string) {
+	// 设置玩家名字
+	self.Set("name", name)
+	// 让玩家获得初始卡牌
+
+	for i, cardID := range INITIAL_CARDS {
+		embattlePos := i + 1
+		avatar.addCard(self, cardID, 1)
+		avatar.Embattle(self, 1, cardID, embattlePos)
+		avatar.Embattle(self, 2, cardID, embattlePos)
+		avatar.Embattle(self, 3, cardID, embattlePos)
+	}
+	self.NotifyAttrChange("cards", "embattles")
 }
 
 // EnterWorldChatroom : enter world chat room request
