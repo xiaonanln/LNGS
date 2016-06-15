@@ -76,7 +76,8 @@
         "RewardChest1": 1, 
         "RewardChest2": 0.5, 
         "RewardChest3": 0.3, 
-        "RewardChest4": 0.2
+        "RewardChest4": 0.2, 
+        "Type": 1
     }, 
     "2": {
         "BossPos": [
@@ -155,7 +156,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "3": {
         "BossPos": [
@@ -234,7 +236,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "4": {
         "BossPos": [
@@ -313,7 +316,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "5": {
         "BossPos": [
@@ -392,7 +396,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "6": {
         "BossPos": null, 
@@ -468,7 +473,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "7": {
         "BossPos": null, 
@@ -544,7 +550,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "8": {
         "BossPos": null, 
@@ -620,7 +627,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "9": {
         "BossPos": null, 
@@ -696,7 +704,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "10": {
         "BossPos": null, 
@@ -772,7 +781,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "11": {
         "BossPos": null, 
@@ -848,7 +858,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "12": {
         "BossPos": null, 
@@ -924,7 +935,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "13": {
         "BossPos": null, 
@@ -1000,7 +1012,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "14": {
         "BossPos": null, 
@@ -1076,7 +1089,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "15": {
         "BossPos": null, 
@@ -1152,7 +1166,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "16": {
         "BossPos": null, 
@@ -1228,7 +1243,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "17": {
         "BossPos": null, 
@@ -1304,7 +1320,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "18": {
         "BossPos": null, 
@@ -1380,7 +1397,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "19": {
         "BossPos": null, 
@@ -1456,7 +1474,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "20": {
         "BossPos": null, 
@@ -1532,7 +1551,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "21": {
         "BossPos": null, 
@@ -1608,7 +1628,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "22": {
         "BossPos": null, 
@@ -1684,7 +1705,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "23": {
         "BossPos": null, 
@@ -1760,7 +1782,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "24": {
         "BossPos": null, 
@@ -1836,7 +1859,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "25": {
         "BossPos": null, 
@@ -1912,7 +1936,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "26": {
         "BossPos": null, 
@@ -1988,7 +2013,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "27": {
         "BossPos": null, 
@@ -2064,7 +2090,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "28": {
         "BossPos": null, 
@@ -2140,7 +2167,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "29": {
         "BossPos": null, 
@@ -2216,7 +2244,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "30": {
         "BossPos": null, 
@@ -2292,7 +2321,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "31": {
         "BossPos": null, 
@@ -2368,7 +2398,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "32": {
         "BossPos": null, 
@@ -2444,7 +2475,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "33": {
         "BossPos": null, 
@@ -2520,7 +2552,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "34": {
         "BossPos": null, 
@@ -2596,7 +2629,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "35": {
         "BossPos": null, 
@@ -2672,7 +2706,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "36": {
         "BossPos": null, 
@@ -2748,7 +2783,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "37": {
         "BossPos": null, 
@@ -2824,7 +2860,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "38": {
         "BossPos": null, 
@@ -2900,7 +2937,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "39": {
         "BossPos": null, 
@@ -2976,7 +3014,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "40": {
         "BossPos": null, 
@@ -3052,7 +3091,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "41": {
         "BossPos": null, 
@@ -3128,7 +3168,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "42": {
         "BossPos": null, 
@@ -3204,7 +3245,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "43": {
         "BossPos": null, 
@@ -3280,7 +3322,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "44": {
         "BossPos": null, 
@@ -3356,7 +3399,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "45": {
         "BossPos": null, 
@@ -3432,7 +3476,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "46": {
         "BossPos": null, 
@@ -3508,7 +3553,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "47": {
         "BossPos": null, 
@@ -3584,7 +3630,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "48": {
         "BossPos": null, 
@@ -3660,7 +3707,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "49": {
         "BossPos": null, 
@@ -3736,7 +3784,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "50": {
         "BossPos": null, 
@@ -3812,7 +3861,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "51": {
         "BossPos": null, 
@@ -3888,7 +3938,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "52": {
         "BossPos": null, 
@@ -3964,7 +4015,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "53": {
         "BossPos": null, 
@@ -4040,7 +4092,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "54": {
         "BossPos": null, 
@@ -4116,7 +4169,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "55": {
         "BossPos": null, 
@@ -4192,7 +4246,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "56": {
         "BossPos": null, 
@@ -4268,7 +4323,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "57": {
         "BossPos": null, 
@@ -4344,7 +4400,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "58": {
         "BossPos": null, 
@@ -4420,7 +4477,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "59": {
         "BossPos": null, 
@@ -4496,7 +4554,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "60": {
         "BossPos": null, 
@@ -4572,7 +4631,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "61": {
         "BossPos": null, 
@@ -4648,7 +4708,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "62": {
         "BossPos": null, 
@@ -4724,7 +4785,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "63": {
         "BossPos": null, 
@@ -4800,7 +4862,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "64": {
         "BossPos": null, 
@@ -4876,7 +4939,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "65": {
         "BossPos": null, 
@@ -4952,7 +5016,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "66": {
         "BossPos": null, 
@@ -5028,7 +5093,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "67": {
         "BossPos": null, 
@@ -5104,7 +5170,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "68": {
         "BossPos": null, 
@@ -5180,7 +5247,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "69": {
         "BossPos": null, 
@@ -5256,7 +5324,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "70": {
         "BossPos": null, 
@@ -5332,7 +5401,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "71": {
         "BossPos": null, 
@@ -5408,7 +5478,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "72": {
         "BossPos": null, 
@@ -5484,7 +5555,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "73": {
         "BossPos": null, 
@@ -5560,7 +5632,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "74": {
         "BossPos": null, 
@@ -5636,7 +5709,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "75": {
         "BossPos": null, 
@@ -5712,7 +5786,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "76": {
         "BossPos": null, 
@@ -5788,7 +5863,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "77": {
         "BossPos": null, 
@@ -5864,7 +5940,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "78": {
         "BossPos": null, 
@@ -5940,7 +6017,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "79": {
         "BossPos": null, 
@@ -6016,7 +6094,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "80": {
         "BossPos": null, 
@@ -6092,7 +6171,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "81": {
         "BossPos": null, 
@@ -6168,7 +6248,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "82": {
         "BossPos": null, 
@@ -6244,7 +6325,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "83": {
         "BossPos": null, 
@@ -6320,7 +6402,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "84": {
         "BossPos": null, 
@@ -6396,7 +6479,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "85": {
         "BossPos": null, 
@@ -6472,7 +6556,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "86": {
         "BossPos": null, 
@@ -6548,7 +6633,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "87": {
         "BossPos": null, 
@@ -6624,7 +6710,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "88": {
         "BossPos": null, 
@@ -6700,7 +6787,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "89": {
         "BossPos": null, 
@@ -6776,7 +6864,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "90": {
         "BossPos": null, 
@@ -6852,7 +6941,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "91": {
         "BossPos": null, 
@@ -6928,7 +7018,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "92": {
         "BossPos": null, 
@@ -7004,7 +7095,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "93": {
         "BossPos": null, 
@@ -7080,7 +7172,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "94": {
         "BossPos": null, 
@@ -7156,7 +7249,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "95": {
         "BossPos": null, 
@@ -7232,7 +7326,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "96": {
         "BossPos": null, 
@@ -7308,7 +7403,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "97": {
         "BossPos": null, 
@@ -7384,7 +7480,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "98": {
         "BossPos": null, 
@@ -7460,7 +7557,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "99": {
         "BossPos": null, 
@@ -7536,7 +7634,8 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
     }, 
     "100": {
         "BossPos": null, 
@@ -7612,6 +7711,84 @@
         "RewardChest1": null, 
         "RewardChest2": null, 
         "RewardChest3": null, 
-        "RewardChest4": null
+        "RewardChest4": null, 
+        "Type": 1
+    }, 
+    "10000": {
+        "BossPos": null, 
+        "Index": 10000, 
+        "Monsters": [
+            [
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ]
+            ], 
+            [
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ]
+            ], 
+            [
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ], 
+                [
+                    0, 
+                    0
+                ]
+            ]
+        ], 
+        "RewardChest1": null, 
+        "RewardChest2": null, 
+        "RewardChest3": null, 
+        "RewardChest4": null, 
+        "Type": 2
     }
 }

@@ -266,7 +266,7 @@
         "MoveSpeed": 0, 
         "Name": "\u7bad\u5854", 
         "SizeScale": null, 
-        "Skill": null, 
+        "Skill": 108, 
         "SuperSkill": null
     }
 }

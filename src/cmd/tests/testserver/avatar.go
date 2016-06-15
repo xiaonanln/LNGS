@@ -254,13 +254,13 @@ func OnSoloMatched(battleID string, entity1 *Entity, entity2 *Entity) {
 		"C2": avatar2.getEmbattleCards(entity2),
 	}
 
-	entity1.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 1)
-	entity2.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 2)
+	entity1.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 1, battleID)
+	entity2.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 2, battleID)
 }
 
 func (avatar *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
 	cards := self.GetMapAttr("cards") // all cards
-	embattleIndex := self.GetInt("embattleIndex", 0)
+	embattleIndex := self.GetInt("embattleIndex", 1)
 	embattles := self.GetMapAttr("embattles")
 	embattle := embattles.GetMapAttr(strconv.Itoa(embattleIndex))
 

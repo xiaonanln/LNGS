@@ -15,7 +15,7 @@ const (
 	ADD_SCORE_DIVERSE_PER_SECOND = 100 // 每秒增加对分数差距的容忍
 	MAX_SOLO_MATCH_TIME          = 15  // 最长匹配时间为15s，超出则必然匹配到机器人
 
-	SOLO_INSTANCE_ID = 1
+	SOLO_INSTANCE_ID = 10000
 )
 
 var (
