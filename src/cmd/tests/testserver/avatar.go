@@ -365,30 +365,118 @@ func (avatar *Avatar) SetEmbattleIndex(self *Entity, embattleIndex int) {
 }
 
 func (avatar *Avatar) UpgradeCard(self *Entity, cardID string) {
-	cardType, _, cardData := InterpretCardID(cardID)
-	cardQuality := cardData.GetInt("Class")
+	cardInfo := avatar.getCardInfo(self, cardID)
 
-	cards := self.GetMapAttr("cards")
-	if !cards.HasKey(cardID) {
-		log.Printf("Card %s not found", cardID)
-		return
-	}
-
-	cardInfo := cards.GetMapAttr(cardID)
 	cardLevel := cardInfo.GetInt("lv", 0)
 	cardCount := cardInfo.GetInt("num", 0)
 
-	requireCount := GetCardUpgradeRequireCount(cardType, cardQuality, cardLevel)
+	cardType, _, cardData := InterpretCardID(cardID)
+	cardQuality := cardData.GetInt("Class")
+
+	requireCount, requireGold := GetCardUpgradeRequireCountGold(cardType, cardQuality, cardLevel)
 
 	if cardLevel >= MAX_CARD_LEVEL || cardCount < requireCount {
 		return
 	}
+
+	if self.GetInt("gold", 0) < requireGold {
+		// gold not enough
+		log.Printf("gold not enough")
+		return
+	}
+
+	self.Set("gold", self.GetInt("gold", 0)-requireGold)
+
 	cardInfo.Set("num", cardCount-requireCount)
 	cardLevel = cardLevel + 1
 	cardInfo.Set("lv", cardLevel)
 
 	self.NotifyAttrChange("cards")
 	self.CallClient("OnUpgradeCard", cardID, cardLevel)
+}
+
+func (avatar *Avatar) UpgradeSkill(self *Entity, cardID string) {
+	cardInfo := avatar.getCardInfo(self, cardID)
+	cardLevel := cardInfo.GetInt("lv", 0)
+	skillLevel := cardInfo.GetInt("skilllv", 1)
+
+	cardType, _, cardData := InterpretCardID(cardID)
+	if cardType != "H" {
+		log.Panicf("card %s is not hero", cardID)
+	}
+
+	if skillLevel >= cardLevel {
+		log.Printf("Skill level is %d, larger than card level %d", skillLevel, cardLevel)
+		return
+	}
+
+	cardQuality := cardData.GetInt("Class")
+	requireGold := GetSkillUpgradeRequireGold(cardQuality, skillLevel)
+	if !avatar.consumeGold(self, requireGold) {
+		log.Printf("gold not enough")
+		return
+	}
+
+	// gold consumed already, now upgrade skill
+	skillLevel++
+	cardInfo.Set("skilllv", skillLevel)
+	self.NotifyAttrChange("cards")
+	self.CallClient("OnUpgradeSkill", cardID, cardLevel, skillLevel)
+}
+
+func (avatar *Avatar) UpgradeSuper(self *Entity, cardID string) {
+	cardInfo := avatar.getCardInfo(self, cardID)
+	cardLevel := cardInfo.GetInt("lv", 0)
+	superLevel := cardInfo.GetInt("superlv", 1)
+
+	cardType, _, cardData := InterpretCardID(cardID)
+	if cardType != "H" {
+		log.Panicf("card %s is not hero", cardID)
+	}
+
+	if superLevel >= cardLevel {
+		log.Printf("Super level is %d, larger than card level %d", superLevel, cardLevel)
+		return
+	}
+
+	cardQuality := cardData.GetInt("Class")
+	requireGold := GetSuperUpgradeRequireGold(cardQuality, superLevel)
+	if !avatar.consumeGold(self, requireGold) {
+		log.Printf("gold not enough")
+		return
+	}
+
+	// gold consumed already, now upgrade super
+	superLevel++
+	cardInfo.Set("superlv", superLevel)
+	self.NotifyAttrChange("cards")
+	self.CallClient("OnUpgradeSuper", cardID, cardLevel, superLevel)
+}
+
+func (avatar *Avatar) consumeGold(self *Entity, gold int) bool {
+	if gold <= 0 {
+		return false
+	}
+
+	hasGold := self.GetInt("gold", 0)
+	if hasGold < gold {
+		// gold not enough
+		log.Printf("gold not enough")
+		return false
+	}
+
+	self.Set("gold", hasGold-gold)
+	return true
+}
+
+func (avatar *Avatar) getCardInfo(self *Entity, cardID string) *MapAttr {
+	cards := self.GetMapAttr("cards")
+	if !cards.HasKey(cardID) {
+		log.Panicf("Card %s not found", cardID)
+	}
+
+	cardInfo := cards.GetMapAttr(cardID)
+	return cardInfo
 }
 
 // StartSolo 开始匹配
@@ -475,6 +563,12 @@ func (avatar *Avatar) addGold(self *Entity, gold int) {
 	self.Set("gold", self.GetInt("gold", 0)+gold)
 }
 
+// 判断玩家是否有某张卡
+func (avatar *Avatar) hasCard(self *Entity, cardID string) bool {
+	cards := self.GetMapAttr("cards")
+	return cards.HasKey(cardID)
+}
+
 func (avatar *Avatar) addCard(self *Entity, cardID string, num int) {
 	if num < 0 {
 		log.Panicf("addCard %s: negative num %d", cardID, num)
@@ -486,7 +580,9 @@ func (avatar *Avatar) addCard(self *Entity, cardID string, num int) {
 
 	cardLv := cardInfo.GetInt("lv", 0)
 	if cardLv == 0 {
-		cardInfo.Set("lv", 1) // 第一次获得卡牌的时候自动设置为等级1
+		cardInfo.Set("lv", 1)      // 第一次获得卡牌的时候自动设置为等级1
+		cardInfo.Set("skilllv", 1) // 技能等级
+		cardInfo.Set("superlv", 1) // 大招等级
 	}
 
 	cardInfo.Set("num", cardInfo.GetInt("num", 0)+num)

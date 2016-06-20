@@ -1,6 +1,8 @@
 package main
 
 const (
-	MAX_BASE_LEVEL = 25
-	MAX_CARD_LEVEL = 25
+	MAX_BASE_LEVEL  = 25
+	MAX_CARD_LEVEL  = 25
+	MAX_SKILL_LEVEL = 25
+	MAX_SUPER_LEVEL = 25
 )

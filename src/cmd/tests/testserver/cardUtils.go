@@ -21,6 +21,9 @@ const (
 var (
 	heroIndexes             []int
 	cardUpgradeRequireCount = make(map[string]int)
+	cardUpgradeRequireGold  = make(map[string]int)
+	skillUpgradeRequireGold = make(map[string]int)
+	superUpgradeRequireGold = make(map[string]int)
 )
 
 func cardUtilsInit() {
@@ -48,7 +51,6 @@ func cardUtilsInit() {
 		cardLevel := upgradeData.GetInt("CardLevel")
 		cardQuality := upgradeData.GetInt("CardQuality")
 		cardType := upgradeData.GetInt("CardType")
-		upgradeRequireCount := upgradeData.GetInt("UpgradeRequireCount")
 
 		var cardTypeS string
 		if cardType == 1 {
@@ -58,23 +60,63 @@ func cardUtilsInit() {
 		}
 
 		key := fmt.Sprintf("%s-%d-%d", cardTypeS, cardQuality, cardLevel)
-		cardUpgradeRequireCount[key] = upgradeRequireCount
+		cardUpgradeRequireCount[key] = upgradeData.GetInt("UpgradeRequireCount")
+		cardUpgradeRequireGold[key] = upgradeData.GetInt("UpgradeRequireGold")
+
+		skillKey := fmt.Sprintf("%d-%d", cardQuality, cardLevel)
+		skillUpgradeRequireGold[skillKey] = upgradeData.GetInt("UpgradeSkillRequireGold")
+		superUpgradeRequireGold[skillKey] = upgradeData.GetInt("UpgradeSuperRequireGold")
 	}
-	for k, v := range cardUpgradeRequireCount {
-		log.Printf("Card upgrade %s = %d", k, v)
+	for cardQuality := 1; cardQuality <= 4; cardQuality++ {
+		for cardLevel := 1; cardLevel < MAX_CARD_LEVEL; cardLevel++ {
+			if _, ok := cardUpgradeRequireCount[fmt.Sprintf("H-%d-%d", cardQuality, cardLevel)]; !ok {
+				log.Panicf("cardUpgradeRequireCount.H-1-1 not found")
+			}
+			if _, ok := cardUpgradeRequireGold[fmt.Sprintf("H-%d-%d", cardQuality, cardLevel)]; !ok {
+				log.Panicf("cardUpgradeRequireGold.H-1-1 not found")
+			}
+			if _, ok := skillUpgradeRequireGold[fmt.Sprintf("%d-%d", cardQuality, cardLevel)]; !ok {
+				log.Panicf("cardUpgradeRequireCount.H-1-1 not found")
+			}
+			if _, ok := superUpgradeRequireGold[fmt.Sprintf("%d-%d", cardQuality, cardLevel)]; !ok {
+				log.Panicf("cardUpgradeRequireCount.H-1-1 not found")
+			}
+		}
 	}
-	if _, ok := cardUpgradeRequireCount["H-1-1"]; !ok {
-		log.Panicf("upgrade.H-1-1 not found")
-	}
+	log.Printf("Upgrade data checked OK!")
 }
 
-func GetCardUpgradeRequireCount(cardType string, cardQuality int, cardLevel int) int {
+func GetCardUpgradeRequireCountGold(cardType string, cardQuality int, cardLevel int) (int, int) {
 	key := fmt.Sprintf("%s-%d-%d", cardType, cardQuality, cardLevel)
 	count, ok := cardUpgradeRequireCount[key]
 	if !ok {
-		log.Panicf("Card upgrade not found: %s", key)
+		log.Panicf("Card upgrade require count not found: %s", key)
 	}
-	return count
+
+	gold, ok := cardUpgradeRequireGold[key]
+	if !ok {
+		log.Panicf("Card upgrade require gold not found: %s", key)
+	}
+
+	return count, gold
+}
+
+func GetSkillUpgradeRequireGold(cardQuality int, cardLevel int) int {
+	key := fmt.Sprintf("%d-%d", cardQuality, cardLevel)
+	gold, ok := skillUpgradeRequireGold[key]
+	if !ok {
+		log.Panicf("Skill upgrade not found: %s", key)
+	}
+	return gold
+}
+
+func GetSuperUpgradeRequireGold(cardQuality int, cardLevel int) int {
+	key := fmt.Sprintf("%d-%d", cardQuality, cardLevel)
+	gold, ok := superUpgradeRequireGold[key]
+	if !ok {
+		log.Panicf("Skill upgrade not found: %s", key)
+	}
+	return gold
 }
 
 func RandHeroIndex() int {
