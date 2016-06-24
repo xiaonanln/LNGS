@@ -28,6 +28,8 @@ func (avatar *Avatar) Init(self *Entity) {
 	self.Attrs.Set("level", self.Attrs.GetInt("level", 1))
 	self.Attrs.Set("gold", self.Attrs.GetInt("gold", 0))
 	self.Attrs.Set("diamond", self.Attrs.GetInt("diamond", 0))
+	self.Attrs.Set("baseLevel", self.Attrs.GetInt("baseLevel", 1))
+	self.Attrs.Set("baseExp", self.Attrs.GetInt("baseExp", 0))
 
 	self.Attrs.GetMapAttr("chests")
 	self.Attrs.GetMapAttr("cards")
@@ -373,7 +375,9 @@ func (avatar *Avatar) UpgradeCard(self *Entity, cardID string) {
 	cardType, _, cardData := InterpretCardID(cardID)
 	cardQuality := cardData.GetInt("Class")
 
-	requireCount, requireGold := GetCardUpgradeRequireCountGold(cardType, cardQuality, cardLevel)
+	upgradeInfo := GetCardUpgradeInfo(cardType, cardQuality, cardLevel)
+	requireCount := upgradeInfo.requireCount
+	requireGold := upgradeInfo.requireGold
 
 	if cardLevel >= MAX_CARD_LEVEL || cardCount < requireCount {
 		return
@@ -391,7 +395,10 @@ func (avatar *Avatar) UpgradeCard(self *Entity, cardID string) {
 	cardLevel = cardLevel + 1
 	cardInfo.Set("lv", cardLevel)
 
-	self.NotifyAttrChange("cards")
+	// get base exp
+	avatar.gainBaseExp(self, upgradeInfo.getBaseExp)
+
+	self.NotifyAttrChange("cards", "gold")
 	self.CallClient("OnUpgradeCard", cardID, cardLevel)
 }
 
@@ -411,7 +418,8 @@ func (avatar *Avatar) UpgradeSkill(self *Entity, cardID string) {
 	}
 
 	cardQuality := cardData.GetInt("Class")
-	requireGold := GetSkillUpgradeRequireGold(cardQuality, skillLevel)
+	upgradeInfo := GetSkillUpgradeInfo(cardQuality, skillLevel)
+	requireGold := upgradeInfo.requireGold
 	if !avatar.consumeGold(self, requireGold) {
 		log.Printf("gold not enough")
 		return
@@ -420,7 +428,11 @@ func (avatar *Avatar) UpgradeSkill(self *Entity, cardID string) {
 	// gold consumed already, now upgrade skill
 	skillLevel++
 	cardInfo.Set("skilllv", skillLevel)
-	self.NotifyAttrChange("cards")
+
+	// get base exp
+	avatar.gainBaseExp(self, upgradeInfo.getBaseExp)
+
+	self.NotifyAttrChange("cards", "gold")
 	self.CallClient("OnUpgradeSkill", cardID, cardLevel, skillLevel)
 }
 
@@ -440,7 +452,8 @@ func (avatar *Avatar) UpgradeSuper(self *Entity, cardID string) {
 	}
 
 	cardQuality := cardData.GetInt("Class")
-	requireGold := GetSuperUpgradeRequireGold(cardQuality, superLevel)
+	upgradeInfo := GetSuperUpgradeInfo(cardQuality, superLevel)
+	requireGold := upgradeInfo.requireGold
 	if !avatar.consumeGold(self, requireGold) {
 		log.Printf("gold not enough")
 		return
@@ -449,7 +462,11 @@ func (avatar *Avatar) UpgradeSuper(self *Entity, cardID string) {
 	// gold consumed already, now upgrade super
 	superLevel++
 	cardInfo.Set("superlv", superLevel)
-	self.NotifyAttrChange("cards")
+
+	// get base exp
+	avatar.gainBaseExp(self, upgradeInfo.getBaseExp)
+
+	self.NotifyAttrChange("cards", "gold")
 	self.CallClient("OnUpgradeSuper", cardID, cardLevel, superLevel)
 }
 
@@ -467,6 +484,30 @@ func (avatar *Avatar) consumeGold(self *Entity, gold int) bool {
 
 	self.Set("gold", hasGold-gold)
 	return true
+}
+
+func (avatar *Avatar) gainBaseExp(self *Entity, exp int) {
+	baseExp := self.GetInt("baseExp", 0)
+	baseLevel := self.GetInt("baseLevel", 1)
+
+	baseExp += exp
+
+	for baseLevel < MAX_BASE_LEVEL {
+		baseUpgradeData := lngsdata.GetDataRecord("baseUpgrade", baseLevel)
+		requireExp := baseUpgradeData.GetInt("RequireExp")
+		if baseExp < requireExp {
+			// not enough exp to upgrade
+			break
+		}
+		// time to upgrade
+		baseExp -= requireExp
+		baseLevel++
+	}
+
+	self.Set("baseLevel", baseLevel)
+	self.Set("baseExp", baseExp)
+
+	self.NotifyAttrChange("baseLevel", "baseExp")
 }
 
 func (avatar *Avatar) getCardInfo(self *Entity, cardID string) *MapAttr {
