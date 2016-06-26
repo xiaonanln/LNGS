@@ -504,6 +504,10 @@ func (avatar *Avatar) gainBaseExp(self *Entity, exp int) {
 		baseLevel++
 	}
 
+	if baseLevel >= MAX_BASE_LEVEL {
+		baseExp = 0 // strip exp when base is at max level
+	}
+
 	self.Set("baseLevel", baseLevel)
 	self.Set("baseExp", baseExp)
 
