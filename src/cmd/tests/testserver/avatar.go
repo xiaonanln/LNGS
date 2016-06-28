@@ -310,7 +310,8 @@ func (avatar *Avatar) BuyGold(self *Entity, gold int) {
 	self.Set("diamond", hasDiamond-consumeDiamond)
 	self.Set("gold", self.GetInt("gold", 0)+gold)
 	self.NotifyAttrChange("diamond", "gold")
-	self.CallClient("OnBuyGold", gold, consumeDiamond)
+	self.CallClient("Toast", fmt.Sprintf("金币增加%d", gold))
+	// self.CallClient("OnBuyGold", gold, consumeDiamond)
 }
 
 func (avatar *Avatar) BuyCard(self *Entity, cardID string) {
