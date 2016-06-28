@@ -23,7 +23,7 @@ type Avatar struct {
 func (avatar *Avatar) Init(self *Entity) {
 	// Initialize Avatar Attrs by default values
 	self.Set("icon", self.GetInt("icon", 1))
-	self.Attrs.Set("name", "") // test only
+	self.Attrs.Set("name", self.Attrs.GetStr("name", ""))
 	self.Attrs.Set("exp", self.Attrs.GetInt("exp", 0))
 	self.Attrs.Set("level", self.Attrs.GetInt("level", 1))
 	self.Attrs.Set("gold", self.Attrs.GetInt("gold", 0))
