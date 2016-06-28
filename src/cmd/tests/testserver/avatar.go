@@ -530,6 +530,11 @@ func (avatar *Avatar) StartSolo(self *Entity) {
 	self.CallClient("OnStartSolo")
 }
 
+func (avatar *Avatar) StopSolo(self *Entity) {
+	theSoloManager.StopSolo(self)
+	self.CallClient("OnStopSolo")
+}
+
 // func (avatar *Avatar) getCardLevel(self *Entity, cardID string) int {
 // 	cards := self.GetMapAttr("cards")
 // 	if !cards.HasKey(cardID) {

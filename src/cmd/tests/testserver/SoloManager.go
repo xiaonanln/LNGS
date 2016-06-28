@@ -46,7 +46,7 @@ func newSoloManager() *SoloManager {
 
 // OnAvatarLogout 通知玩家登出
 func (self *SoloManager) OnAvatarLogout(avatar *Entity) {
-	delete(self.avatars, avatar)
+	self.StopSolo(avatar)
 }
 
 func (self *SoloManager) StartSolo(avatar *Entity) {
@@ -55,6 +55,10 @@ func (self *SoloManager) StartSolo(avatar *Entity) {
 	}
 
 	self.avatars[avatar] = GetTime()
+}
+
+func (self *SoloManager) StopSolo(avatar *Entity) {
+	delete(self.avatars, avatar)
 }
 
 type _AvatarSST struct {
