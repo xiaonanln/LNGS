@@ -1,17 +1,18 @@
-package main 
+package main
 
 import (
 	. "lngs"
 )
+
 type Chatroom struct {
-	name string
-	avatars map[*Entity] bool 
+	name    string
+	avatars map[*Entity]bool
 }
 
 func NewChatroom(name string) *Chatroom {
 	return &Chatroom{
-		name: name, 
-		avatars : make(map[*Entity] bool ), 
+		name:    name,
+		avatars: make(map[*Entity]bool),
 	}
 }
 
@@ -30,7 +31,13 @@ func (self *Chatroom) Say(avatar *Entity, text string) {
 	avatarIcon := avatar.GetInt("icon", 1)
 	avatarName := avatar.GetStr("name", "")
 	for otherAvatar, _ := range self.avatars {
-		otherAvatar.CallClient("OnSay", avatarIcon, avatarName, text)
+		var isMe int
+		if avatar == otherAvatar {
+			isMe = 1
+		} else {
+			isMe = 0
+		}
+		otherAvatar.CallClient("OnSay", avatarIcon, avatarName, text, isMe)
 	}
 }
 
