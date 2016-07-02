@@ -1,8 +1,6 @@
 package main
 
-import (
-	. "lngs"
-)
+import . "lngs"
 
 type _ChatEntry []interface{}
 
@@ -24,7 +22,7 @@ func (self *Chatroom) Enter(avatar *Entity) {
 	self.avatars[avatar] = true
 	avatar.CallClient("OnEnterChatRoom", self.name, self.GetAvatarCount())
 	myID := avatar.Id()
-	for _, chatEntry := range self.recentChats[len(self.recentChats)-10:] {
+	for _, chatEntry := range self.recentChats[MaxInt(0, len(self.recentChats)-10):] {
 		avatarID, avatarIcon, avatarName, text := chatEntry[0], chatEntry[1], chatEntry[2], chatEntry[3]
 		isMe := avatarID == myID
 		avatar.CallClient("OnSay", avatarIcon, avatarName, text, isMe)
@@ -43,7 +41,7 @@ func (self *Chatroom) Say(avatar *Entity, text string) {
 
 	chatEntry := _ChatEntry{avatarID, avatarIcon, avatarName, text}
 	self.recentChats = append(self.recentChats, chatEntry)
-	self.recentChats = self.recentChats[len(self.recentChats)-10:] // only save most recent 10 chats
+	self.recentChats = self.recentChats[MaxInt(0, len(self.recentChats)-10):] // only save most recent 10 chats
 
 	for otherAvatar, _ := range self.avatars {
 		var isMe int

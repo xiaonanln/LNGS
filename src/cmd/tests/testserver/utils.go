@@ -15,3 +15,11 @@ func IsSameDay(t1, t2 int64) bool {
 func GetTime() int64 {
 	return time.Now().Unix()
 }
+
+func MaxInt(i1 int, i2 int) int {
+	if i1 >= i2 {
+		return i1
+	} else {
+		return i2
+	}
+}
