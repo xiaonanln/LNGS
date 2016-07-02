@@ -1,6 +1,9 @@
 package main
 
-import . "lngs"
+import (
+	. "lngs"
+	"log"
+)
 
 type _ChatEntry []interface{}
 
@@ -22,9 +25,15 @@ func (self *Chatroom) Enter(avatar *Entity) {
 	self.avatars[avatar] = true
 	avatar.CallClient("OnEnterChatRoom", self.name, self.GetAvatarCount())
 	myID := avatar.Id()
-	for _, chatEntry := range self.recentChats[MaxInt(0, len(self.recentChats)-10):] {
+	log.Printf("%s Entering chatroom, recentChats %d", avatar, len(self.recentChats))
+	for _, chatEntry := range self.recentChats {
 		avatarID, avatarIcon, avatarName, text := chatEntry[0], chatEntry[1], chatEntry[2], chatEntry[3]
-		isMe := avatarID == myID
+		var isMe int
+		if avatarID.(string) == myID {
+			isMe = 1
+		} else {
+			isMe = 0
+		}
 		avatar.CallClient("OnSay", avatarIcon, avatarName, text, isMe)
 	}
 }
