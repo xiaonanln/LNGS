@@ -31,6 +31,8 @@ func (avatar *Avatar) Init(self *Entity) {
 	self.Attrs.Set("baseLevel", self.Attrs.GetInt("baseLevel", 1))
 	self.Attrs.Set("baseExp", self.Attrs.GetInt("baseExp", 0))
 
+	self.Attrs.Set("instanceProgress", self.Attrs.GetInt("instanceProgress", 0)) // 关卡进度
+
 	self.Attrs.GetMapAttr("chests")
 	self.Attrs.GetMapAttr("cards")
 
@@ -210,6 +212,12 @@ func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	rewardChests := make([]int, 0, 4)
 	if win {
+		instanceProgress := self.GetInt("instanceProgress", 0)
+		if instanceID == instanceProgress+1 {
+			self.Set("instanceProgress", instanceProgress+1)
+			self.NotifyAttrChange("instanceProgress")
+		}
+
 		for chestID := 1; chestID <= 4; chestID++ {
 			rewardChestProbKey := "RewardChest" + strconv.Itoa(chestID)
 			prob := instanceData.GetFloat(rewardChestProbKey)
@@ -226,6 +234,12 @@ func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 
 // EnterInstance : enter instance request
 func (avatar *Avatar) EnterInstance(self *Entity, instanceID int) {
+	instanceProgress := self.GetInt("instanceProgress", 0)
+	if instanceID > instanceProgress+1 {
+		self.CallClient("Toast", fmt.Sprintf("请先通关关卡%d", instanceProgress+1))
+		return
+	}
+
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	monsters := instanceData.GetList("Monsters")
 
