@@ -1,6 +1,9 @@
 {
     "1": {
-        "CardNum": 9, 
+        "CardNum1": 9, 
+        "CardNum2": 0, 
+        "CardNum3": 0, 
+        "CardProb3": 0.0001, 
         "GiftNumMax": 16, 
         "GiftNumMin": 12, 
         "GoldMax": 58, 
@@ -11,7 +14,10 @@
         "SuperNumMin": 5
     }, 
     "2": {
-        "CardNum": 18, 
+        "CardNum1": 18, 
+        "CardNum2": 1, 
+        "CardNum3": 0, 
+        "CardProb3": 0.001, 
         "GiftNumMax": 32, 
         "GiftNumMin": 24, 
         "GoldMax": 116, 
@@ -22,7 +28,10 @@
         "SuperNumMin": 10
     }, 
     "3": {
-        "CardNum": 36, 
+        "CardNum1": 36, 
+        "CardNum2": 3, 
+        "CardNum3": 0, 
+        "CardProb3": 0.01, 
         "GiftNumMax": 64, 
         "GiftNumMin": 48, 
         "GoldMax": 232, 
@@ -33,7 +42,10 @@
         "SuperNumMin": 20
     }, 
     "4": {
-        "CardNum": 72, 
+        "CardNum1": 72, 
+        "CardNum2": 9, 
+        "CardNum3": 1, 
+        "CardProb3": 0, 
         "GiftNumMax": 128, 
         "GiftNumMin": 96, 
         "GoldMax": 464, 
