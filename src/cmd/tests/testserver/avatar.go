@@ -622,6 +622,13 @@ func (avatar *Avatar) genRandomChestCards(chestID int, chestData *lngsdata.DataR
 		}
 	}
 
+	cardProp3 := chestData.GetFloat("CardProb3")
+	if cardProp3 > 0 && rand.Float64() < cardProp3 {
+		heroIndex := RandHeroIndexOfClass(3)
+		cardID := fmt.Sprintf("H%d", heroIndex)
+		cards[cardID] = cards[cardID] + 1
+	}
+
 	return cards
 }
 
