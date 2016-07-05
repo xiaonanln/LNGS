@@ -586,8 +586,8 @@ func (avatar *Avatar) openChest(self *Entity, chestID int) {
 
 	addGold := lngsutils.RandInt(chestData.GetInt("GoldMin"), chestData.GetInt("GoldMax"))
 	avatar.addGold(self, addGold)
-	cardNum := chestData.GetInt("CardNum")
-	cards := avatar.genRandomChestCards(chestID, cardNum)
+	cards := avatar.genRandomChestCards(chestID, chestData)
+
 	// put cards to avatar
 	for cardID, num := range cards {
 		avatar.addCard(self, cardID, num)
@@ -607,13 +607,19 @@ func (avatar *Avatar) clearCards(self *Entity) {
 	self.NotifyAttrChange("cards", "embattles")
 }
 
-func (avatar *Avatar) genRandomChestCards(chestID int, cardNum int) map[string]int {
+func (avatar *Avatar) genRandomChestCards(chestID int, chestData *lngsdata.DataRecord) map[string]int {
 	cards := map[string]int{}
+	for cardClass := 1; cardClass <= 3; cardClass++ {
+		cardNum := chestData.GetInt(fmt.Sprintf("CardNum%d", cardClass))
+		if cardNum == 0 {
+			continue
+		}
 
-	for i := 0; i < cardNum; i++ {
-		heroIndex := RandHeroIndex()
-		cardID := fmt.Sprintf("H%d", heroIndex)
-		cards[cardID] = cards[cardID] + 1
+		for i := 0; i < cardNum; i++ {
+			heroIndex := RandHeroIndexOfClass(cardClass)
+			cardID := fmt.Sprintf("H%d", heroIndex)
+			cards[cardID] = cards[cardID] + 1
+		}
 	}
 
 	return cards
