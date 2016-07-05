@@ -210,9 +210,16 @@ func (avatar *Avatar) LeaveWorldChatroom(self *Entity) {
 
 // FinishInstance : player finishs an instance
 func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
-	log.Printf("%v.FinishBattle: instanceID=%v, win = %v", self, instanceID, win)
+	log.Printf("%v.FinishInstance: instanceID=%v, win = %v", self, instanceID, win)
+
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	rewardChests := make([]int, 0, 4)
+
+	if instanceID == SOLO_INSTANCE_ID {
+		avatar.finishSoloInstance(self, win)
+		return
+	}
+
 	if win {
 		instanceProgress := self.GetInt("instanceProgress", 0)
 		if instanceID == instanceProgress+1 {
@@ -232,6 +239,24 @@ func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 	}
 
 	self.CallClient("OnFinishInstance", instanceID, win, rewardChests)
+}
+
+func (avatar *Avatar) finishSoloInstance(self *Entity, win bool) {
+	cups := self.GetInt("cups", 0)
+	if win {
+		cups = cups + 30
+	} else {
+		cups = cups - 30
+	}
+	self.Set("cups", cups)
+	avatar.onCupsChange(self, cups)
+	self.NotifyAttrChange("cups")
+	rewardChests := []int{}
+	self.CallClient("OnFinishInstance", SOLO_INSTANCE_ID, win, rewardChests)
+}
+
+func (avatar *Avatar) onCupsChange(self *Entity, cups int) {
+
 }
 
 // EnterInstance : enter instance request
