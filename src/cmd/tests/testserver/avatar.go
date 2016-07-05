@@ -146,10 +146,12 @@ func (avatar *Avatar) handleGmcmd(self *Entity, gmcmd string) {
 		attrName := args[0]
 		val, _ := strconv.Atoi(args[1])
 		self.Set(attrName, val)
+		self.NotifyAttrChange(attrName)
 	} else if cmd == "add" {
 		attrName := args[0]
 		addVal, _ := strconv.Atoi(args[1])
 		self.Set(attrName, self.GetInt(attrName, 0)+addVal)
+		self.NotifyAttrChange(attrName)
 	} else {
 		self.CallClient("Toast", "无法识别的GM指令："+gmcmd)
 		return
