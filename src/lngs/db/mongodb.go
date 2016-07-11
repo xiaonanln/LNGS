@@ -5,8 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"gopkg.in/mgo.v2"
-
+	. "gopkg.in/mgo.v2"
 	// "lngs/common"
 )
 
@@ -15,8 +14,8 @@ func init() {
 }
 
 type DBConn struct {
-	session *mgo.Session
-	db      *mgo.Database
+	session *Session
+	db      *Database
 }
 
 func (self *DBConn) Close() {
@@ -34,12 +33,12 @@ func connectDB() {
 	defer connLock.Unlock()
 
 	log.Println("Connecting MongoDB ...")
-	session, err := mgo.Dial("127.0.0.1:27017") //连接数据库
+	session, err := Dial("127.0.0.1:27017") //连接数据库
 	if err != nil {
 		panic(err)
 	}
 
-	session.SetMode(mgo.Monotonic, true)
+	session.SetMode(Monotonic, true)
 
 	db := session.DB("lngs") //数据库名称
 	// collection := db.C("person") //如果该集合已经存在的话，则直接返回
@@ -77,12 +76,12 @@ restart:
 
 }
 
-func FindDoc(collectionName string, selector interface{}) (Doc, error) {
+func FindDoc(collectionName string, query interface{}) (Doc, error) {
 	waitForDBConn()
 	defer connLock.RUnlock()
 
 	doc := make(Doc)
-	err := conn.db.C(collectionName).Find(selector).One(doc)
+	err := conn.db.C(collectionName).Find(query).One(doc)
 	if err != nil {
 		return nil, err
 	} else {
@@ -90,11 +89,36 @@ func FindDoc(collectionName string, selector interface{}) (Doc, error) {
 	}
 }
 
-func UpdateDoc(collectionName string, selector interface{}, update Doc) error {
+func FindDocs(collectionName string, query interface{}, selector interface{}, sort []string, limit int) ([]Doc, error) {
 	waitForDBConn()
 	defer connLock.RUnlock()
 
-	err := conn.db.C(collectionName).Update(selector, update)
+	docs := []Doc{}
+	q := conn.db.C(collectionName).Find(query)
+	if selector != nil {
+		q = q.Select(selector)
+	}
+
+	if sort != nil && len(sort) > 0 {
+		q = q.Sort(sort...)
+	}
+
+	if limit > 0 {
+		q = q.Limit(limit)
+	}
+
+	err := q.All(&docs)
+	if err != nil {
+		return nil, err
+	}
+	return docs, nil
+}
+
+func UpdateDoc(collectionName string, query interface{}, update Doc) error {
+	waitForDBConn()
+	defer connLock.RUnlock()
+
+	err := conn.db.C(collectionName).Update(query, update)
 	return err
 }
 

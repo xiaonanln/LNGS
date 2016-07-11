@@ -7,6 +7,7 @@ import (
 
 	. "lngs"
 	"lngs/data"
+	"lngs/db"
 	"lngs/utils"
 	"strconv"
 	"strings"
@@ -236,6 +237,7 @@ func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 				rewardChests = append(rewardChests, chestID)
 			}
 		}
+		self.Save()
 	}
 
 	self.CallClient("OnFinishInstance", instanceID, win, rewardChests)
@@ -253,6 +255,8 @@ func (avatar *Avatar) finishSoloInstance(self *Entity, win bool) {
 	self.NotifyAttrChange("cups")
 	rewardChests := []int{}
 	self.CallClient("OnFinishInstance", SOLO_INSTANCE_ID, win, rewardChests)
+
+	self.Save()
 }
 
 func (avatar *Avatar) onCupsChange(self *Entity, cups int) {
@@ -585,6 +589,40 @@ func (avatar *Avatar) StopSolo(self *Entity) {
 
 // 	return
 // }
+
+func (avatar *Avatar) GetRanking(self *Entity) {
+	query := map[string]interface{}{}
+	selector := map[string]interface{}{
+		"baseLevel": 1,
+		"cups":      1,
+		"name":      1,
+	}
+
+	sort := []string{
+		"-cups",
+		"-baseLevel",
+	}
+
+	docs, err := lngsdb.FindDocs("entities", query, selector, sort, 100)
+	if err != nil {
+		self.CallClient("Toast", "获取排行榜失败")
+		return
+	}
+
+	ranking := [][]interface{}{}
+	for _, doc := range docs {
+		item := []interface{}{
+			doc.HexId(),
+			doc["name"],
+			doc["baseLevel"],
+			doc["cups"],
+		}
+		ranking = append(ranking, item)
+	}
+
+	log.Printf("GetRanking %v", ranking)
+	self.CallClient("OnGetRanking", ranking)
+}
 
 func (avatar *Avatar) addChest(self *Entity, chestID int, count int) {
 	// add a chest
