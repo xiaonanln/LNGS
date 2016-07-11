@@ -109,10 +109,12 @@ func (self *SoloManager) tryMatchAvatars() {
 		avatar2 *Entity
 	}, 0, len(avatars)/2+1)
 
+	now := GetTime()
+
 	for i, avatarSST := range avatars {
 		avatar := avatarSST.avatar
-
-		if matchedAvatars[avatar] {
+		if matchedAvatars[avatar] || avatarSST.sst > now-5 {
+			// 最少需要匹配5s，因此5s内无法匹配到其他玩家！
 			continue
 		}
 
@@ -125,7 +127,7 @@ func (self *SoloManager) tryMatchAvatars() {
 			otherSST := avatars[j]
 			other := otherSST.avatar
 
-			if matchedAvatars[other] {
+			if matchedAvatars[other] || otherSST.sst > now-5 {
 				// avatar already matched, ignore...
 				continue
 			}
