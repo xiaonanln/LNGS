@@ -23,3 +23,19 @@ func MaxInt(i1 int, i2 int) int {
 		return i2
 	}
 }
+
+func MinInt(i1 int, i2 int) int {
+	if i1 <= i2 {
+		return i1
+	} else {
+		return i2
+	}
+}
+
+func AbsInt(a int) int {
+	if a >= 0 {
+		return a
+	} else {
+		return -a
+	}
+}

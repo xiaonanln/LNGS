@@ -210,14 +210,14 @@ func (avatar *Avatar) LeaveWorldChatroom(self *Entity) {
 }
 
 // FinishInstance : player finishs an instance
-func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
+func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool, instanceInfo map[string]interface{}) {
 	log.Printf("%v.FinishInstance: instanceID=%v, win = %v", self, instanceID, win)
 
 	instanceData := lngsdata.GetDataRecord("instance", instanceID)
 	rewardChests := make([]int, 0, 4)
 
 	if instanceID == SOLO_INSTANCE_ID {
-		avatar.finishSoloInstance(self, win)
+		avatar.finishSoloInstance(self, win, instanceInfo)
 		return
 	}
 
@@ -243,13 +243,30 @@ func (avatar *Avatar) FinishInstance(self *Entity, instanceID int, win bool) {
 	self.CallClient("OnFinishInstance", instanceID, win, rewardChests)
 }
 
-func (avatar *Avatar) finishSoloInstance(self *Entity, win bool) {
+func (avatar *Avatar) finishSoloInstance(self *Entity, win bool, instanceInfo map[string]interface{}) {
+	myID := self.Id()
+	avatars := instanceInfo["avatars"].(map[string]interface{})
+	myInfo := avatars[myID].(map[string]interface{})
+	var otherInfo map[string]interface{}
+	for id, info := range avatars {
+		if id == myID {
+			continue
+		} else {
+			otherInfo = info.(map[string]interface{})
+		}
+	}
+
+	cupsDiff := int(otherInfo["cups"].(float64)) - int(myInfo["cups"].(float64))
+	cupsDelta := cupsDiff / 20
+	cupsDelta = MaxInt(-10, MinInt(cupsDelta, 10))
+
 	cups := self.GetInt("cups", 0)
 	if win {
-		cups = cups + 30
+		cups = cups + 30 + cupsDelta
 	} else {
-		cups = cups - 30
+		cups = cups - 30 + cupsDelta
 	}
+	cups = MaxInt(0, cups)
 	self.Set("cups", cups)
 	avatar.onCupsChange(self, cups)
 	self.NotifyAttrChange("cups")
@@ -286,7 +303,9 @@ func (avatar *Avatar) EnterInstance(self *Entity, instanceID int) {
 	}
 
 	controlIndex := 1
-	self.CallClient("OnEnterInstance", instanceID, red, green, controlIndex)
+	instanceInfo := map[string]interface{}{}
+
+	self.CallClient("OnEnterInstance", instanceID, red, green, controlIndex, instanceInfo)
 }
 
 func OnSoloMatched(battleID string, entity1 *Entity, entity2 *Entity) {
@@ -301,8 +320,20 @@ func OnSoloMatched(battleID string, entity1 *Entity, entity2 *Entity) {
 		"C2": avatar2.getEmbattleCards(entity2),
 	}
 
-	entity1.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 1, battleID)
-	entity2.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 2, battleID)
+	instanceInfo := map[string]interface{}{
+		"battleID": battleID,
+		"avatars": map[string]interface{}{
+			entity1.Id(): map[string]interface{}{
+				"cups": entity1.GetInt("cups", 0),
+			},
+
+			entity2.Id(): map[string]interface{}{
+				"cups": entity2.GetInt("cups", 0),
+			}},
+	}
+
+	entity1.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 1, instanceInfo)
+	entity2.CallClient("OnEnterInstance", SOLO_INSTANCE_ID, red, green, 2, instanceInfo)
 }
 
 func (avatar *Avatar) getEmbattleCards(self *Entity) map[string]interface{} {
