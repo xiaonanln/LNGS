@@ -274,16 +274,12 @@ func (avatar *Avatar) finishSoloInstance(self *Entity, win bool, instanceInfo ma
 	}
 	cups = MaxInt(0, cups)
 	self.Set("cups", cups)
-	avatar.onCupsChange(self, cups)
 	self.NotifyAttrChange("cups")
+	avatar.gainBaseExp(self, 1) // 不管输赢获得1点基地经验
 	rewardChests := []int{}
 	self.CallClient("OnFinishInstance", SOLO_INSTANCE_ID, win, rewardChests)
 
 	self.Save()
-}
-
-func (avatar *Avatar) onCupsChange(self *Entity, cups int) {
-
 }
 
 // EnterInstance : enter instance request
