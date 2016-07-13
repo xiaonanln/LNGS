@@ -570,6 +570,9 @@ func (avatar *Avatar) consumeGold(self *Entity, gold int) bool {
 }
 
 func (avatar *Avatar) gainBaseExp(self *Entity, exp int) {
+	if exp <= 0 {
+		return
+	}
 	baseExp := self.GetInt("baseExp", 0)
 	baseLevel := self.GetInt("baseLevel", 1)
 
@@ -695,10 +698,11 @@ func (avatar *Avatar) openChest(self *Entity, chestID int) {
 		avatar.addCard(self, cardID, num)
 	}
 
-	self.NotifyAttrChange("chests")
-	self.NotifyAttrChange("cards")
-	self.NotifyAttrChange("gold")
+	// get base exp
+	getBaseExp := chestData.GetInt("GetBaseExp")
+	avatar.gainBaseExp(self, getBaseExp)
 
+	self.NotifyAttrChange("chests", "cards", "gold")
 	self.CallClient("OnOpenChest", addGold, cards)
 }
 
