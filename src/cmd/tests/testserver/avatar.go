@@ -478,7 +478,7 @@ func (avatar *Avatar) UpgradeCard(self *Entity, cardID string) {
 	avatar.gainBaseExp(self, upgradeInfo.getBaseExp)
 
 	self.NotifyAttrChange("cards", "gold")
-	self.CallClient("OnUpgradeCard", cardID, cardLevel)
+	self.CallClient("Toast", "升级成功！")
 }
 
 func (avatar *Avatar) UpgradeSkill(self *Entity, cardID string) {
@@ -512,7 +512,7 @@ func (avatar *Avatar) UpgradeSkill(self *Entity, cardID string) {
 	avatar.gainBaseExp(self, upgradeInfo.getBaseExp)
 
 	self.NotifyAttrChange("cards", "gold")
-	self.CallClient("OnUpgradeSkill", cardID, cardLevel, skillLevel)
+	self.CallClient("Toast", "升级天赋成功！")
 }
 
 func (avatar *Avatar) UpgradeSuper(self *Entity, cardID string) {
@@ -546,7 +546,7 @@ func (avatar *Avatar) UpgradeSuper(self *Entity, cardID string) {
 	avatar.gainBaseExp(self, upgradeInfo.getBaseExp)
 
 	self.NotifyAttrChange("cards", "gold")
-	self.CallClient("OnUpgradeSuper", cardID, cardLevel, superLevel)
+	self.CallClient("Toast", "升级技能成功！")
 }
 
 func (avatar *Avatar) consumeGold(self *Entity, gold int) bool {
