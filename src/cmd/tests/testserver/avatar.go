@@ -90,10 +90,15 @@ func (avatar *Avatar) refreshShop(self *Entity) {
 	shopInfo := self.GetMapAttr("shop") // 商店数据
 	shopInfo.Set("sell1", fmt.Sprintf("H%d", RandHeroIndexOfClass(1)))
 	shopInfo.Set("price1", 2)
+	shopInfo.Set("step1", 2)
+
 	shopInfo.Set("sell2", fmt.Sprintf("H%d", RandHeroIndexOfClass(2)))
 	shopInfo.Set("price2", 20)
+	shopInfo.Set("step2", 20)
+
 	shopInfo.Set("sell3", fmt.Sprintf("H%d", RandHeroIndexOfClass(3)))
 	shopInfo.Set("price3", 2000)
+	shopInfo.Set("step3", 2000)
 
 	self.NotifyAttrChange("shop")
 }
@@ -396,11 +401,15 @@ func (avatar *Avatar) BuyCard(self *Entity, cardID string) {
 	shop := self.GetMapAttr("shop")
 
 	sellPrice := -1
+	priceKey := ""
+	stepKey := ""
 	for i := 1; i <= 6; i++ {
 		is := strconv.Itoa(i)
 		sellCardID := shop.GetStr("sell"+is, "")
 		if cardID == sellCardID {
-			sellPrice = shop.GetInt("price"+is, 0)
+			priceKey = "price" + is
+			stepKey = "step" + is
+			sellPrice = shop.GetInt(priceKey, 0)
 			break
 		}
 	}
@@ -414,9 +423,12 @@ func (avatar *Avatar) BuyCard(self *Entity, cardID string) {
 		return
 	}
 
-	self.Set("gold", hasGold-sellPrice)
+	priceAddStep := shop.GetInt(stepKey, 0)
+	shop.Set(priceKey, sellPrice+priceAddStep) // 每次购买增加价格
+
+	avatar.consumeGold(self, sellPrice)
 	avatar.addCard(self, cardID, 1)
-	self.NotifyAttrChange("gold", "cards")
+	self.NotifyAttrChange("gold", "cards", "shop")
 	self.CallClient("OnBuyCard", cardID)
 }
 
@@ -562,6 +574,7 @@ func (avatar *Avatar) consumeGold(self *Entity, gold int) bool {
 	}
 
 	self.Set("gold", hasGold-gold)
+	self.NotifyAttrChange("gold")
 	return true
 }
 
